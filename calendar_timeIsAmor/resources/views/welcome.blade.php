@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    TimE is AMOr
                 </div>
 
                 <div class="links">
