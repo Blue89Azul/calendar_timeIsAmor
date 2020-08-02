@@ -5,9 +5,9 @@
     <title>TimE is AMOr | Calendar</title>
   </head>
   <body>
-{{ $CarrentDay }}
+{{ $carrentDay }}
 
-<table>
+<table class="table" border="1">
   <thead>
     @foreach($dayOfWeek as $day)
     <th>{{ $day }}</th>
