@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('admin/calendar', 'Admin\CalendarController@displayCalendar');
+Route::get('admin/calendar', 'Admin\CalendarController@display');
 
 Route::get('/', function () {
     return view('welcome');

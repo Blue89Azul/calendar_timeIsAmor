@@ -5,14 +5,15 @@
     <title>TimE is AMOr | Calendar</title>
   </head>
   <body>
-    <table>
-      <tr>
-        @foreach($display->weeks as $week)
-        <thead>
-          {{ $week }}
-        </thead>
-        @endforeach
-      </tr>
-    </table>
+{{ $CarrentDay }}
+
+<table>
+  <thead>
+    @foreach($dayOfWeek as $day)
+    <th>{{ $day }}</th>
+    @endforeach
+  </thead>
+</table>
+
   </body>
 </html>
