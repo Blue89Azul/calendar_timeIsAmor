@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">
   <head>
@@ -9,14 +7,12 @@
   <body>
     <table>
       <tr>
-        <!--  -->
+        @foreach($display->weeks as $week)
         <thead>
-          @foreach(weeks as $week)
-          <th>{{ $week }}</th>
-          @endforeach
+          {{ $week }}
         </thead>
+        @endforeach
       </tr>
-
     </table>
   </body>
 </html>

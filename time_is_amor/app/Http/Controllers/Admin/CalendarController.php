@@ -10,6 +10,8 @@ use Carbon\Carbon;
 class CalendarController extends Controller
 {
     public function displayCalendar() {
+      $calDisplay = new CalendarDisplay;
 
+      return view('admin.calendar');
     }
 }
