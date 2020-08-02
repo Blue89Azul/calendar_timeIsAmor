@@ -12,7 +12,7 @@ class CalendarController extends Controller
     public function display() {
       $instance = new CalendarDisplay;
       $calCarrentDay = $instance->carrentDay();
-      $dayOfWeek = $calCarrentDay->dayOfWeek;
+      $dayOfWeek = $instance->dayOfWeek;
 
       return view('admin.calendar', [
         'CarrentDay' => $calCarrentDay,
