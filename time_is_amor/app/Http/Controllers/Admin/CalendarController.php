@@ -13,10 +13,14 @@ class CalendarController extends Controller
       $instance = new CalendarDisplay;
       $carrentDay = $instance->carrentDay();
       $dayOfWeek = $instance->dayOfWeek;
+      $daysInMonth = $instance->getDaysInMonth();
+      $firstDay = $instance->getFirstDay();
 
       return view('admin.calendar', [
         'carrentDay' => $carrentDay,
         'dayOfWeek' => $dayOfWeek,
+        'daysInMonth' => $daysInMonth,
+        'firstDay' => $firstDay;
       ]);
 
     }
