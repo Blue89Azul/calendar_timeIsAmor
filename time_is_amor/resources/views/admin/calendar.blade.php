@@ -17,8 +17,8 @@
       <th scope="col">日</th>
     </tr>
     <tr>
-      @for($i = $cal->days; $i < $cal->daysInMonth; $i++)
-        @if($i <= 0 || $i > $cal->daysInMonth)
+      @for($i = 1 - $firstWeekDay; $i <= $daysInMonth; $i++)
+        @if($i <= 0 || $i > $daysInMonth)
         <td></td>
         @else
         <td>{{ $i }}</td>

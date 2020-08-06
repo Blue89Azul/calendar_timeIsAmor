@@ -14,5 +14,4 @@ class CalendarDisplay
     $daysInMonth = $dt->daysInMonth;
     $days = 1 - $firstWeekDay;
   }
-  
 }
