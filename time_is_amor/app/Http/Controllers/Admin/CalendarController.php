@@ -9,21 +9,5 @@ use Carbon\Carbon;
 
 class CalendarController extends Controller
 {
-    public function display() {
-      $instance = new CalendarDisplay;
-      $carrentDay = $instance->carrentDay();
-      $dayOfWeek = $instance->dayOfWeek;
-      $daysInMonth = $instance->getDaysInMonth();
-      $firstDay = $instance->getFirstDay();
-
-      return view('admin.calendar', [
-        'carrentDay' => $carrentDay,
-        'dayOfWeek' => $dayOfWeek,
-        'daysInMonth' => $daysInMonth,
-        'firstDay' => $firstDay;
-      ]);
-
-    }
-
 
 }
