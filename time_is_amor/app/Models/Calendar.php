@@ -7,13 +7,15 @@ use Carbon\Carbon;
 
 class Calendar extends Model
 {
-  // ついたちの曜日を取得
-  public function firstWeekDay(){
+  public function weekDays(){
     $dt = new Carbon;
     $year = $dt->year;
     $month = $dt->month;
-    $firstWeekDay = $dt->createFromDate($year, $month, 1)->dayOfWeekIso;
-    return $firstWeekDay;
+    $weekDays = $dt->createFromDate($year, $month, 1)->dayOfWeekIso;
+
+    $NumMonday = 1;
+    $day = $NumMonday - $weekDays;
+    return $day;
   }
 
 

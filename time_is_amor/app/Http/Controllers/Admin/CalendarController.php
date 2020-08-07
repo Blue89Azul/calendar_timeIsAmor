@@ -13,14 +13,18 @@ class CalendarController extends Controller
     // Carbonメソッド群
     $instCarbon = new Carbon;
     $daysInMonth = $instCarbon->daysInMonth;
+    $year = $instCarbon->year;
+    $month = $instCarbon->month;
 
     // CalendarModel群（処理記述はこっち）
     $cal = new Calendar;
-    $firstWeekDay = $cal->firstWeekDay();
+    $weekDays = $cal->weekDays();
 
     return view('admin.calendar', [
-    "firstWeekDay" => $firstWeekDay,
-    "daysInMonth" => $daysInMonth,
+      "weekDays" => $weekDays,
+      "daysInMonth" => $daysInMonth,
+      "year" => $year,
+      "month" => $month,
   ]);
   }
 

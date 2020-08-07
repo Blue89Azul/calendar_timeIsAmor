@@ -6,24 +6,31 @@
   </head>
   <body>
     <!-- カレンダー画面 -->
-    <table class="table table-bordered">
-    <tr>
-      <th scope="col">月</th>
-      <th scope="col">火</th>
-      <th scope="col">水</th>
-      <th scope="col">木</th>
-      <th scope="col">金</th>
-      <th scope="col">土</th>
-      <th scope="col">日</th>
-    </tr>
-    <tr>
-      @for($i = 1 - $firstWeekDay; $i <= $daysInMonth; $i++)
-        @if($i <= 0 || $i > $daysInMonth)
-        <td></td>
-        @else
-        <td>{{ $i }}</td>
-        @endif
-      @endfor
-    </tr>
+    <h1>{{ $year }}年 {{ $month }}月</h1>
+    <table class="table" border="1">
+      <thead>
+        <th class="header">月</th>
+        <th class="header">火</th>
+        <th class="header">水</th>
+        <th class="header">木</th>
+        <th class="header">金</th>
+        <th class="header">土</th>
+        <th class="header">日</th>
+      </thead>
+      <tbody>
+        <!-- なんだかややこしくなった。。。 -->
+          @while($day <= $daysInMonth)
+              <tr>
+            @for($i = 0; $i < 7; $i++)
+              @if($day <= 0 || $day > $daysInMonth)
+                <td></td>
+              @else
+                <td>{{ $day }}</td>
+              @endif
+              <?php $day++; ?>
+            @endfor
+              </tr>
+          @endwhile
+      </tbody>
   </body>
 </html>
