@@ -6,7 +6,11 @@
   </head>
   <body>
     <!-- カレンダー画面 -->
-    <h1>{{ $year }}年 {{ $month }}月</h1>
+    <div class="title-comands">
+      <a class="btn btn-primary" href="#" role="button">前月</a>
+      <h1>{{ $year }}年 {{ $month }}月</h1>
+      <a class="btn btn-primary" href="#" role="button">翌月</a>
+    </div>
     <table class="table" border="1">
       <thead>
         <th class="header">月</th>
@@ -19,15 +23,15 @@
       </thead>
       <tbody>
         <!-- なんだかややこしくなった。。。 -->
-          @while($day <= $daysInMonth)
+          @while($days <= $daysInMonth)
               <tr>
             @for($i = 0; $i < 7; $i++)
-              @if($day <= 0 || $day > $daysInMonth)
+              @if($days <= 0 || $days > $daysInMonth)
                 <td></td>
               @else
-                <td>{{ $day }}</td>
+                <td>{{ $days }}</td>
               @endif
-              <?php $day++; ?>
+              <?php $days++; ?>
             @endfor
               </tr>
           @endwhile

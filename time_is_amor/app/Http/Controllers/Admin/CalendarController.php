@@ -18,10 +18,14 @@ class CalendarController extends Controller
 
     // CalendarModel群（処理記述はこっち）
     $cal = new Calendar;
-    $weekDays = $cal->weekDays();
+    $days = $cal->days();
+    $subMonth = $cal->subMonth();
+    
+
+    $addMonth = $cal->addMonth();
 
     return view('admin.calendar', [
-      "weekDays" => $weekDays,
+      "days" => $days,
       "daysInMonth" => $daysInMonth,
       "year" => $year,
       "month" => $month,
