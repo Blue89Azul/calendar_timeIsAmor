@@ -7,38 +7,44 @@ use Carbon\Carbon;
 
 class Calendar extends Model
 {
-  //先月の日付の箇所を空欄にするため
-  public function days(){
+  // 各月日付表示
+  public function daysInMonth(){ //各月の日数取得
     $dt = new Carbon;
-    $year = $dt->year;
-    $month = $dt->month;
-    $weekDays = $dt->createFromDate($year, $month, 1)->dayOfWeekIso;
+    $daysInMonth = $dt->daysInMonth;
+    return $daysInMonth;
+  }
+  public function days($year, $month){ //先月の日付の箇所を空欄にするため
+    $dt = new Carbon;
+    $weekDays = $dt->createFromDate($year, $month, 1)->dayOfWeek;
     $NumMonday = 1;
     $days = $NumMonday - $weekDays;
     return $days;
   }
 
-  // 表示月変更処理（１ヶ月前）
-  public function subMonth() {
+  // 前月表示
+  public function subMonth($year, $month) {
     $dt = new Carbon;
-    $year = $dt->year;
-    $month = $dt->month;
-    $day = $dt->day;
-    $sub = $dt->createFromDate($year, $month, $day);
+    $sub = $dt->createFromDate($year, $month);
     $subMonth = $sub->subMonth();
     return $subMonth;
   }
-
-  // 表示月変更処理（１ヶ月後）
-  public function addMonth() {
+  // 翌月表示
+  public function addMonth($year, $month) {
     $dt = new Carbon;
-    $year = $dt->year;
-    $month = $dt->month;
-    $day = $dt->day;
-    $add = $dt->createFromDate($year, $month, $day);
-    $addMonth = $sub->addMonth();
+    $add = $dt->createFromDate($year, $month);
+    $addMonth = $add->addMonth();
     return $addMonth;
   }
+  // 表示月変更処理
+  // public function changeMonth($year, $month) {
+  //   $dt = new Carbon;
+  //   if($year !="" || $month != ""){
+  //     $showCal = $dt->createFromDate($year, $month);
+  //   }else{
+  //     $showCal = $dt->createFromDate();
+  //   }
+  //   return $showCal;
+  // }
 
 
 }

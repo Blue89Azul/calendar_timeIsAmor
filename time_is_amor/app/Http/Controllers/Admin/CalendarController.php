@@ -9,26 +9,30 @@ use Carbon\Carbon;
 
 class CalendarController extends Controller
 {
-  public function display(){
-    // Carbonメソッド群
-    $instCarbon = new Carbon;
-    $daysInMonth = $instCarbon->daysInMonth;
-    $year = $instCarbon->year;
-    $month = $instCarbon->month;
-
-    // CalendarModel群（処理記述はこっち）
+  public function display(Request $request){
     $cal = new Calendar;
-    $days = $cal->days();
-    $subMonth = $cal->subMonth();
-    
+    // 各月日付表示
+    $days = $cal->days($request->year, $request->month);
+    $daysInMonth = $cal->daysInMonth();
 
-    $addMonth = $cal->addMonth();
+    // 前月表示
+    $subMonth = $cal->subMonth($request->year, $request->month);
+    $subY = $subMonth->year;
+    $subM = $subMonth->month;
+    // 翌月表示
+    $addMonth = $cal->addMonth($request->year, $request->month);
+    $addY = $addMonth->year;
+    $addM = $addMonth->month;
 
     return view('admin.calendar', [
       "days" => $days,
+      "year" => $request->year,
+      "month" => $request->month,
       "daysInMonth" => $daysInMonth,
-      "year" => $year,
-      "month" => $month,
+      "subY" => $subY,
+      "subM" => $subM,
+      "addY" => $addY,
+      "addM" => $addM,
   ]);
   }
 
