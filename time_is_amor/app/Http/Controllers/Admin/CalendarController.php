@@ -11,13 +11,26 @@ class CalendarController extends Controller
 {
   public function display(Request $request){
     // 初期表示
-    $dt = new Carbon;
+    $dt = Carbon::createFromDate();
     $year = $request->year;
     $month = $request->month;
     if($year == null || $month == null){
       $year = $dt->year;
       $month =$dt->month;
     }
+
+// 予定記入画面
+    //yearOption
+    $year = $dt->year;
+    $beforeY = $year - 10;
+    $afterY = $year + 10;
+    // monthOption($monthを使用)
+    // dayOption
+    $day = $dt->day;
+    // hourOption
+    $hour = $dt->hour;
+    // minuteOption
+    $minute = $dt->minute;
 
     // その他処理記述
     $cal = new Calendar;
@@ -34,9 +47,15 @@ class CalendarController extends Controller
     $addM = $addMonth->month;
 
     return view('admin.calendar', [
-      "days" => $days,
+      "dt" => $dt,
       "year" => $year,
+      "beforeY" => $beforeY,
+      "afterY" => $afterY,
       "month" => $month,
+      "days" => $days,
+      "day" => $day,
+      "hour" => $hour,
+      "minute" => $minute,
       "daysInMonth" => $daysInMonth,
       "subY" => $subY,
       "subM" => $subM,
