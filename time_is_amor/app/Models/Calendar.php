@@ -35,16 +35,7 @@ class Calendar extends Model
     $addMonth = $add->addMonth();
     return $addMonth;
   }
-  // 表示月変更処理
-  // public function changeMonth($year, $month) {
-  //   $dt = new Carbon;
-  //   if($year !="" || $month != ""){
-  //     $showCal = $dt->createFromDate($year, $month);
-  //   }else{
-  //     $showCal = $dt->createFromDate();
-  //   }
-  //   return $showCal;
-  // }
+
 
 
 }

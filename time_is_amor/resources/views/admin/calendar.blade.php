@@ -7,7 +7,7 @@
   </head>
   <body>
     <!-- カレンダー画面 -->
-    <h1 id="calTitle">
+    <h1>
       <a class="btn btn-primary"
       href="/admin/calendar/?year={{ $subY }}&month={{ $subM }}" role="button">
         前月</a>

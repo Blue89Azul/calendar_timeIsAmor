@@ -10,24 +10,33 @@ use Carbon\Carbon;
 class CalendarController extends Controller
 {
   public function display(Request $request){
+    // 初期表示
+    $dt = new Carbon;
+    $year = $request->year;
+    $month = $request->month;
+    if($year == null || $month == null){
+      $year = $dt->year;
+      $month =$dt->month;
+    }
+
+    // その他処理記述
     $cal = new Calendar;
     // 各月日付表示
-    $days = $cal->days($request->year, $request->month);
+    $days = $cal->days($year, $month);
     $daysInMonth = $cal->daysInMonth();
-
     // 前月表示
-    $subMonth = $cal->subMonth($request->year, $request->month);
+    $subMonth = $cal->subMonth($year, $month);
     $subY = $subMonth->year;
     $subM = $subMonth->month;
     // 翌月表示
-    $addMonth = $cal->addMonth($request->year, $request->month);
+    $addMonth = $cal->addMonth($year, $month);
     $addY = $addMonth->year;
     $addM = $addMonth->month;
 
     return view('admin.calendar', [
       "days" => $days,
-      "year" => $request->year,
-      "month" => $request->month,
+      "year" => $year,
+      "month" => $month,
       "daysInMonth" => $daysInMonth,
       "subY" => $subY,
       "subM" => $subM,
