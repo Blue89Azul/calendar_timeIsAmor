@@ -12,6 +12,7 @@
 */
 
 Route::get('admin/calendar', 'Admin\CalendarController@display');
+Route::post('admin/calendar', 'Admin\CalendarController@showInputPlan');
 
 Route::get('/', function () {
     return view('welcome');

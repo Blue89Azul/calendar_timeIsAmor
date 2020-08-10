@@ -33,9 +33,9 @@
               <tr>
             @for($i = 0; $i < 7; $i++)
               @if($days <= 0 || $days > $daysInMonth)
-                <td></td>
+                <td><a href="#"></a></td>
               @else
-                <td>{{ $days }}</td>
+                <td><a href="#">{{ $days }}</a></td>
               @endif
               <?php $days++; ?>
             @endfor
@@ -48,67 +48,76 @@
     <h2>予定変更画面</h2>
     <div class="container">
       <!-- 開始予定時刻 -->
-      <h3>開始時刻</h3>
-      <form action="#" method="post">
-            <select class="col-md-1" name="years" size=3>
+      <form action= "{{ action('Admin\CalendarController@showInputPlan') }}" method="post" enctype="multipart/form-data">
+        @if(count($errors) > 0)
+          <ul>
+            @foreach($errors->all() as $e)
+            <li>{{ $e }}</li>
+            @endforeach
+          </ul>
+          @endif
+        <h3>予定タイトル</h3>
+        <input type="text" name="planTitle" value="">
+            <h3>開始時刻</h3>
+            <select class="col-md-1" name="startY" size=3>
               @for($yi = $beforeY; $yi <= $afterY; $yi++)
                 @if($yi === $year)
-                  <option value={$yi} selected>{{ $yi }}</option>
+                  <option value="{{$yi}}" selected>{{ $yi }}</option>
                   <br>
                 @else
-                <option value={$yi}>{{ $yi }}</option>
+                <option value="{{$yi}}">{{ $yi }}</option>
                 <br>
                 @endif
               @endfor
             </select>
             <span>年</span>
 
-            <select class="col-md-1" name="months" size=3>
+            <select class="col-md-1" name="startM" size=3>
               @for($mi = 1; $mi <= 12; $mi++)
                 @if($mi === $month)
-                  <option value={$mi} selected>{{ $mi }}</option>
+                  <option value="{{$mi}}" selected>{{ $mi }}</option>
                   <br>
                 @else
-                <option value={$mi}>{{ $mi }}</option>
+                <option value="{{$mi}}">{{ $mi }}</option>
                 <br>
                 @endif
               @endfor
             </select>
             <span>月</span>
 
-            <select class="col-md-1" name="days" size=3>
+            <select class="col-md-1" name="startD" size=3>
               @for($di = 1; $di <= 31; $di++)
                 @if($di === $day)
-                  <option value={$di} selected>{{ $di }}</option>
+                  <option value="{{$di}}" selected>{{ $di }}</option>
                   <br>
                 @else
-                <option value={$di}>{{ $di }}</option>
+                <option value="{{$di}}">{{ $di }}</option>
                 <br>
                 @endif
               @endfor
             </select>
             <span>日</span>
 
-            <select class="col-md-1" name="hours" size=3>
+            <select class="col-md-1" name="startH" size=3>
               @for($hi = 1; $hi <= 24; $hi++)
                 @if($hi === $hour)
-                  <option value={$hi} selected>{{ $hi }}</option>
+                  <option value="{{$hi}}" selected>{{ $hi }}</option>
                   <br>
                 @else
-                <option value={$hi}>{{ $hi }}</option>
+                <option value="{{$hi}}">{{ $hi }}</option>
                 <br>
                 @endif
               @endfor
             </select>
             <span>時</span>
 
-            <select class="col-md-1" name="minutes" size=3>
+            <select class="col-md-1" name="startMinu" size=3>
               @for($minui = 1; $minui <= 60; $minui++)
                 @if($minui === $minute)
-                  <option value={$minui} selected>{{ $minui }}</option>
+                  <option value="{{ $minui }}" selected>{{ $minui }}</option>
                   <br>
                 @else
-                <option value={$minui}>{{ $minui }}</option>
+                <option value="{{ $minui }}">{{ $minui }}</option>
                 <br>
                 @endif
               @endfor
@@ -117,73 +126,72 @@
 
             <!-- 終了予定時刻 -->
             <h3>終了時刻　＊初期表示は、開始時刻より＋１時間</h3>
-            <select class="col-md-1" name="years" size=3>
+            <select class="col-md-1" name="endY" size=3>
               @for($yi = $beforeY; $yi <= $afterY; $yi++)
                 @if($yi === $year)
-                  <option value={$yi} selected>{{ $yi }}</option>
-                  <br>
+                  <option value="{{$yi}}" selected>{{ $yi }}</option>
                 @else
-                <option value={$yi}>{{ $yi }}</option>
-                <br>
+                <option value="{{$yi}}">{{ $yi }}</option>
                 @endif
               @endfor
             </select>
             <span>年</span>
 
-            <select class="col-md-1" name="months" size=3>
+            <select class="col-md-1" name="endM" size=3>
               @for($mi = 1; $mi <= 12; $mi++)
                 @if($mi === $month)
-                  <option value={$mi} selected>{{ $mi }}</option>
+                  <option value="{{$mi}}" selected>{{ $mi }}</option>
                   <br>
                 @else
-                <option value={$mi}>{{ $mi }}</option>
+                <option value="{{$mi}}">{{ $mi }}</option>
                 <br>
                 @endif
               @endfor
             </select>
             <span>月</span>
 
-            <select class="col-md-1" name="days" size=3>
+            <select class="col-md-1" name="endD" size=3>
               @for($di = 1; $di <= 31; $di++)
                 @if($di === $day)
-                  <option value={$di} selected>{{ $di }}</option>
+                  <option value="{{$di}}" selected>{{ $di }}</option>
                   <br>
                 @else
-                <option value={$di}>{{ $di }}</option>
+                <option value="{{$di}}">{{ $di }}</option>
                 <br>
                 @endif
               @endfor
             </select>
             <span>日</span>
 
-            <select class="col-md-1" name="hours" size=3>
+            <select class="col-md-1" name="endH" size=3>
               @for($hi = 1; $hi <= 24; $hi++)
                 @if($hi === $hour)
-                  <option value={$hi} selected>{{ $hi }}</option>
+                  <option value="{{$hi}}" selected>{{ $hi }}</option>
                   <br>
                 @else
-                <option value={$hi}>{{ $hi }}</option>
+                <option value="{{$hi}}">{{ $hi }}</option>
                 <br>
                 @endif
               @endfor
             </select>
             <span>時</span>
 
-            <select class="col-md-1" name="minutes" size=3>
+            <select class="col-md-1" name="endMinu" size=3>
               @for($minui = 1; $minui <= 60; $minui++)
                 @if($minui === $minute)
-                  <option value={$minui} selected>{{ $minui }}</option>
+                  <option value="{{$minui}}" selected>{{ $minui }}</option>
                   <br>
                 @else
-                <option value={$minui}>{{ $minui }}</option>
+                <option value="{{$minui}}">{{ $minui }}</option>
                 <br>
                 @endif
               @endfor
             </select>
             <span>分</span>
+
+        {{ csrf_field() }}
         <input type="submit" class="btn btn-success" role="button" value="予定変更！！">
       </form>
-
     </div>
 
 

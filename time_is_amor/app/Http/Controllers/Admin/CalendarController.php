@@ -5,10 +5,20 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Calendar;
+use App\Models\InputPlan;
 use Carbon\Carbon;
 
 class CalendarController extends Controller
 {
+  public function showInputPlan(Request $request) {
+    $this->validate($request, InputPlan::$rules);
+    $ip = new InputPlan;
+    $fill = $request->all();
+    $ip->fill($fill)->save();
+
+    return redirect('admin/calendar');
+  }
+
   public function display(Request $request){
     // 初期表示
     $dt = Carbon::createFromDate();
@@ -19,32 +29,25 @@ class CalendarController extends Controller
       $month =$dt->month;
     }
 
-// 予定記入画面
-    //yearOption
-    $year = $dt->year;
+    // 予定記入画面
     $beforeY = $year - 10;
     $afterY = $year + 10;
-    // monthOption($monthを使用)
-    // dayOption
     $day = $dt->day;
-    // hourOption
     $hour = $dt->hour;
-    // minuteOption
     $minute = $dt->minute;
 
     // その他処理記述
     $cal = new Calendar;
-    // 各月日付表示
-    $days = $cal->days($year, $month);
+    $days = $cal->days($year, $month);   // 各月日付表示
     $daysInMonth = $cal->daysInMonth();
-    // 前月表示
-    $subMonth = $cal->subMonth($year, $month);
+    $subMonth = $cal->subMonth($year, $month);    // 前月表示
     $subY = $subMonth->year;
     $subM = $subMonth->month;
-    // 翌月表示
-    $addMonth = $cal->addMonth($year, $month);
+    $addMonth = $cal->addMonth($year, $month);    // 翌月表示
     $addY = $addMonth->year;
     $addM = $addMonth->month;
+
+    // 入力反映処理
 
     return view('admin.calendar', [
       "dt" => $dt,
@@ -63,5 +66,8 @@ class CalendarController extends Controller
       "addM" => $addM,
   ]);
   }
+
+
+
 
 }
