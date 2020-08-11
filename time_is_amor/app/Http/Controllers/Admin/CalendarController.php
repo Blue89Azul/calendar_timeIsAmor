@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Calendar;
 use App\Models\InputPlan;
@@ -10,12 +11,10 @@ use Carbon\Carbon;
 
 class CalendarController extends Controller
 {
+
   public function showInputPlan(Request $request) {
     $this->validate($request, InputPlan::$rules);
     $ip = new InputPlan;
-    $fill = $request->all();
-    $ip->fill($fill)->save();
-
     return redirect('admin/calendar');
   }
 
@@ -27,6 +26,14 @@ class CalendarController extends Controller
     if($year == null || $month == null){
       $year = $dt->year;
       $month =$dt->month;
+    }
+
+    // 予定をカレンダーに反映
+    $calData = DB::table('input_plans');
+    if(isset($calData)) {
+      
+
+
     }
 
     // 予定記入画面
