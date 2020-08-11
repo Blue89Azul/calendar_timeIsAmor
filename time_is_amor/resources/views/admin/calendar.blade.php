@@ -192,6 +192,12 @@
         {{ csrf_field() }}
         <input type="submit" class="btn btn-success" role="button" value="予定変更！！">
       </form>
+      <ul>
+        @foreach( $datas as $data)
+        <?php $eh = $data->endH; $sh = $data->startH; $result = $eh - $sh; ?>
+        <li>{{ $data->planTitle }} : {{ $data->startY }}年{{ $data->startM }}月に{{ $result }}時間活動します。</li>
+        @endforeach
+      </ul>
     </div>
 
 

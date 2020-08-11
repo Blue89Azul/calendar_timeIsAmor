@@ -15,6 +15,8 @@ class CalendarController extends Controller
   public function showInputPlan(Request $request) {
     $this->validate($request, InputPlan::$rules);
     $ip = new InputPlan;
+    $form = $request->all();
+    $ip->fill($form)->save();
     return redirect('admin/calendar');
   }
 
@@ -29,11 +31,9 @@ class CalendarController extends Controller
     }
 
     // 予定をカレンダーに反映
-    $calData = DB::table('input_plans');
-    if(isset($calData)) {
-      
-
-
+    $assignTable = DB::table('input_plans');
+    if(isset($assignTable)) {
+      $datas = $assignTable->get();
     }
 
     // 予定記入画面
@@ -57,6 +57,7 @@ class CalendarController extends Controller
     // 入力反映処理
 
     return view('admin.calendar', [
+      "datas" => $datas,
       "dt" => $dt,
       "year" => $year,
       "beforeY" => $beforeY,
