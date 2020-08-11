@@ -11,8 +11,7 @@ use Carbon\Carbon;
 
 class CalendarController extends Controller
 {
-
-  public function showInputPlan(Request $request) {
+  public function formDatas(Request $request) {
     $this->validate($request, InputPlan::$rules);
     $ip = new InputPlan;
     $form = $request->all();
@@ -29,8 +28,8 @@ class CalendarController extends Controller
       $year = $dt->year;
       $month =$dt->month;
     }
-
-    // 予定をカレンダーに反映
+    
+    // 全データ取得
     $assignTable = DB::table('input_plans');
     if(isset($assignTable)) {
       $datas = $assignTable->get();
