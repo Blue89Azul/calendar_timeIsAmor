@@ -204,6 +204,7 @@
         <input type="submit" class="btn btn-success" role="button" value="予定変更！！">
       </form>
       <!-- いいね機能(後ほど継承) -->
+      
 
     </div>
 
