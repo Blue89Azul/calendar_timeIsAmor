@@ -14,6 +14,7 @@ class CreateInputPlansTable extends Migration
     public function up()
     {
         Schema::create('input_plans', function (Blueprint $table) {
+          // unsignedの確認必要。。。マイグレイトの時エラーになっちゃった。。。
             $table->bigIncrements('id');
             $table->string('planTitle');
             // 開始時刻

@@ -19,6 +19,8 @@ class CalendarController extends Controller
     return redirect('admin/calendar');
   }
 
+  // いいね機能実装
+
   public function display(Request $request){
     // 初期表示
     $dt = Carbon::createFromDate();
@@ -28,7 +30,7 @@ class CalendarController extends Controller
       $year = $dt->year;
       $month =$dt->month;
     }
-    
+
     // 全データ取得
     $assignTable = DB::table('input_plans');
     if(isset($assignTable)) {
@@ -73,8 +75,4 @@ class CalendarController extends Controller
       "addM" => $addM,
   ]);
   }
-
-
-
-
 }

@@ -141,7 +141,6 @@
             <select class="col-md-1" name="endY" size=3>
               @for($yi = $beforeY; $yi <= $afterY; $yi++)
                 @if($yi == $year)
-                <?php echo "{$yi}"; ?>
                   <option value="{{ $yi }}" selected>{{ $yi }}</option>
                 @else
                 <option value="{{ $yi }}">{{ $yi }}</option>
@@ -204,6 +203,7 @@
         <input type="submit" class="btn btn-success" role="button" value="予定変更！！">
       </form>
       <!-- いいね機能(後ほど継承) -->
+      <a class="btn btn-secondary" href="#" role="button">コメント＋いいね！表示</a>
       
 
     </div>
