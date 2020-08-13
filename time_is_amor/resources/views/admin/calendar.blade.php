@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>TimE is AMOr | Calendar</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('/css/calendar.css') }}">
   </head>
   <body>
     <!-- カレンダー画面 -->
@@ -39,13 +40,16 @@
               @else
                 <td>
                   <a href="#">{{ $days }}</a>
+                  @foreach($datas as $data)
+                    @if($data->likeCheck == false)  
                   <ul>
-                    @foreach($datas as $data)
                      @if($data->startD == $days && $data->startM == $month && $data->startY == $year)
                         <li><a href="#">{{ $data->planTitle }}</a></li>
                      @endif
-                    @endforeach
+                    @endif
+                  @endforeach
                   </ul>
+                  <!--  -->
                 </td>
               @endif
               <?php $days++; ?>
@@ -53,10 +57,8 @@
               </tr>
           @endwhile
       </tbody>
-
     </table>
 
-<!-- blade継承でよりコンパクトにしたいなぁ。。。 -->
     <!-- 予定変更画面 -->
     <h2>予定変更画面</h2>
     <div class="container">
@@ -71,7 +73,6 @@
           @endif
         <h3>予定タイトル</h3>
         <input type="text" name="planTitle" value="">
-
             <h3>開始時刻</h3>
             <select class="col-md-1" name="startY" size=3>
               @for($yi = $beforeY; $yi <= $afterY; $yi++)
@@ -199,16 +200,43 @@
             </select>
             <span>分</span>
 
+            <input type="checkbox" name="likeCheck">DONE FOR ME
+
         {{ csrf_field() }}
         <input type="submit" class="btn btn-success" role="button" value="予定変更！！">
       </form>
       <!-- いいね機能(後ほど継承) -->
-      <a class="btn btn-secondary" href="#" role="button">コメント＋いいね！表示</a>
-      
+      <div class="colummn">
+        <div class="hiddenSection">
+           <form action="{{ action('Admin\CalendarController@formDatas') }}" method="post" enctype="multipart/form-data">
+            <label>いいね！ボタン</label>
+            <input type="checkbox" class="like-btn" name="likeA" value="1">
+            <input type="checkbox" class="like-btn" name="likeB" value="1">
+            <input type="checkbox" class="like-btn" name="likeC" value="1">
+            {{ csrf_field() }}
+            <input type="submit" class="btn btn-secondary" role="button" value="コメント＋いいね！を一覧画面に反映！">
+          </form>
+        </div>
+      </div>
+      <!-- コメント一覧で表示する -->
+      <div>
+        <ul>
+        @if(isset($datas) && isset($likes))
+          @foreach($datas as $data)
+            <li>
+              {{ $data->planTitle }}
+              @for($i = 0; $i <= 3; $i++)
+              <img src="{{asset('img/like.jpeg')}}" alt="いいね！">
+              @endfor
+            </li>
+          @endforeach
+        @endif
+        </ul>
+      </div>
 
     </div>
-
-
+<script src="{{ asset('js/main.js') }}"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
 integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

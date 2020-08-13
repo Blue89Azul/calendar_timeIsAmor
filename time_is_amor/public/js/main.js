@@ -81,30 +81,30 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/monthChange.js":
-/*!*************************************!*\
-  !*** ./resources/js/monthChange.js ***!
-  \*************************************/
+/***/ "./resources/js/main.js":
+/*!******************************!*\
+  !*** ./resources/js/main.js ***!
+  \******************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/Users/azul/workspace/github/calendar_app/time_is_amor/resources/js/monthChange.js'");
+
 
 /***/ }),
 
-/***/ 1:
-/*!****************************************!*\
-  !*** multi ./resources/js/monthChange ***!
-  \****************************************/
+/***/ 2:
+/*!************************************!*\
+  !*** multi ./resources/js/main.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/js/monthChange */"./resources/js/monthChange.js");
+module.exports = __webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/js/main.js */"./resources/js/main.js");
 
 
 /***/ })

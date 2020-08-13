@@ -20,6 +20,14 @@ class CalendarController extends Controller
   }
 
   // いいね機能実装
+  public function formLikes(Request $request) {
+    $this->validate($request, Like::$rules);
+      $like = new Like;
+      $form = $request->all();
+      $like->fill($form)->save();
+      return redirect('admin/calendar');
+  }
+
 
   public function display(Request $request){
     // 初期表示
@@ -30,11 +38,21 @@ class CalendarController extends Controller
       $year = $dt->year;
       $month =$dt->month;
     }
+    // いいねの値取得
+    $assignTableLike = DB::table('likes');
+    if(isset($assignTableLike)) {
+      $likes = $assignTableLike->get();
+      // $result = 0;
+      // $likeA = $likes->likeA;
+      // $likeB = $likes->likeB;
+      // $likeC = $likes->likeC;
+      // $result = $likeA + $likeB + $likeC;
+    }
 
     // 全データ取得
-    $assignTable = DB::table('input_plans');
-    if(isset($assignTable)) {
-      $datas = $assignTable->get();
+    $assignTablePlan = DB::table('input_plans');
+    if(isset($assignTablePlan)) {
+      $datas = $assignTablePlan->get();
     }
 
     // 予定記入画面
@@ -55,8 +73,6 @@ class CalendarController extends Controller
     $addY = $addMonth->year;
     $addM = $addMonth->month;
 
-    // 入力反映処理
-
     return view('admin.calendar', [
       "datas" => $datas,
       "dt" => $dt,
@@ -73,6 +89,7 @@ class CalendarController extends Controller
       "subM" => $subM,
       "addY" => $addY,
       "addM" => $addM,
+      "likes" => $likes,
   ]);
   }
 }

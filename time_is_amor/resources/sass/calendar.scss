@@ -1,0 +1,17 @@
+//いいねボタンの箇所だけ、先に実装（うまくいったかどうかわかりづらいから）
+
+input[type="checkbox"] {
+    appearance: none;
+    width: 48px;
+    height: 48px;
+    background: url("public/img/like.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 15px;
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+  opacity: 1;
+}

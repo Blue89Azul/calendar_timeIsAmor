@@ -17,6 +17,7 @@ class CreateInputPlansTable extends Migration
           // unsignedの確認必要。。。マイグレイトの時エラーになっちゃった。。。
             $table->bigIncrements('id');
             $table->string('planTitle');
+            $table->boolean('likeCheck');
             // 開始時刻
             $table->integer('startY');
             $table->integer('startM');
