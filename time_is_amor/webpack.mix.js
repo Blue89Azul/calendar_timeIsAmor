@@ -15,4 +15,5 @@ mix.js('resources/js/app.js', 'public/js')
    .js('resources/js/jquery-3.5.1.min.js', 'public/js')
    .js('resources/js/main.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/normalize.scss', 'public/css')
     .sass('resources/sass/calendar.scss', 'public/css');

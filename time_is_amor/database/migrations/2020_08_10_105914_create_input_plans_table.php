@@ -14,10 +14,9 @@ class CreateInputPlansTable extends Migration
     public function up()
     {
         Schema::create('input_plans', function (Blueprint $table) {
-          // unsignedの確認必要。。。マイグレイトの時エラーになっちゃった。。。
             $table->bigIncrements('id');
             $table->string('planTitle');
-            $table->boolean('likeCheck');
+            $table->integer('likeCheck')->nullable();
             // 開始時刻
             $table->integer('startY');
             $table->integer('startM');
@@ -31,6 +30,10 @@ class CreateInputPlansTable extends Migration
             $table->integer('endH');
             $table->integer('endMinu');
             $table->timestamps();
+            // いいね機能（レビュー）
+            $table->integer('likeA')->nullable();
+            $table->integer('likeB')->nullable();
+            $table->integer('likeC')->nullable();
         });
     }
 

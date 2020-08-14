@@ -5,60 +5,75 @@
     <title>TimE is AMOr | Calendar</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('/css/calendar.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/normalize.css') }}">
   </head>
   <body>
     <!-- カレンダー画面 -->
+    <!-- Slider main container -->
 
-    <h1>
-      <a class="btn btn-primary"
-      href="/admin/calendar/?year={{ $subY }}&month={{ $subM }}" role="button">
-        前月</a>
-        {{ $year }}年 {{ $month }}月
-      <a class="btn btn-primary"
-      href="/admin/calendar/?year={{ $addY }}&month={{ $addM }}" role="button">
-        翌月</a>
-    </h1>
 
-    <table class="table" border="1">
-      <thead>
-        <th scope="col">日</th>
-        <th scope="col">月</th>
-        <th scope="col">火</th>
-        <th scope="col">水</th>
-        <th scope="col">木</th>
-        <th scope="col">金</th>
-        <th scope="col">土</th>
-      </thead>
 
-      <tbody>
-        <!-- 予定を挿入する。 -->
-          @while($days <= $daysInMonth)
+
+
+    <div class="calendar container-fluid">
+      <div class="row calendar__nav-stlye">
+        <header class="row calendar__header">
+          <nav class="col-sm-12 calendar__nav">
+            <a href="/admin/calendar/?year={{ $subY }}&month={{ $subM }}">＜ </a>
+            <a href="/admin/calendar/?year={{ $addY }}&month={{ $addM }}"> ＞</a>
+            <h1 class="calendar__show">{{ $year }}年 {{ $month }}月</h1>
+          </nav>
+        </header>
+      </div>
+      <div class="row calendar-style">
+        <div class="col-sm-12 h-100">
+          <table class="table table-bordered h-100">
+            <thead class="bg-primary">
               <tr>
-            @for($i = 0; $i < 7; $i++)
-              @if($days <= 0 || $days > $daysInMonth)
-                <td><a href="#"></a></td>
-              @else
-                <td>
-                  <a href="#">{{ $days }}</a>
-                  @foreach($datas as $data)
-                    @if($data->likeCheck == false)  
-                  <ul>
-                     @if($data->startD == $days && $data->startM == $month && $data->startY == $year)
-                        <li><a href="#">{{ $data->planTitle }}</a></li>
-                     @endif
-                    @endif
-                  @endforeach
-                  </ul>
-                  <!--  -->
-                </td>
-              @endif
-              <?php $days++; ?>
-            @endfor
+                <th scope="col">日</th>
+                <th scope="col">月</th>
+                <th scope="col">火</th>
+                <th scope="col">水</th>
+                <th scope="col">木</th>
+                <th scope="col">金</th>
+                <th scope="col">土</th>
               </tr>
-          @endwhile
-      </tbody>
-    </table>
-
+            </thead>
+            <tbody>
+              <!-- 予定を挿入する。 -->
+                @while($days <= $daysInMonth)
+                    <tr>
+                  @for($i = 0; $i < 7; $i++)
+                    @if($days <= 0 || $days > $daysInMonth)
+                      <td><a href="#"></a></td>
+                    @else
+                      <td>
+                        <a href="#">{{ $days }}</a>
+                        @foreach($datas as $data)
+                          @if($data->likeCheck != "1")
+                        <ul>
+                           @if($data->startD == $days && $data->startM == $month && $data->startY == $year)
+                              <li><a href="#">{{ $data->planTitle }}</a></li>
+                           @endif
+                          @endif
+                        @endforeach
+                        </ul>
+                        <!--  -->
+                      </td>
+                    @endif
+                    <?php $days++; ?>
+                  @endfor
+                    </tr>
+                @endwhile
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- 予定追加ボタン -->
+    <a href="#">予定追加ボタン</a>
+    <!-- プロフィール＋コメント一覧ボタン -->
+    <a href="#">プロフィール＋コメント一覧ボタン</a>
     <!-- 予定変更画面 -->
     <h2>予定変更画面</h2>
     <div class="container">
@@ -199,41 +214,31 @@
               @endfor
             </select>
             <span>分</span>
-
-            <input type="checkbox" name="likeCheck">DONE FOR ME
-
+            <!-- いいね機能（レビュー） -->
+            <label for="like-btn">いいね！ボタン</label>
+            <input type="checkbox" id="like-btn" name="likeA" value="1">
+            <input type="checkbox" id="like-btn" name="likeB" value="1">
+            <input type="checkbox" id="like-btn" name="likeC" value="1">
+            <input type="checkbox" name="likeCheck" value="1">DONE FOR ME
         {{ csrf_field() }}
         <input type="submit" class="btn btn-success" role="button" value="予定変更！！">
       </form>
-      <!-- いいね機能(後ほど継承) -->
-      <div class="colummn">
-        <div class="hiddenSection">
-           <form action="{{ action('Admin\CalendarController@formDatas') }}" method="post" enctype="multipart/form-data">
-            <label>いいね！ボタン</label>
-            <input type="checkbox" class="like-btn" name="likeA" value="1">
-            <input type="checkbox" class="like-btn" name="likeB" value="1">
-            <input type="checkbox" class="like-btn" name="likeC" value="1">
-            {{ csrf_field() }}
-            <input type="submit" class="btn btn-secondary" role="button" value="コメント＋いいね！を一覧画面に反映！">
-          </form>
-        </div>
-      </div>
       <!-- コメント一覧で表示する -->
       <div>
-        <ul>
-        @if(isset($datas) && isset($likes))
           @foreach($datas as $data)
+          <?php $result = $data->likeA + $data->likeB + $data->likeC ?>
+           @if($data->likeCheck == "1")
+        <ul>
             <li>
               {{ $data->planTitle }}
-              @for($i = 0; $i <= 3; $i++)
+              @for($i = 1; $i <= $result ; $i++)
               <img src="{{asset('img/like.jpeg')}}" alt="いいね！">
               @endfor
             </li>
-          @endforeach
-        @endif
         </ul>
+         @endif
+        @endforeach
       </div>
-
     </div>
 <script src="{{ asset('js/main.js') }}"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

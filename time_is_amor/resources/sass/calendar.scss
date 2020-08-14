@@ -1,6 +1,37 @@
-//いいねボタンの箇所だけ、先に実装（うまくいったかどうかわかりづらいから）
+.calendar {
+  height: 100vh;
+}
 
-input[type="checkbox"] {
+.calendar__header {
+  height: 7vh;
+}
+
+.calendar__nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+
+  & .calendar__show {
+    margin-top: 5px;
+    font-size: 2em;
+  }
+}
+
+.calendar-style {
+  height: 85vh;
+}
+
+.c-container {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+  padding: 0 15px;
+}
+
+
+// 下のやつは、あとで別のCSSに記述する。
+input[type="checkbox"]#like-btn {
     appearance: none;
     width: 48px;
     height: 48px;
@@ -12,6 +43,6 @@ input[type="checkbox"] {
     cursor: pointer;
 }
 
-input[type="checkbox"]:checked {
+input[type="checkbox"]#like-btn:checked {
   opacity: 1;
 }
