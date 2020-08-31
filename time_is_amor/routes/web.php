@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,14 +12,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('admin/calendar', 'Admin\CalendarController@display');
-Route::post('admin/calendar', 'Admin\CalendarController@formDatas');
+Route::get('/calendar', 'CalendarController@showCale');
+Route::post('/calendar', 'CalendarController@addPlan');
+Route::post('/Calendar', 'CalendarController@comentList');
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
