@@ -37365,12 +37365,9 @@ $(function () {
     }
   }); // アクション先の変更;
 
-  $("#submit").on("hover", function () {
+  $("#submit").on("click", function () {
     if ($(".change-btn").hasClass("active")) {
-      $(this).parents('.plan-form').attr("action", $(this).data("action('CalendarController@comentList')"));
-      $(this).parents('.plan-form').submit();
-    } else {
-      $(this).parents('.plan-form').attr("action", $(this).data("action('CalendarController@addPlan')"));
+      $(this).parents('.plan-form').attr("action", $(this).data("action"));
       $(this).parents('.plan-form').submit();
     }
   });
@@ -37459,11 +37456,11 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/azul/workspace/github/calendar/time_is_amor/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/azul/workspace/github/calendar/time_is_amor/resources/js/swipe.js */"./resources/js/swipe.js");
-__webpack_require__(/*! /Users/azul/workspace/github/calendar/time_is_amor/resources/js/calendar.js */"./resources/js/calendar.js");
-__webpack_require__(/*! /Users/azul/workspace/github/calendar/time_is_amor/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Users/azul/workspace/github/calendar/time_is_amor/resources/sass/style.scss */"./resources/sass/style.scss");
+__webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/js/swipe.js */"./resources/js/swipe.js");
+__webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/js/calendar.js */"./resources/js/calendar.js");
+__webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/sass/style.scss */"./resources/sass/style.scss");
 
 
 /***/ })

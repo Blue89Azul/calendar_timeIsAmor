@@ -61,6 +61,9 @@ class Calendar extends Model
         $subDIM = $dt->subMonth()->daysInMonth;
         $nextMonth = 1;
         $dayCountar = 1;
+        $posiSubM = 0;
+        $posiM = 0;
+        $posiNextM = 0;
 
         $this->htmlCale = <<<EOS
     <table class="calendar__table">
@@ -89,7 +92,8 @@ class Calendar extends Model
                         $dataM = $dt->createFromDate($pd->startDate)->month;
                         $dataD = $dt->createFromDate($pd->startDate)->day;
                         if ($subDate->year === $dataY && $subDate->month === $dataM &&  $d === $dataD) {
-                            $this->htmlCale .= '<span style="background-color:' . $pd->color .'; "></span>';
+                            $posiSubM += 30;
+                            $this->htmlCale .= '<span style="background-color:' . $pd->color .'; left:'.$posiSubM.';"></span>';
                         }
                     }
                     $this->htmlCale .= '</td>';
@@ -101,7 +105,8 @@ class Calendar extends Model
                         $dataM = $dt->createFromDate($pd->startDate)->month;
                         $dataD = $dt->createFromDate($pd->startDate)->day;
                         if ($date->year == $dataY && $date->month == $dataM &&  $days == $dataD) {
-                            $this->htmlCale .= '<span style="background-color:'. $pd->color .';"></span>';
+                          $posiM += 30;
+                          $this->htmlCale .= '<span style="background-color:' . $pd->color .'; left:'.$posiM.';"></span>';
                         }
                     }
                     $this->htmlCale .= '</td>';
@@ -114,7 +119,8 @@ class Calendar extends Model
                         $dataM = $dt->createFromDate($pd->startDate)->month;
                         $dataD = $dt->createFromDate($pd->startDate)->day;
                         if ($nextDate->year == $dataY && $nextDate->month == $dataM &&  $nextMonth == $dataD) {
-                            $this->htmlCale .= '<span style="background-color:'. $pd->color .';"></span>';
+                          $posiNextM += 30;
+                          $this->htmlCale .= '<span style="background-color:' . $pd->color .'; left:'.$posiNextM.';"></span>';
                         }
                     }
                     $nextMonth++;
@@ -137,11 +143,12 @@ class Calendar extends Model
             $month = $dt->month;
         }
 
-        $date = $dt->createFromDate($year, $month);
-        $subY = $date->subMonth()->year;
-        $subM = $date->subMonth()->month;
-        $addY = $date->addMonth()->year;
-        $addM = $date->addMonth()->month;
+        $sDate = $dt->createFromDate($year, $month);
+        $subY = $sDate->subMonth()->year;
+        $subM = $sDate->subMonth()->month;
+        $aDate = $dt->createFromDate($year, $month);
+        $addY = $aDate->addMonth()->year;
+        $addM = $aDate->addMonth()->month;
 
         $this->changeMonth =<<<EOS
       <div class="col-6 calendar-title">
@@ -174,28 +181,31 @@ class Calendar extends Model
                     <h5>DONE FOR US<span>{$year}. {$month}</span></h5>
                     </div>
                     <div class="modal-body">
-                    <div class="card col-11 mx-auto">
-                    <ul class="list-group list-group-flush">
                     EOS;
         foreach ($clDatas as $data) {
+            $cYear = $dt->createFromDate($data->comentDate)->year;
             $cMonth = $dt->createFromDate($data->comentDate)->month;
             $cDay = $dt->createFromDate($data->comentDate)->day;
-            $this->comentList .=<<<EOS
-                  <li class="list-group-item">
-                  <div class="coment-date d-inline-block">
-                  <p class="d-inline">{$cMonth}月{$cDay}日</p>
-                  <span>まりも</span> → <span>くまモン</span>
-                  </div>
-                  <div class="likes d-inline-block">
+            if ($year == $cYear && $month == $cMonth) {
+                $this->comentList .=<<<EOS
+                  <div class="card col-11 mx-auto">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      <div class="coment-date d-inline-block">
+                        <p class="d-inline">{$cMonth}月{$cDay}日</p>
+                        <span>まりも</span> → <span>くまモン</span>
+                      </div>
+                      <div class="likes d-inline-block">
                   EOS;
-            if (isset($data->like)) {
-                for ($i=1; $i <= $data->like ; $i++) {
-                    $this->comentList .= '<img src="img/like.png" alt="いいね">';
+                if (isset($data->like)) {
+                    for ($i=1; $i <= $data->like ; $i++) {
+                        $this->comentList .= '<img src="img/like.png" alt="いいね">';
+                    }
                 }
+                $this->comentList .= '</div><p class="main-coment text-center">'.$data->comentTitle.'</p></li>';
             }
-            $this->comentList .= '</div><p class="main-coment text-center">'.$data->comentTitle.'</p></li>';
+            $this->comentList .= '</ul></div>';
         }
-
-        return $this->comentList .= '</ul></div></div>';
+        return $this->comentList .= '</div>';
     }
 }

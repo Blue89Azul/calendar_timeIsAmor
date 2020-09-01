@@ -4,7 +4,6 @@ $(function() {
         $(".contents").toggleClass("content-cover");
     });
 
-
     $(".option-btn__acount").on("click", function() {
         $(".profile").addClass("open-profile");
     });
@@ -44,16 +43,10 @@ $(function() {
         }
     });
 
-    // アクション先の変更;
-    $("#submit").on("hover", function() {
+    $("#submit").on("click", function() {
         if ($(".change-btn").hasClass("active")) {
-          $(this).parents('.plan-form').attr("action", $(this).data("action('CalendarController@comentList')"));
-          $(this).parents('.plan-form').submit();
-        } else {
-          $(this).parents('.plan-form').attr("action", $(this).data("action('CalendarController@addPlan')"));
+          $(this).parents('.plan-form').attr("action", $(this).data("action"));
           $(this).parents('.plan-form').submit();
         }
     });
-
-
 });

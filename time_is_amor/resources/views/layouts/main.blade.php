@@ -95,7 +95,7 @@
     <div class="modal fade" id="modal__addPlan" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <form class="plan-form" action="{{action('CalendarController@comentList')}}" method="post" enctype="multipart/form-data">
+          <form class="plan-form" action="{{action('CalendarController@addPlan')}}" method="post" enctype="multipart/form-data">
             @if(count($errors) > 0)
               <ul>
                 @foreach($errors->all() as $e)
