@@ -128,13 +128,43 @@ li {
 }
 
 .month-img {
+  position: absolute;
+  top: 60%;
+  left: 100%;
+  transform: translate(-50%, -50%);
   width: 30px;
   height: 30px;
   display: inline-block;
   vertical-align: middle;
-  border: 3px double #DFDED4;
+  border: 3px double black;
   margin-right: 5px;
-  background-color: transparent;
+}
+
+.month-img > a > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.gray-layer {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.6;
+}
+
+.over-layer {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 2100;
+  transform: translate(-50%, -50%);
 }
 
 .calendar__table {
@@ -174,6 +204,9 @@ tr[class^=week] > td {
 
 tr[class^=week] > td > p {
   display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
   padding: 0;
   margin: 0;
 }

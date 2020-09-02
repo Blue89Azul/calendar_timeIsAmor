@@ -16,10 +16,12 @@ $(function() {
                 alert(data);
             })
             .fail(function(data) {
-                alert("非同期失敗");
-                console.log("XMLHttpRequest : " + XMLHttpRequest.status);
-                console.log("textStatus     : " + textStatus);
-                console.log("errorThrown    : " + errorThrown.message);
+              alert('ファイルの取得に失敗しました。');
+              console.log("ajax通信に失敗しました");
+              console.log("jqXHR          : " + jqXHR.status); // HTTPステータスが取得
+              console.log("textStatus     : " + textStatus);    // タイムアウト、パースエラー
+              console.log("errorThrown    : " + errorThrown.message); // 例外情報
+              console.log("URL            : " + url);
             });
     });
 

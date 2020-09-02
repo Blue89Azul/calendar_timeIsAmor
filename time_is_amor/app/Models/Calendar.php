@@ -51,6 +51,7 @@ class Calendar extends Model
             $y = $dt->year;
             $m = $dt->month;
         }
+        $today = $dt->today();
         $date = $dt->createFromDate($year, $month);
         $subDate = $dt->createFromDate($year, $month, 1)->subMonth();
         $nextDate = $dt->createFromDate($year, $month, 1)->addMonth();
@@ -99,7 +100,11 @@ class Calendar extends Model
                     $this->htmlCale .= '</td>';
                 }
                 if ($days >= 1 && $days <= $daysInMonth) {
-                    $this->htmlCale .='<td><p>'.$days.'</p>';
+                    if ($date->year === $today->year && $date->month === $today->month && $days === $today->day) {
+                        $this->htmlCale .='<td><p style="background-color:#A8AD00; color:#fff;">'.$days.'</p>';
+                    } else {
+                        $this->htmlCale .='<td><p>'.$days.'</p>';
+                    }
                     foreach ($planDatas as $pd) {
                         $dataY = $dt->createFromDate($pd->startDate)->year;
                         $dataM = $dt->createFromDate($pd->startDate)->month;
@@ -214,7 +219,8 @@ class Calendar extends Model
     }
 
     private $planList;
-    public function planList_ajax($year, $month, $data){
-      return $data;
+    public function planList_ajax($year, $month, $data)
+    {
+        return $data;
     }
 }

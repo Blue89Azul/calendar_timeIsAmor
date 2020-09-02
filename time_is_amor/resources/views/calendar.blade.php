@@ -10,6 +10,13 @@
           <img src="img/camara.png" alt="今月の一枚">
         </label>
         <div class="month-img">
+          <a href="img/bg-img.jpg" class="modal-img">
+            <img src="img/bg-img.jpg" alt="登録画像">
+          </a>
+        </div>
+        <div class="gray-layer"></div>
+        <div class="over-layer">
+          <img src="#" alt="画像：モーダル表示">
         </div>
       </form>
 
@@ -36,6 +43,6 @@
         </button>
         </div>
       </div>
-      
+
 
 @endsection

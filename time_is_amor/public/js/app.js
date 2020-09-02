@@ -37361,19 +37361,16 @@ $(function () {
       $(this).parents('.plan-form').attr("action", $(this).data("action"));
       $(this).parents('.plan-form').submit();
     }
-  }); //予定一覧表示
+  }); // 今月の一枚：モーダル表示
 
-  $(".week > td").one("click", function (e) {
-    $(this).addClass("checked");
-    $(".calendar__table").css("height", "40vh");
-    $(this).css("border", "solid 2px orange");
-    $(".plan-list").css("display", "block");
+  $("body").append('<div class="gray-layer"></div><div class="over-layer"></div>');
+  $(".gray-layer").click(function () {
+    $(".gray-layer, .over-layer").hide();
   });
-  $(".calendar-footer").on("click", function () {
-    $(".calendar__table").css("height", "65vh");
-    $(".week > td").css("border", "none");
-    $(".plan-list").css("display", "none");
-    ;
+  $("a.modal-img").click(function () {
+    $(".gray-layer").show();
+    $(".over-layer").show().html("<img src='" + $(this).attr("href") + "'>");
+    return false;
   });
 });
 
@@ -37402,10 +37399,15 @@ $(function () {
     }).done(function (data) {
       alert(data);
     }).fail(function (data) {
-      alert("非同期失敗");
-      console.log("XMLHttpRequest : " + XMLHttpRequest.status);
-      console.log("textStatus     : " + textStatus);
-      console.log("errorThrown    : " + errorThrown.message);
+      alert('ファイルの取得に失敗しました。');
+      console.log("ajax通信に失敗しました");
+      console.log("jqXHR          : " + jqXHR.status); // HTTPステータスが取得
+
+      console.log("textStatus     : " + textStatus); // タイムアウト、パースエラー
+
+      console.log("errorThrown    : " + errorThrown.message); // 例外情報
+
+      console.log("URL            : " + url);
     });
   }); //予定一覧表示アニメーション
 

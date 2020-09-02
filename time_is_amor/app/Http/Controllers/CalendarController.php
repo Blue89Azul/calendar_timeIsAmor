@@ -37,7 +37,7 @@ class CalendarController extends Controller
         $cal_planList = $obj->planList_ajax($request->year, $request->month, $request->data);
         return view('calendar', [
           "planList" => $cal_planList,
-        ])
+        ]);
     }
 
     public function showCale(Request $request)

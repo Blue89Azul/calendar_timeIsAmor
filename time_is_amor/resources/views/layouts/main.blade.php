@@ -14,7 +14,6 @@
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400&display=swap" rel="stylesheet">
   </head>
   <body>
-    {{ $planList }}
     <div class="container-fluid">
       <div class="row calendar">
     @yield('calendar')

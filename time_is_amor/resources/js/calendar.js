@@ -40,18 +40,16 @@ $(function() {
         }
     });
 
-    //予定一覧表示
-    $(".week > td").one("click", function(e) {
-      $(this).addClass("checked");
-      $(".calendar__table").css("height", "40vh");
-      $(this).css("border", "solid 2px orange");
-
-      $(".plan-list").css("display", "block");
+    // 今月の一枚：モーダル表示
+    $("body").append('<div class="gray-layer"></div><div class="over-layer"></div>');
+    $(".gray-layer").click(function() {
+      $(".gray-layer, .over-layer").hide();
     });
-    $(".calendar-footer").on("click", function() {
-      $(".calendar__table").css("height", "65vh");
-      $(".week > td").css("border", "none");
-      $(".plan-list").css("display", "none");;
+
+    $("a.modal-img").click(function() {
+      $(".gray-layer").show();
+      $(".over-layer").show().html("<img src='" + $(this).attr("href") + "'>");
+      return false;
     });
 
 });
