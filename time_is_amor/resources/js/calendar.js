@@ -1,9 +1,5 @@
 $(function() {
-    $(".option-btn__main").on("click", function() {
-        $(".option-btn-items > .sub-item").toggle();
-        $(".contents").toggleClass("content-cover");
-    });
-
+  // アカウント一覧表示・非表示
     $(".option-btn__acount").on("click", function() {
         $(".profile").addClass("open-profile");
     });
@@ -11,14 +7,7 @@ $(function() {
         $(".profile").removeClass("open-profile");
     });
 
-    $(".option-btn__coment-list").on("click", function() {
-        $(".coment-list").addClass("open-coment-list");
-    });
-    $(".btn__close-coment-list").on("click", function() {
-        $(".coment-list").removeClass("open-coment-list");
-    });
-
-    //予定入力画面　スイッチャー
+    //予定入力 ⇄ コメント・レビュー入力　スイッチャー機能
     $(".change-btn").on("click", function() {
         $(this).toggleClass("active");
         var flg = $(this).hasClass("active");
@@ -43,10 +32,26 @@ $(function() {
         }
     });
 
+    //フォームの送信先（action）切り替え
     $("#submit").on("click", function() {
         if ($(".change-btn").hasClass("active")) {
-          $(this).parents('.plan-form').attr("action", $(this).data("action"));
-          $(this).parents('.plan-form').submit();
+            $(this).parents('.plan-form').attr("action", $(this).data("action"));
+            $(this).parents('.plan-form').submit();
         }
     });
+
+    //予定一覧表示
+    $(".week > td").one("click", function(e) {
+      $(this).addClass("checked");
+      $(".calendar__table").css("height", "40vh");
+      $(this).css("border", "solid 2px orange");
+
+      $(".plan-list").css("display", "block");
+    });
+    $(".calendar-footer").on("click", function() {
+      $(".calendar__table").css("height", "65vh");
+      $(".week > td").css("border", "none");
+      $(".plan-list").css("display", "none");;
+    });
+
 });

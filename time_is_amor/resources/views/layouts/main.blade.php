@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400&display=swap" rel="stylesheet">
   </head>
   <body>
+    {{ $planList }}
     <div class="container-fluid">
       <div class="row calendar">
     @yield('calendar')
@@ -95,7 +96,7 @@
     <div class="modal fade" id="modal__addPlan" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <form class="plan-form" action="{{action('CalendarController@addPlan')}}" method="post" enctype="multipart/form-data">
+          <form class="plan-form" action="{{ action('CalendarController@addPlan') }}" method="post" enctype="multipart/form-data">
             @if(count($errors) > 0)
               <ul>
                 @foreach($errors->all() as $e)
@@ -181,6 +182,7 @@
     </div>
   </div>
 </div>
-<script src="{{asset('js/calendar.js')}}"></script>
+<script src="{{ asset('js/planList_ajax.js') }}"></script>
+<script src="{{ asset('js/calendar.js') }}"></script>
 </body>
 </html>

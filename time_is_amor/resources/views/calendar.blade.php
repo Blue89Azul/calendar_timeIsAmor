@@ -19,7 +19,7 @@
         <button class="header-option__btn" type="button" name="button">HOY</button>
       </div>
     </div>
-    
+
 {!! $cal !!}
 
   <div class="calendar-footer">
@@ -36,5 +36,6 @@
         </button>
         </div>
       </div>
+      
 
 @endsection

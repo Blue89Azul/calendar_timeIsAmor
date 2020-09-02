@@ -61,9 +61,9 @@ class Calendar extends Model
         $subDIM = $dt->subMonth()->daysInMonth;
         $nextMonth = 1;
         $dayCountar = 1;
-        $posiSubM = 0;
-        $posiM = 0;
-        $posiNextM = 0;
+        $posiSubM = 30;
+        $posiM = 30;
+        $posiNextM = 30;
 
         $this->htmlCale = <<<EOS
     <table class="calendar__table">
@@ -92,8 +92,8 @@ class Calendar extends Model
                         $dataM = $dt->createFromDate($pd->startDate)->month;
                         $dataD = $dt->createFromDate($pd->startDate)->day;
                         if ($subDate->year === $dataY && $subDate->month === $dataM &&  $d === $dataD) {
-                            $posiSubM += 30;
-                            $this->htmlCale .= '<span style="background-color:' . $pd->color .'; left:'.$posiSubM.';"></span>';
+                            $posiSubM += 10;
+                            $this->htmlCale .= '<span style="background-color:' . $pd->color .'; left:'.$posiSubM.'%;"></span>';
                         }
                     }
                     $this->htmlCale .= '</td>';
@@ -105,8 +105,9 @@ class Calendar extends Model
                         $dataM = $dt->createFromDate($pd->startDate)->month;
                         $dataD = $dt->createFromDate($pd->startDate)->day;
                         if ($date->year == $dataY && $date->month == $dataM &&  $days == $dataD) {
-                          $posiM += 30;
-                          $this->htmlCale .= '<span style="background-color:' . $pd->color .'; left:'.$posiM.';"></span>';
+                            $posiM += 10;
+                            $this->htmlCale .= '<span style="background-color:' . $pd->color .';
+                            left:'.$posiM.'%;"></span>';
                         }
                     }
                     $this->htmlCale .= '</td>';
@@ -119,8 +120,9 @@ class Calendar extends Model
                         $dataM = $dt->createFromDate($pd->startDate)->month;
                         $dataD = $dt->createFromDate($pd->startDate)->day;
                         if ($nextDate->year == $dataY && $nextDate->month == $dataM &&  $nextMonth == $dataD) {
-                          $posiNextM += 30;
-                          $this->htmlCale .= '<span style="background-color:' . $pd->color .'; left:'.$posiNextM.';"></span>';
+                            $posiNextM += 10;
+                            $this->htmlCale .= '<span style="background-color:' . $pd->color .';
+                            left:'.$posiNextM.'%;"></span>';
                         }
                     }
                     $nextMonth++;
@@ -144,11 +146,13 @@ class Calendar extends Model
         }
 
         $sDate = $dt->createFromDate($year, $month);
-        $subY = $sDate->subMonth()->year;
-        $subM = $sDate->subMonth()->month;
+        $subMonth = $sDate->subMonth();
+        $subY =$subMonth->year;
+        $subM = $subMonth->month;
         $aDate = $dt->createFromDate($year, $month);
-        $addY = $aDate->addMonth()->year;
-        $addM = $aDate->addMonth()->month;
+        $addMonth = $aDate->addMonth();
+        $addY = $addMonth->year;
+        $addM = $addMonth->month;
 
         $this->changeMonth =<<<EOS
       <div class="col-6 calendar-title">
@@ -207,5 +211,10 @@ class Calendar extends Model
             $this->comentList .= '</ul></div>';
         }
         return $this->comentList .= '</div>';
+    }
+
+    private $planList;
+    public function planList_ajax($year, $month, $data){
+      return $data;
     }
 }

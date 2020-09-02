@@ -190,19 +190,11 @@ tr[class^=week] > td > p {
   display: inline-block;
   position: absolute;
   top: 80%;
-  left: 40%;
+  transform: translate(-50%, -50%);
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background-color: black;
-}
-
-.calendar__days > .week > td > span:nth-child(2) {
-  left: 50%;
-}
-
-.calendar__days > .week > td > span:nth-child(3) {
-  left: 60%;
 }
 
 /* カレンダーフッター部分 */
@@ -249,6 +241,56 @@ tr[class^=week] > td > p {
 .option-btns > button > img {
   width: 65%;
   height: 65%;
+}
+
+.plan-list {
+  width: 100%;
+  height: 25vh;
+  overflow: scroll;
+  display: none;
+  background-color: #fff;
+}
+
+.plan-list-items {
+  width: 95%;
+  height: 40px;
+  padding: 5px 0;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  color: black;
+  border-bottom: 1px solid gray;
+}
+
+.plan-list-items > span {
+  width: 13px;
+  height: 13px;
+  margin-left: 10px;
+  border-radius: 50%;
+  background-color: #659BDF;
+}
+
+.plan-list-items > p {
+  margin: 0 0 0 15px;
+  padding: 0;
+  font-size: 12px;
+}
+
+.plan-list-items > .plan-list-items__time {
+  margin-left: 10px;
+  height: 100%;
+}
+
+.plan-list-items > .plan-list-items__time > p {
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+}
+
+.plan-list-items > .plan-list-items__time > p {
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
 }
 
 /* プロフィール一覧画面 */

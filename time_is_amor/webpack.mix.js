@@ -15,6 +15,7 @@ mix.js([
         'resources/js/app.js',
         'resources/js/swipe.js',
         'resources/js/calendar.js',
+        'resources/js/planList_ajax.js'
     ], 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/style.scss', 'public/css');

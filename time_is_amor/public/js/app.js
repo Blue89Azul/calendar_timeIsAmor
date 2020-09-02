@@ -37323,22 +37323,13 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ (function(module, exports) {
 
 $(function () {
-  $(".option-btn__main").on("click", function () {
-    $(".option-btn-items > .sub-item").toggle();
-    $(".contents").toggleClass("content-cover");
-  });
+  // アカウント一覧表示・非表示
   $(".option-btn__acount").on("click", function () {
     $(".profile").addClass("open-profile");
   });
   $(".btn__close").on("click", function () {
     $(".profile").removeClass("open-profile");
-  });
-  $(".option-btn__coment-list").on("click", function () {
-    $(".coment-list").addClass("open-coment-list");
-  });
-  $(".btn__close-coment-list").on("click", function () {
-    $(".coment-list").removeClass("open-coment-list");
-  }); //予定入力画面　スイッチャー
+  }); //予定入力 ⇄ コメント・レビュー入力　スイッチャー機能
 
   $(".change-btn").on("click", function () {
     $(this).toggleClass("active");
@@ -37363,13 +37354,72 @@ $(function () {
       $(".coment").prop("disabled", true);
       $(".add-plan").prop("disabled", false);
     }
-  }); // アクション先の変更;
+  }); //フォームの送信先（action）切り替え
 
   $("#submit").on("click", function () {
     if ($(".change-btn").hasClass("active")) {
       $(this).parents('.plan-form').attr("action", $(this).data("action"));
       $(this).parents('.plan-form').submit();
     }
+  }); //予定一覧表示
+
+  $(".week > td").one("click", function (e) {
+    $(this).addClass("checked");
+    $(".calendar__table").css("height", "40vh");
+    $(this).css("border", "solid 2px orange");
+    $(".plan-list").css("display", "block");
+  });
+  $(".calendar-footer").on("click", function () {
+    $(".calendar__table").css("height", "65vh");
+    $(".week > td").css("border", "none");
+    $(".plan-list").css("display", "none");
+    ;
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/planList_ajax.js":
+/*!***************************************!*\
+  !*** ./resources/js/planList_ajax.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  $(".week > td").on("click", function () {
+    var dayCale = $(this).text();
+    var clickNum = parseInt(dayCale, 10);
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: '/calendar',
+      type: 'POST',
+      data: clickNum,
+      contentType: false,
+      processData: false
+    }).done(function (data) {
+      alert(data);
+    }).fail(function (data) {
+      alert("非同期失敗");
+      console.log("XMLHttpRequest : " + XMLHttpRequest.status);
+      console.log("textStatus     : " + textStatus);
+      console.log("errorThrown    : " + errorThrown.message);
+    });
+  }); //予定一覧表示アニメーション
+
+  $(".week > td").on("click", function () {
+    $(this).addClass("checked");
+    $(".calendar__table").css("height", "40vh");
+    $(this).css("border", "solid 2px orange");
+    $(".plan-list").css("display", "block");
+  });
+  $(".calendar-footer").on("click", function () {
+    $(".calendar__table").css("height", "65vh");
+    $(".week > td").css("border", "none");
+    $(".plan-list").css("display", "none");
+    ;
   });
 });
 
@@ -37450,15 +37500,16 @@ $(function () {
 /***/ }),
 
 /***/ 0:
-/*!********************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/swipe.js ./resources/js/calendar.js ./resources/sass/app.scss ./resources/sass/style.scss ***!
-  \********************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/swipe.js ./resources/js/calendar.js ./resources/js/planList_ajax.js ./resources/sass/app.scss ./resources/sass/style.scss ***!
+  \****************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/js/app.js */"./resources/js/app.js");
 __webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/js/swipe.js */"./resources/js/swipe.js");
 __webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/js/calendar.js */"./resources/js/calendar.js");
+__webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/js/planList_ajax.js */"./resources/js/planList_ajax.js");
 __webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/sass/app.scss */"./resources/sass/app.scss");
 module.exports = __webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/sass/style.scss */"./resources/sass/style.scss");
 

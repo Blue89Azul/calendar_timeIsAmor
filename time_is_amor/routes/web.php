@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/calendar', 'CalendarController@showCale');
-Route::post('/calendar', 'CalendarController@addPlan');
-Route::post('/Calendar', 'CalendarController@comentList');
+Route::post('/Calendar', 'CalendarController@planList');
+Route::post('/Calendar', 'CalendarController@addPlan');
+Route::post('/calendar', 'CalendarController@comentList');
+
 
 Route::get('/', function () {
     return view('welcome');
