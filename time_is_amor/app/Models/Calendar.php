@@ -9,13 +9,13 @@ use Carbon\Carbon;
 
 class Calendar extends Model
 {
-    private $holidays;
     public function holidays()
-    { // googleカレンダーAPIによる祝日の取得
+    {
+        $dt = new Carbon;
         $api_key = "AIzaSyAgPogpsvPDZpQZN4T9MzwP48R8vmc5Vjg";
         $calendar_id = urlencode('japanese__ja@holiday.calendar.google.com');
-        $start = new Carbon('2020-01-01 00:00:00');
-        $end = new Carbon('2020-12-31 00:00:00');
+        $start = $dt->firstOfYear();
+        $end = $dt->endOfYear();
         $url = "https://www.googleapis.com/calendar/v3/calendars/". $calendar_id . "/events?";
         $query = [
         'key' => $api_key,
@@ -26,17 +26,14 @@ class Calendar extends Model
         'singleEvents' =>'true'
       ];
         $complete_url = $url . http_build_query($query);
-        $this->holidays =[];
-
+        $datas =[];
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $complete_url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $datas = json_decode(curl_exec($ch));
+        $holidays = json_decode(curl_exec($ch));
         curl_close($ch);
 
-        // foreach ($datas->items as $data) {
-        //     $this->holidays[$data->start->date] = $data->summary;
-        // }
+        return $holidays;
     }
 
     private $htmlCale;
@@ -87,49 +84,83 @@ class Calendar extends Model
             for ($i = 0; $i < 7; $i++) {
                 if ($days <= 0) {
                     $d = $subDIM + $days;
-                    $this->htmlCale .='<td><p class="other-week">'. $d .'</p>';
+                    switch ($i) {
+                    case 0:
+                    $this->htmlCale .='<td><p class="other-week text-danger">'. $d .'</p>';
+                      break;
+                    case 6:
+                    $this->htmlCale .='<td><p class="other-week text-primary">'. $d .'</p>';
+                      break;
+                    default:
+                    $this->htmlCale .='<td><p>'. $d .'</p>';
+                  }
                     foreach ($planDatas as $pd) {
                         $dataY = $dt->createFromDate($pd->startDate)->year;
                         $dataM = $dt->createFromDate($pd->startDate)->month;
                         $dataD = $dt->createFromDate($pd->startDate)->day;
                         if ($subDate->year === $dataY && $subDate->month === $dataM &&  $d === $dataD) {
                             $posiSubM += 10;
-                            $this->htmlCale .= '<span style="background-color:' . $pd->color .'; left:'.$posiSubM.'%;"></span>';
+                            $this->htmlCale .= '<span class="plan-item" style="background-color:' . $pd->color .'; left:'.$posiSubM.'%;"></span>';
                         }
                     }
+                    $posiSubM = 30;
                     $this->htmlCale .= '</td>';
                 }
+
                 if ($days >= 1 && $days <= $daysInMonth) {
+                    //今日の日付
                     if ($date->year === $today->year && $date->month === $today->month && $days === $today->day) {
-                        $this->htmlCale .='<td><p style="background-color:#A8AD00; color:#fff;">'.$days.'</p>';
+                        $this->htmlCale .='<td><p style="background-color: #A8AD00; color: #fff; text-shadow: none;">'.$days.'</p>';
                     } else {
-                        $this->htmlCale .='<td><p>'.$days.'</p>';
+                        //それ以外は、土日は色変更
+                        switch ($i) {
+                          case 0:
+                            $this->htmlCale .='<td><p class="text-danger">'.$days.'</p>';
+                          break;
+                          case 6:
+                            $this->htmlCale .='<td><p class="text-primary">'.$days.'</p>';
+                          break;
+                          default:
+                            $this->htmlCale .='<td><p>'.$days.'</p>';                    }
                     }
+                    // 予定が入力された場合の処理
                     foreach ($planDatas as $pd) {
                         $dataY = $dt->createFromDate($pd->startDate)->year;
                         $dataM = $dt->createFromDate($pd->startDate)->month;
                         $dataD = $dt->createFromDate($pd->startDate)->day;
+
                         if ($date->year == $dataY && $date->month == $dataM &&  $days == $dataD) {
                             $posiM += 10;
-                            $this->htmlCale .= '<span style="background-color:' . $pd->color .';
+                            $this->htmlCale .= '<span class="plan-item" style="background-color:' . $pd->color .';
                             left:'.$posiM.'%;"></span>';
                         }
                     }
+                    $posiM = 30;
                     $this->htmlCale .= '</td>';
                 }
 
                 if ($days > $daysInMonth && $dayCountar <= 42) {
-                    $this->htmlCale .= '<td><p class="other-week">'.$nextMonth .'</p>';
+                    switch ($i) {
+                    case 0:
+                        $this->htmlCale .= '<td><p class="other-week text-danger">'.$nextMonth .'</p>';
+                      break;
+
+                    case 6:
+                        $this->htmlCale .= '<td><p class="other-week text-primary">'.$nextMonth .'</p>';              break;
+                    default:
+                        $this->htmlCale .= '<td><p class="other-week">'.$nextMonth .'</p>';
+                  }
                     foreach ($planDatas as $pd) {
                         $dataY = $dt->createFromDate($pd->startDate)->year;
                         $dataM = $dt->createFromDate($pd->startDate)->month;
                         $dataD = $dt->createFromDate($pd->startDate)->day;
                         if ($nextDate->year == $dataY && $nextDate->month == $dataM &&  $nextMonth == $dataD) {
                             $posiNextM += 10;
-                            $this->htmlCale .= '<span style="background-color:' . $pd->color .';
+                            $this->htmlCale .= '<span class="plan-item" style="background-color:' . $pd->color .';
                             left:'.$posiNextM.'%;"></span>';
                         }
                     }
+                    $posiNextM = 30;
                     $nextMonth++;
                     $this->htmlCale .= '</td>';
                 }
@@ -219,7 +250,7 @@ class Calendar extends Model
     }
 
     private $planList;
-    public function planList_ajax($year, $month, $data)
+    public function planList($year, $month, $data)
     {
         return $data;
     }

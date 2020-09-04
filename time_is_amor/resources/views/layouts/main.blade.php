@@ -181,7 +181,7 @@
     </div>
   </div>
 </div>
-<script src="{{ asset('js/planList_ajax.js') }}"></script>
-<script src="{{ asset('js/calendar.js') }}"></script>
+<script src="{{ asset('js/planList_ajax.js') }}" type=module></script>
+<script src="{{ asset('js/calendar.js') }}" type=module></script>
 </body>
 </html>

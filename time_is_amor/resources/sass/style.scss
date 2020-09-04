@@ -215,7 +215,7 @@ tr[class^="week"] > td > p {
     position: relative;
 }
 
-.calendar__days > .week > td > span {
+.calendar__days > .week > td > .plan-item {
     display: inline-block;
     position: absolute;
     top: 80%;
@@ -225,6 +225,19 @@ tr[class^="week"] > td > p {
     border-radius: 50%;
     background-color: black;
 }
+
+.holiday {
+  display: block;
+  position: absolute;
+  font-size: 5px;
+  width: 40px;
+  padding: 2px;
+  border-radius: 15px;
+  background-color: orange;
+  color: #fff;
+  text-shadow: none;
+}
+
 /* カレンダーフッター部分 */
 .calendar-footer {
     width: 100%;
