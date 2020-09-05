@@ -12,4 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+    .js('resources/js/calendar.js', 'public/js')
+    .js('resources/js/planList_ajax.js'.'public/js')
+    .sass('resources/sass/app.scss', 'public/css')
+    .saas('resources/sass/auth_style.scss', 'public/css');

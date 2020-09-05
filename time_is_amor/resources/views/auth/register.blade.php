@@ -4,16 +4,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('message.Register') }}</div>
-
-                <div class="card-body">
+                <h1 class="register__title">{{ __('message.Register') }}</h1>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('message.Name') }}</label>
-
+                            
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
@@ -40,6 +36,14 @@
                         </div>
 
                         <div class="form-group row">
+                          <label for="birthday" class="col-md-4 col-form-label text-md-right">{{ __('message.Birthday') }}</label>
+                          <div class="col-md-6">
+                            <input id="birthday" type="date" name="form-control @error('birthday') is-invalid @enderroer" name="birthday" value="{{ old('birthday') }}" required>
+
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('message.Password') }}</label>
 
                             <div class="col-md-6">
@@ -62,16 +66,14 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="col-12">
+                                <button type="submit" class="w-100 btn btn-primary">
                                     {{ __('登録') }}
                                 </button>
                             </div>
                         </div>
                     </form>
+                  </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+              </div>
 @endsection
