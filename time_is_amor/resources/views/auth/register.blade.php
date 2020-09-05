@@ -4,12 +4,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-                <h1 class="register__title">{{ __('message.Register') }}</h1>
+                <div class="register__title">{{ __('message.Register') }}</div>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('message.Name') }}</label>
-                            
+
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
@@ -38,8 +38,14 @@
                         <div class="form-group row">
                           <label for="birthday" class="col-md-4 col-form-label text-md-right">{{ __('message.Birthday') }}</label>
                           <div class="col-md-6">
-                            <input id="birthday" type="date" name="form-control @error('birthday') is-invalid @enderroer" name="birthday" value="{{ old('birthday') }}" required>
-
+                            <input id="birthday" type="date" class="form-control @error('birthday') is-invalid @enderror" name="birthday" value="{{ old('birthday') }}" required>
+                            @error('birthday')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
                           </div>
                         </div>
 
