@@ -1,8 +1,4 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/style.css": "/css/style.css",
-    "/js/calendar.js": "/js/calendar.js",
-    "/js/planList_ajax.js": "/js/planList_ajax.js",
-    "/js/swipe.js": "/js/swipe.js"
+    "/css/app.css": "/css/app.css"
 }

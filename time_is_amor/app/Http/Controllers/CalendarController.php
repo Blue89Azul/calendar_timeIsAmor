@@ -31,14 +31,21 @@ class CalendarController extends Controller
         return redirect('/calendar');
     }
 
+    public function planList_ajax(Request $request)
+    {
+        $obj = new Calendar;
+        $cal_planList = $obj->planList($request->year, $request->month, $request->clickNum);
+        return $request->clickNum;
+    }
+
     public function showCale(Request $request)
     {
         $obj = new Calendar;
         $cal = $obj->showCale($request->year, $request->month);
         $cal_changeMonth = $obj->changeMonth($request->year, $request->month);
         $cal_comentList = $obj->comentList($request->year, $request->month);
-        $cal_planList = $obj->planList($request->year, $request->month, $request->clickNum);
-        return view('calendar',[
+
+        return view('calendar', [
         "cal" => $cal,
         "changeMonth" => $cal_changeMonth,
         "comentList" => $cal_comentList,

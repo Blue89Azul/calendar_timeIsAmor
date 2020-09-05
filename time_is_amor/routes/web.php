@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
   Route::get('/calendar', 'CalendarController@showCale');
-  Route::post('/planList', 'CalendarController@showCale');
+  Route::post('/planList', 'CalendarController@planList_ajax');
   Route::post('/calendar/addPlan', 'CalendarController@addPlan');
   Route::post('/calendar/comentList', 'CalendarController@comentList');
 
@@ -24,3 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

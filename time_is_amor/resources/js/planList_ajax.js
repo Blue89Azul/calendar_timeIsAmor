@@ -1,22 +1,22 @@
 $(function() {
     $(".week > td").on("click", function() {
-        var dayCale = $(this).text();
-        var clickNum = parseInt(dayCale, 10);
+        let clickNum = parseInt($(this).text(), 10);
         $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: 'planList',
-                type: 'POST',
-                data: clickNum,
-                contentType: false,
-                processData: false,
+                url: '/planList',
+                type: 'post',
+                data: {
+                    'clickNum': clickNum
+                },
+                dataType: 'json',
             })
             .done(function(data) {
                 alert(data);
             })
             .fail(function(data) {
-              alert('ファイルの取得に失敗しました。');
+                alert('ファイルの取得に失敗しました');
             });
     });
 
