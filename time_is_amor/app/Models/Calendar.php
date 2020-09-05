@@ -12,7 +12,7 @@ class Calendar extends Model
     public function holidays()
     {
         $dt = new Carbon;
-        $api_key = "AIzaSyAgPogpsvPDZpQZN4T9MzwP48R8vmc5Vjg";
+        $api_key = "";
         $calendar_id = urlencode('japanese__ja@holiday.calendar.google.com');
         $start = $dt->firstOfYear();
         $end = $dt->endOfYear();
