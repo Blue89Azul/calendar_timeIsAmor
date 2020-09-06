@@ -1,7 +1,9 @@
 <?php
 
   return [
-    'Login' => '登録済みの方',
+    'Login' => 'ログイン',
+    'Reset Password' => 'パスワード再登録',
+    'Remember Me' =>'パスワードを記憶する',
     'Birthday' => '誕生日',
     'Register' => '新規登録',
     'Name' => 'ニックネーム',
