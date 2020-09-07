@@ -40,7 +40,7 @@ class CalendarController extends Controller
         return $request->clickNum;
     }
 
-    public function showCale(Request $request, $user_id)
+    public function showCale(Request $request)
     {
         $obj = new Calendar;
         $cal = $obj->showCale($request->year, $request->month);

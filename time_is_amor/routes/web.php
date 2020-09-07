@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-  Route::get('/calendar/{user_id}', 'CalendarController@showCale');
+  Route::get('/calendar', 'CalendarController@showCale');
   Route::post('/planList', 'CalendarController@planList_ajax');
   Route::post('/calendar/addPlan', 'CalendarController@addPlan');
   Route::post('/calendar/comentList', 'CalendarController@comentList');

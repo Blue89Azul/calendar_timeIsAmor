@@ -30,7 +30,7 @@
 {!! $cal !!}
 
   <div class="calendar-footer">
-    <p>19 de Agosto</p>
+    <p></p>
     <div class="option-btns">
       <button class="option-btn__acount" type="button" name="button">
         <img src="img/profile.jpeg" alt="">

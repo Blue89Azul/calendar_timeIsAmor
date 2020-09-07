@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\AddPlan;
+use App\Models\User;
 use Carbon\Carbon;
 
 class Calendar extends Model

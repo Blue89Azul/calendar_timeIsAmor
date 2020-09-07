@@ -110,6 +110,7 @@ $(function () {
       $("#add-plan").css("display", "none");
       $("#done-for-us").css("display", "block");
       $(".change-btn-label").html("DONE FOR US");
+      $(".change-btn-label").css("text-shadow", "none");
       $(".color-and-like-btn").html("いいね！追加");
       $("#like").css("display", "block");
       $("#color").css("display", "none");
