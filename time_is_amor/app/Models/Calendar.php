@@ -33,7 +33,6 @@ class Calendar extends Model
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $holidays = json_decode(curl_exec($ch));
         curl_close($ch);
-
         return $holidays;
     }
 
@@ -174,7 +173,7 @@ class Calendar extends Model
     }
 
     private $changeMonth;
-    public function changeMonth($year, $month)
+    public function changeMonth($year, $month, $user_id)
     {
         $dt = new Carbon;
         if ($year === null) {
@@ -190,15 +189,14 @@ class Calendar extends Model
         $addMonth = $aDate->addMonth();
         $addY = $addMonth->year;
         $addM = $addMonth->month;
-
         $this->changeMonth =<<<EOS
       <div class="col-6 calendar-title">
-          <a href="/calendar?year={$subY}&month={$subM}" class="arrow-pre"></a>
+          <a href="?year={$subY}&month={$subM}" class="arrow-pre"></a>
             <h1 class="this-month">
               <span>{$year}</span>
               <span>{$month}</span>
             </h1>
-          <a href="/calendar?year={$addY}&month={$addM}" class="arrow-next"></a>
+          <a href="?year={$addY}&month={$addM}" class="arrow-next"></a>
       </div>
       EOS;
         return $this->changeMonth;

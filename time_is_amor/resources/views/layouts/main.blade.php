@@ -27,19 +27,22 @@
           <h6 class="text-center">アカウント</h6>
         </div>
         <div class="card profile__info mb-0">
-          <img class="profile__img-top" src="img/bg-img.jpg" focusable="false" role="img">
-          <img class="profile__img" src="img/profile_acount.jpeg" alt="アカウント画像">
+          <img class="profile__img-top" src="/storage/img/bg-img.jpg" focusable="false" role="img">
+          <img class="profile__img" src="/storage/img/profile_acount.jpeg" alt="アカウント画像">
           <div class="card-body profilr__info-body">
-            <h6 class="card-title">まりも</h6>
-            <p>1992年11月09日</p>
+              @if($user->id = $user_id)
+                <h6 class="card-title">{{$user->name}}</h6>
+                <p>{{$user->birthday}}</p>
+              @endif
             <button type="button" class="btn-color btn-sm" data-toggle="modal" data-target="#modal__edit">編集</button>
           </div>
         </div>
         <div class="card profile__info mb-0">
-          <img class="profile__img-top" src="img/bg-img.jpg" focusable="false" role="img">
+          <img class="profile__img-top" src="/storage/img/bg-img.jpg" focusable="false" role="img">
           <rect width="100%" height="100%" fill="#868e96" />
-          <img class="profile__img" src="img/profile_acount.jpeg" alt="アカウント画像">
+          <img class="profile__img" src="/storage/img/profile_acount.jpeg" alt="アカウント画像">
           <div class="card-body profilr__info-body">
+            <!-- Calender_idが一致している + 招待ユーザが１だったら...？ -->
             <h6 class="card-title">くまモン</h6>
             <p>1991年11月22日</p>
             <button type="button" class="btn-color btn-sm" data-toggle="modal" data-target="#modal__invitation">招待</button>
@@ -47,27 +50,34 @@
         </div>
       </div>
     </div>
+
     <!-- アカウント編集（モーダル） -->
     <div class="modal fade" id="modal__edit" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content edit-content">
-          <form class="card edit-form" action="#" method="post" enctype="multipart/form-data">
+          <form class="card edit-form" action="{{ action('CalendarController@profileUpDate') }}" method="post" enctype="multipart/form-data">
             <div class="form-group col-12 icon-info">
               <input id="icon" type="file" name="edit-img" value="">
               <label for="icon">
-                <img class="profile__img edit-form__icon" src="img/profile_acount.jpeg" alt="アイコン画像（編集用）">
+                <img class="profile__img edit-form__icon" src="/storage/img/profile_acount.jpeg" alt="アイコン画像（編集用）">
               </label>
               <input id="bg" type="file" name="edit-img" value="">
               <label class="edit-form__bg" for="bg">
-                <img class="profile__img-top" src="img/bg-img.jpg" alt="背景画像（編集用）">
+                <img class="profile__img-top" src="/storage/img/bg-img.jpg" alt="背景画像（編集用）">
               </label>
             </div>
-            <div class="form-group card-body edit-form__items">
-              <label class="card-title" for="name">名前</label>
-              <input id="name" class="form-control col-11 mx-auto" type="text" name="" value="">
-              <label class="card-title" for="birthday">誕生日</label>
-              <input id="birthday" class="form-control col-11 mx-auto" type="date" name="" value="">
-            </div>
+            <div class="card-body edit-form__items">
+              <div class="form-group">
+                <label class="col-md-4 col-form-label text-md-right" for="name">名前</label>
+                <input id="name" class="form-control col-11 mx-auto" type="text" name="name" value="{{ $user->name}}" required>
+                <label class="col-md-4 col-form-label text-md-right" for="birthday">誕生日</label>
+                <input id="birthday" class="form-control col-11 mx-auto" type="date" name="birthday" value="{{$user->birthday}}" required>
+              </div>
+                <div class="form-group">
+                  {{ csrf_field() }}
+                  <input type="submit" class="btn-color form-control col-11 mx-auto" value="変更">
+                </div>
+              </div>
           </form>
         </div>
       </div>
@@ -79,7 +89,7 @@
           <div class="modal-header">
             <h5>招待</h5>
           </div>
-          <form class="modal-body invitation-form" action="" method="post">
+          <form class="modal-body invitation-form" action="#" method="post">
             <div class="form-grop">
               <textarea class="col-12 " name="name" rows="8">招待文章(swiftMailerを使用。DBにある文章をここに反映。できれば修正可能に)</textarea>
             </div>
@@ -91,6 +101,7 @@
         </div>
       </div>
     </div>
+
     <!-- 予定追加画面（モーダル） -->
     <div class="modal fade" id="modal__addPlan" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -151,15 +162,15 @@
               <div class="like-items color-items">
                 <input class="coment" id="like-01" type="radio" name="like" value="3">
                 <label for="like-01">
-                  <img src="img/like-btn.png" alt="いいね！">
+                  <img src="/storage/img/like-btn.png" alt="いいね！">
                 </label>
                 <input class="coment" id="like-02" type="radio" name="like" value="2">
                 <label for="like-02">
-                  <img src="img/like-btn.png" alt="いいね！">
+                  <img src="/storage/img/like-btn.png" alt="いいね！">
                 </label>
                 <input class="coment" id="like-03" type="radio" name="like" value="1">
                 <label for="like-03">
-                  <img src="img/like-btn.png" alt="いいね！">
+                  <img src="/storage/img/like-btn.png" alt="いいね！">
                 </label>
               </div>
             </div>

@@ -227,17 +227,16 @@ tr[class^="week"] > td > p {
 }
 
 .holiday {
-  display: block;
-  position: absolute;
-  font-size: 5px;
-  width: 40px;
-  padding: 2px;
-  border-radius: 15px;
-  background-color: orange;
-  color: #fff;
-  text-shadow: none;
+    display: block;
+    position: absolute;
+    font-size: 5px;
+    width: 40px;
+    padding: 2px;
+    border-radius: 15px;
+    background-color: orange;
+    color: #fff;
+    text-shadow: none;
 }
-
 /* カレンダーフッター部分 */
 .calendar-footer {
     width: 100%;
@@ -547,7 +546,7 @@ input[type="radio"]:checked ~ label {
 }
 /* アカウント編集画面（モーダル） */
 .edit-content {
-    height: 50vh;
+    height: 65vh;
 }
 
 .edit-form {

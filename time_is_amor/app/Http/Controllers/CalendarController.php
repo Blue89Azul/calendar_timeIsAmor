@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Calendar;
@@ -20,6 +21,7 @@ class CalendarController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $addPlanDatas = $addPlan->fill($form)->save();
+        //ここもユーザーIDを入れないといけないな
         return redirect('/calendar');
     }
 
@@ -30,36 +32,48 @@ class CalendarController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $addPlanDatas = $addPlan->fill($form)->save();
+        //ここもユーザーIDを入れないといけないな
         return redirect('/calendar');
     }
 
     public function planList_ajax(Request $request)
     {
+      // 予定一覧表示（工事中）
         $obj = new Calendar;
         $cal_planList = $obj->planList($request->year, $request->month, $request->clickNum);
         return $request->clickNum;
     }
 
-    public function showCale(Request $request)
+    public function profileUpDate(Request $request) {
+
+        $user_form = $request->all();
+        $user = Auth::user();
+        unset($user_form['_token']);
+        $user->fill($user_form)->save();
+        return redirect('/calendar/{user_id}');
+    }
+
+    public function showCale(Request $request, $user_id)
     {
         $obj = new Calendar;
-        $cal = $obj->showCale($request->year, $request->month);
-        $cal_changeMonth = $obj->changeMonth($request->year, $request->month);
-        $cal_comentList = $obj->comentList($request->year, $request->month);
-
+        $carbon = new Carbon();
         $tableUsers = DB::table('users');
         if (isset($tableUsers)) {
             $id_tableUser = $tableUsers->select('id')->get();
-            $tableUser = $tableUsers->get();
+            $t_users = DB::table('users');
         }
         $user_id = $id_tableUser;
+        $cal = $obj->showCale($request->year, $request->month);
+        $cal_changeMonth = $obj->changeMonth($request->year, $request->month, $user_id);
+        $cal_comentList = $obj->comentList($request->year, $request->month);
 
         return view('calendar', [
         "cal" => $cal,
         "changeMonth" => $cal_changeMonth,
         "comentList" => $cal_comentList,
         "user_id" => $user_id,
-        "infos_user" =>$tableUser,
+        "user" => Auth::user(),
+        "today" => $carbon,
        ]);
     }
 }

@@ -133,6 +133,11 @@ $(function () {
       $(this).parents('.plan-form').attr("action", $(this).data("action"));
       $(this).parents('.plan-form').submit();
     }
+  }); // 前月・次月変更
+
+  $(".arrow-pre").on("clck", function () {
+    var url = $(location).attr('href');
+    url = url + "";
   }); // 今月の一枚：モーダル表示
 
   $("body").append('<div class="gray-layer"></div><div class="over-layer"></div>');

@@ -559,7 +559,7 @@ input[type=radio]:checked ~ label {
 /* アカウント編集画面（モーダル） */
 
 .edit-content {
-  height: 50vh;
+  height: 65vh;
 }
 
 .edit-form {
@@ -667,4 +667,3 @@ input[type=radio]:checked ~ label {
 .likes {
   display: inline-block;
 }
-

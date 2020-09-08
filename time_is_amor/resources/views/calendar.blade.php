@@ -7,11 +7,11 @@
       <form class="header-option col-3 album" action="#" method="post" enctype="multipart/form-data">
         <input id="album" type="file" name="" value="">
         <label class="header-option__btn" for="album">
-          <img src="img/camara.png" alt="今月の一枚">
+          <img src="/storage/img/camara.png" alt="今月の一枚">
         </label>
         <div class="month-img">
-          <a href="img/bg-img.jpg" class="modal-img">
-            <img src="img/bg-img.jpg" alt="登録画像">
+          <a href="/storage/img/bg-img.jpg" class="modal-img">
+            <img src="/storage/img/bg-img.jpg" alt="登録画像">
           </a>
         </div>
         <div class="gray-layer"></div>
@@ -30,16 +30,16 @@
 {!! $cal !!}
 
   <div class="calendar-footer">
-    <p></p>
+    <p><?php echo $today->month ?>月<?php echo $today->day ?>日</p>
     <div class="option-btns">
       <button class="option-btn__acount" type="button" name="button">
-        <img src="img/profile.jpeg" alt="">
+        <img src="/storage/img/profile.jpeg" alt="プロフィール">
       </button>
         <button class="option-btn__add-plan" type="button" name="button" data-toggle="modal" data-target="#modal__addPlan">
-          <img src="img/calendar-icon.png" alt="">
+          <img src="/storage/img/calendar-icon.png" alt="予定追加">
         </button>
         <button class="option-btn__coment-list" type="button" name="button" data-toggle="modal" data-target="#modal__coment-list">
-          <img src="img/coment-list-icon.png" alt="">
+          <img src="/storage/img/coment-list-icon.png" alt="コメントリスト">
         </button>
         </div>
       </div>
