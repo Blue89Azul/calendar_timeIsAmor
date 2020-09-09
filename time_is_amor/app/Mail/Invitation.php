@@ -18,7 +18,6 @@ class Invitation extends Mailable
      */
     public function __construct()
     {
-        //
     }
 
     /**
@@ -26,8 +25,11 @@ class Invitation extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(Request $request)
     {
-        return $this->view('view.name');
+
+        $fromEmail = Auth::user()->email;
+        return $this->view('emails.invitation')
+                    ->form($fromEmail);
     }
 }

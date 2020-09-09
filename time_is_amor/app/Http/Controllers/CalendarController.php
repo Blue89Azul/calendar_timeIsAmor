@@ -76,4 +76,12 @@ class CalendarController extends Controller
         "today" => $carbon,
        ]);
     }
+
+    public function invitation(Request $request) {
+      $to = $request->session()->flash('toEmail');
+      $text = $$request->session()->flash('textForSend');
+
+      Mail::to($to)->send(new Invitation());
+      
+    }
 }

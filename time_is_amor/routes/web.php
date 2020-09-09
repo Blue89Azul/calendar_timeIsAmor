@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
   Route::post('/calendar/addPlan', 'CalendarController@addPlan');
   Route::post('/calendar/comentList', 'CalendarController@comentList');
   Route::post('/calendar/update', 'CalendarController@profileUpDate'); //FIX
+  Route::post('/calendar/invitation', 'CalendarController@invitation');
 
 
 
