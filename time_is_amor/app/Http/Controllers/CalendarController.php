@@ -22,7 +22,7 @@ class CalendarController extends Controller
         unset($form['_token']);
         $addPlanDatas = $addPlan->fill($form)->save();
         //ここもユーザーIDを入れないといけないな
-        return redirect('/calendar');
+        return redirect('/calendar/{user_id}');
     }
 
     public function comentList(Request $request)
@@ -33,7 +33,7 @@ class CalendarController extends Controller
         unset($form['_token']);
         $addPlanDatas = $addPlan->fill($form)->save();
         //ここもユーザーIDを入れないといけないな
-        return redirect('/calendar');
+        return redirect('/calendar/{user_id}');
     }
 
     public function planList_ajax(Request $request)

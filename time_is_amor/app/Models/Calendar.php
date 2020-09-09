@@ -92,7 +92,7 @@ class Calendar extends Model
                     $this->htmlCale .='<td><p class="other-week text-primary">'. $d .'</p>';
                       break;
                     default:
-                    $this->htmlCale .='<td><p>'. $d .'</p>';
+                    $this->htmlCale .='<td><p class="other-week">'. $d .'</p>';
                   }
                     foreach ($planDatas as $pd) {
                         $dataY = $dt->createFromDate($pd->startDate)->year;
@@ -221,7 +221,7 @@ class Calendar extends Model
                     </div>
                     <div class="modal-body">
                     EOS;
-        foreach ($clDatas as $data) {
+        foreach ($clDatas as $data) { //FIX
             $cYear = $dt->createFromDate($data->comentDate)->year;
             $cMonth = $dt->createFromDate($data->comentDate)->month;
             $cDay = $dt->createFromDate($data->comentDate)->day;
@@ -238,7 +238,7 @@ class Calendar extends Model
                   EOS;
                 if (isset($data->like)) {
                     for ($i=1; $i <= $data->like ; $i++) {
-                        $this->comentList .= '<img src="img/like.png" alt="いいね">';
+                        $this->comentList .= '<img src="/storage/img/like.png" alt="いいね">';
                     }
                 }
                 $this->comentList .= '</div><p class="main-coment text-center">'.$data->comentTitle.'</p></li>';

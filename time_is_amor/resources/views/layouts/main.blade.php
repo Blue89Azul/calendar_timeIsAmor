@@ -44,7 +44,7 @@
           <div class="card-body profilr__info-body">
             <!-- Calender_idが一致している + 招待ユーザが１だったら...？ -->
             <h6 class="card-title">くまモン</h6>
-            <p>1991年11月22日</p>
+            <p>1991-11-22</p>
             <button type="button" class="btn-color btn-sm" data-toggle="modal" data-target="#modal__invitation">招待</button>
           </div>
         </div>
