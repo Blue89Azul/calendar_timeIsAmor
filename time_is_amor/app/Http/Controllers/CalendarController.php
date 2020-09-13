@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Mail\Invitation;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Calendar;
 use App\Models\AddPlan;
 use App\Models\User;
@@ -78,10 +81,15 @@ class CalendarController extends Controller
     }
 
     public function invitation(Request $request) {
-      $to = $request->session()->flash('toEmail');
-      $text = $$request->session()->flash('textForSend');
+      // dd($request);
+      $invitatiton_form = $request->validate([
+        'toEmail' => 'required|email',
+        'textForSend' => 'max:200',
+      ]);
+      $inviteText = $request->get('textForSend');
+      $inviteEmail = $request->get('toEmail');
 
-      Mail::to($to)->send(new Invitation());
-      
+      Mail::to($inviteEmail)->send(new Invitation($inviteText));
+      return redirect('/calendar/{user_id}');
     }
 }

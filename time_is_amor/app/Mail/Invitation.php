@@ -10,14 +10,15 @@ use Illuminate\Queue\SerializesModels;
 class Invitation extends Mailable
 {
     use Queueable, SerializesModels;
-
+      protected $text;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($inviteText)
     {
+      $this->text = $inviteText;
     }
 
     /**
@@ -27,9 +28,13 @@ class Invitation extends Mailable
      */
     public function build(Request $request)
     {
-
         $fromEmail = Auth::user()->email;
+        // dd($fromEmail);
         return $this->view('emails.invitation')
-                    ->form($fromEmail);
+                    ->subject('テスト送信')
+                    ->with([
+                      "text" => $this->text,
+                    ])
+                    ->from($fromEmail);
     }
 }

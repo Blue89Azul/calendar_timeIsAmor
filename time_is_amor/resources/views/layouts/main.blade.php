@@ -70,8 +70,8 @@
               <div class="form-group">
                 <label class="col-md-4 col-form-label text-md-right" for="name">名前</label>
                 <input id="name" class="form-control col-11 mx-auto" type="text" name="name" value="{{ $user->name}}" required>
-                <label class="col-md-4 col-form-label text-md-right" for="birthday">誕生日</label>
-                <input id="birthday" class="form-control col-11 mx-auto" type="date" name="birthday" value="{{$user->birthday}}" required>
+                <label class="col-md-4 col-form-label text-md-right" for="email">メールアドレス</label>
+                <input id="email" class="form-control col-11 mx-auto" type="email" name="mail" value="{{$user->email}}" required>
               </div>
                 <div class="form-group">
                   {{ csrf_field() }}
@@ -89,14 +89,15 @@
           <div class="modal-header">
             <h5>招待</h5>
           </div>
-          <form class="modal-body invitation-form" action="#" method="post">
+          <form class="modal-body invitation-form" action="{{ action('CalendarController@invitation') }}" method="post">
             <div class="form-grop">
-              <textarea class="col-12 " name="name" rows="8">招待文章(swiftMailerを使用。DBにある文章をここに反映。できれば修正可能に)</textarea>
+              <textarea class="col-12" name="textForSend" rows="7" placeholder="パートナーを招待するときの文章を書いてください（２００文字以内）"></textarea>
             </div>
             <div class="form-group">
-              <input class="form-control" type="email" name="email" value="" placeholder="パートナーのアドレス">
+              <input class="form-control" type="email" name="toEmail" placeholder="パートナーのアドレス">
             </div>
-            <button class="btn-color btn-sm col-12" type="button" name="button">送信</button>
+            {{ csrf_field() }}
+            <button class="btn-color btn-sm col-12" type="submit">送信</button>
           </form>
         </div>
       </div>
