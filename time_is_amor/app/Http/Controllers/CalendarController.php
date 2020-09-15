@@ -83,7 +83,7 @@ class CalendarController extends Controller
     public function invitation(Request $request) {
       // dd($request);
       $invitatiton_form = $request->validate([
-        'toEmail' => 'required|email',
+        'toEmail' => 'email',
         'textForSend' => 'max:200',
       ]);
       $inviteText = $request->get('textForSend');

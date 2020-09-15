@@ -3,6 +3,8 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
