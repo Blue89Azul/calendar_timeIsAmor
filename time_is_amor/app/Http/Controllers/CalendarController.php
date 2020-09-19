@@ -24,8 +24,7 @@ class CalendarController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $addPlanDatas = $addPlan->fill($form)->save();
-        //ここもユーザーIDを入れないといけないな
-        return redirect('/calendar/{user_id}');
+        return redirect('/calendar');
     }
 
     public function comentList(Request $request)
@@ -35,11 +34,10 @@ class CalendarController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $addPlanDatas = $addPlan->fill($form)->save();
-        //ここもユーザーIDを入れないといけないな
-        return redirect('/calendar/{user_id}');
+        return redirect('/calendar');
     }
 
-    public function planList_ajax(Request $request)
+    public function planListAjax(Request $request)
     {
       // 予定一覧表示（工事中）
         $obj = new Calendar;
@@ -47,17 +45,18 @@ class CalendarController extends Controller
         return $request->clickNum;
     }
 
-    public function profileUpDate(Request $request) {
+    public function profileUpdate(Request $request) {
 
         $user_form = $request->all();
         $user = Auth::user();
         unset($user_form['_token']);
         $user->fill($user_form)->save();
-        return redirect('/calendar/{user_id}');
+        return redirect('/calendar');
     }
 
-    public function showCale(Request $request, $user_id)
+    public function show(Request $request)
     {
+      dd($request);
         $obj = new Calendar;
         $carbon = new Carbon();
         $tableUsers = DB::table('users');
@@ -69,6 +68,8 @@ class CalendarController extends Controller
         $cal = $obj->showCale($request->year, $request->month);
         $cal_changeMonth = $obj->changeMonth($request->year, $request->month, $user_id);
         $cal_comentList = $obj->comentList($request->year, $request->month);
+
+        // dd(Auth::user()->cal_id);
 
         return view('calendar', [
         "cal" => $cal,
@@ -87,9 +88,10 @@ class CalendarController extends Controller
         'textForSend' => 'max:200',
       ]);
       $inviteText = $request->get('textForSend');
+      $cal_id = Auth::user()->cal_id;
       $inviteEmail = $request->get('toEmail');
 
-      Mail::to($inviteEmail)->send(new Invitation($inviteText));
-      return redirect('/calendar/{user_id}');
+      Mail::to($inviteEmail)->send(new Invitation($inviteText, $cal_id));
+      return redirect('/calendar');
     }
 }

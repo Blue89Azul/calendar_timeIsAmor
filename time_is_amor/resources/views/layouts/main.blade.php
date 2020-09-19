@@ -55,7 +55,7 @@
     <div class="modal fade" id="modal__edit" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content edit-content">
-          <form class="card edit-form" action="{{ action('CalendarController@profileUpDate') }}" method="post" enctype="multipart/form-data">
+          <form class="card edit-form" action="{{ action('CalendarController@profileUpdate') }}" method="post" enctype="multipart/form-data">
             <div class="form-group col-12 icon-info">
               <input id="icon" type="file" name="edit-img" value="">
               <label for="icon">

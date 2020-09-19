@@ -4,7 +4,6 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-                  <h1 class="auth-title">{{ __('message.Register') }}</h1>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="form-group row">
@@ -37,7 +36,7 @@
                         <div class="form-group row">
                           <label for="birthday" class="col-md-4 col-form-label text-md-right">{{ __('message.Birthday') }}</label>
                           <div class="col-md-6">
-                            <input id="birthday" type="date" class="form-control @error('birthday') is-invalid @enderror" name="birthday" value="{{ old('birthday') }}" required>
+                            <input id="birthday" type="date" class="form-control @error('birthday') is-invalid @enderror" name="birthday" value="1992-01-01" required>
                             @error('birthday')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -67,6 +66,13 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="cal_id" class="col-md-4 col-form-label text-md-right">{{ __('カレンダーID（招待ユーザのみ入力）') }}</label>
+                            <div class="col-md-6">
+                                <input id="cal_id" type="text" class="form-control" name="cal_id">
                             </div>
                         </div>
 

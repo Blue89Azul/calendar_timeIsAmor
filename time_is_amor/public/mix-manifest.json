@@ -1,7 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/css/auth_style.css": "/css/auth_style.css",
     "/js/calendar.js": "/js/calendar.js",
-    "/js/planList_ajax.js": "/js/planList_ajax.js"
+    "/js/planList_ajax.js": "/js/planList_ajax.js",
+    "/css/auth_style.css": "/css/auth_style.css"
 }

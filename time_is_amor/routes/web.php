@@ -13,12 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// カレンダーIDの値をURLに挿入。
 
-  Route::get('/calendar/{user_id}', 'CalendarController@showCale'); //FIX
-  Route::post('/planList', 'CalendarController@planList_ajax'); //FIX
+
+  Route::get('/calendar', 'CalendarController@show');
+
+  Route::post('/planList', 'CalendarController@planListAjax');
   Route::post('/calendar/addPlan', 'CalendarController@addPlan');
   Route::post('/calendar/comentList', 'CalendarController@comentList');
-  Route::post('/calendar/update', 'CalendarController@profileUpDate'); //FIX
+  Route::post('/calendar/update', 'CalendarController@profileUpdate');
   Route::post('/calendar/invitation', 'CalendarController@invitation');
 
 

@@ -13,14 +13,16 @@ class Invitation extends Mailable
 {
     use Queueable, SerializesModels;
       protected $text;
+      protected $cal_id;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($inviteText)
+    public function __construct($inviteText, $cal_id)
     {
       $this->text = $inviteText;
+      $this->cal_id = $cal_id;
     }
 
     /**
@@ -33,9 +35,10 @@ class Invitation extends Mailable
         $fromEmail = Auth::user()->email;
         // dd($fromEmail);
         return $this->view('emails.invitation')
-                    ->subject('テスト送信')
+                    ->subject('TimE is AMOr | 招待メール')
                     ->with([
                       "text" => $this->text,
+                      "cal_id" => $this->cal_id,
                     ])
                     ->from($fromEmail);
     }

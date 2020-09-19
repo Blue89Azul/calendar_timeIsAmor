@@ -52,7 +52,7 @@
                     </ul>
             </div>
         </nav>
-        <main class="py-3 main-content-style">
+        <main class="main-content-style">
             @yield('content')
         </main>
     </div>
