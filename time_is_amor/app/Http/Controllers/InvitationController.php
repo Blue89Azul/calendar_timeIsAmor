@@ -29,23 +29,26 @@ class InvitationController extends Controller
   }
 
   public function postRegister(Request $request){
-    
-    // $this->validate($request, [
-    //   'name' => ['required', 'string', 'max:255'],
-    //   'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-    //   'password' => ['required', 'string', 'min:8', 'confirmed'],
-    //   'birthday' => ['required'],
-    //   'partner_id' => ['nullable'],
-    // ])
-    //
-    // $user = new User([
-    //   'name' => $request->input('name'),
-    //   'email' => $request->input('email'),
-    //   'password' => bcrypt($request->input('password')),
-    //   'birthday' => $request->input('birthday'),
-    //   'partner_id' => Auth::id(),
-    // ]);
-    // $user->save();
+
+    $this->validate($request, [
+      'name' => ['required', 'string', 'max:255'],
+      'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+      'password' => ['required', 'string', 'min:8', 'confirmed'],
+      'birthday' => ['required'],
+      'partner_id' => ['nullable'],
+    ]);
+    $form = $request->all();
+    // dd($form);
+    if(isset($form['name'])){
+      $user = new User([
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+        'password' => bcrypt($request->input('password')),
+        'birthday' => $request->input('birthday'),
+        'partner_id' => Auth::id(),
+      ]);
+    }
+    $user->save();
 
     // 事前に登録しているユーザー
     $shoutai = Auth::user();
