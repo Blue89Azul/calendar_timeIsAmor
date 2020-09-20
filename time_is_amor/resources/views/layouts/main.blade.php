@@ -89,7 +89,7 @@
           <div class="modal-header">
             <h5>招待</h5>
           </div>
-          <form class="modal-body invitation-form" action="{{ action('CalendarController@invitation') }}" method="post">
+          <form class="modal-body invitation-form" action="{{ action('InvitationController@mail') }}" method="post">
             <div class="form-grop">
               <textarea class="col-12" name="textForSend" rows="7" placeholder="パートナーを招待するときの文章を書いてください（２００文字以内）"></textarea>
             </div>

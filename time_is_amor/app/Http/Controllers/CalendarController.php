@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Mail\Invitation;
-use Illuminate\Support\Facades\Mail;
 use App\Models\Calendar;
 use App\Models\AddPlan;
 use App\Models\User;
@@ -56,7 +54,6 @@ class CalendarController extends Controller
 
     public function show(Request $request)
     {
-      dd($request);
         $obj = new Calendar;
         $carbon = new Carbon();
         $tableUsers = DB::table('users');
@@ -65,11 +62,10 @@ class CalendarController extends Controller
             $t_users = DB::table('users');
         }
         $user_id = $id_tableUser;
+        $cal_id = Auth::user()->cal_id;
         $cal = $obj->showCale($request->year, $request->month);
         $cal_changeMonth = $obj->changeMonth($request->year, $request->month, $user_id);
         $cal_comentList = $obj->comentList($request->year, $request->month);
-
-        // dd(Auth::user()->cal_id);
 
         return view('calendar', [
         "cal" => $cal,
@@ -81,17 +77,4 @@ class CalendarController extends Controller
        ]);
     }
 
-    public function invitation(Request $request) {
-      // dd($request);
-      $invitatiton_form = $request->validate([
-        'toEmail' => 'email',
-        'textForSend' => 'max:200',
-      ]);
-      $inviteText = $request->get('textForSend');
-      $cal_id = Auth::user()->cal_id;
-      $inviteEmail = $request->get('toEmail');
-
-      Mail::to($inviteEmail)->send(new Invitation($inviteText, $cal_id));
-      return redirect('/calendar');
-    }
 }

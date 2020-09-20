@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-          <h1 class="auth-title">{{ __('新規登録') }}</h1>
+          <h1 class="auth-title">{{ __('招待ユーザ登録') }}</h1>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="form-group row">
