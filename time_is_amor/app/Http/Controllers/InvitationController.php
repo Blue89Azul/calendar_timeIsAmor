@@ -46,6 +46,8 @@ class InvitationController extends Controller
       'partner_id' => $user_id,
     ]);
 
+    //ユーザIDの処理
+
     $user->save();
     return redirect('/calendar/{user_id}'); //ユーザIDの表示
   }

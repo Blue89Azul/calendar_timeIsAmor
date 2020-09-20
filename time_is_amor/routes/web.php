@@ -17,12 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 
   Route::get('/calendar/{cal_id}', 'CalendarController@show');
-
   Route::post('/planList', 'CalendarController@planListAjax');
   Route::post('/calendar/addPlan', 'CalendarController@addPlan');
   Route::post('/calendar/comentList', 'CalendarController@comentList');
   Route::post('/calendar/update', 'CalendarController@profileUpdate');
 
+  //ユーザ招待時のアクション集
   Route::post('/calendar/invitation', 'InvitationController@mail'); //エラーが出そうな予感。。。
 
   Route::get('/invitation/register/{user_id}', 'InvitationController@getRegister');

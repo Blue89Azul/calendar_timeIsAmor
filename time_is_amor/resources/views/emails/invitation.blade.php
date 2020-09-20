@@ -8,10 +8,7 @@
     <p>{{$text}}</p>
 
     <p>さぁ！今すぐはじめましょう！！</p>
-    <h3>[招待ユーザリンク]</h3>
-    <span>https//:123456789.com</span>
-    <h3>[カレンダーID]</h3>
-    <span>{{$cal_id}}</span>
+    <a href="action{{ action(InvitationController@getRegister) }}">[ユーザ登録はこちらから！！]</a>
   </body>
 </html>
 
