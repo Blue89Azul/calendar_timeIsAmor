@@ -55,14 +55,6 @@ class CalendarController extends Controller
     public function show(Request $request)
     {
         $obj = new Calendar;
-        $carbon = new Carbon();
-        $tableUsers = DB::table('users');
-        if (isset($tableUsers)) {
-            $id_tableUser = $tableUsers->select('id')->get();
-            $t_users = DB::table('users');
-        }
-        $user_id = $id_tableUser;
-        $cal_id = Auth::user()->cal_id;
         $cal = $obj->showCale($request->year, $request->month);
         $cal_changeMonth = $obj->changeMonth($request->year, $request->month, $user_id);
         $cal_comentList = $obj->comentList($request->year, $request->month);
@@ -71,9 +63,9 @@ class CalendarController extends Controller
         "cal" => $cal,
         "changeMonth" => $cal_changeMonth,
         "comentList" => $cal_comentList,
-        "user_id" => $user_id,
+        "user_id" => Auth::id(),
         "user" => Auth::user(),
-        "today" => $carbon,
+        "today" => new Carbon(),
        ]);
     }
 

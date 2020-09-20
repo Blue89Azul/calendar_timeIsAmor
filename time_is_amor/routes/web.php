@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 // カレンダーIDの値をURLに挿入。
+  // $user_id = ;
+  // Route::get('/calendar/{id}', function($id = $user_id){
+  // return view('calendar');
+  // });
+  Route::get('/calendar', 'CalendarController@show');
 
 
-  Route::get('/calendar/{cal_id}', 'CalendarController@show');
   Route::post('/planList', 'CalendarController@planListAjax');
   Route::post('/calendar/addPlan', 'CalendarController@addPlan');
   Route::post('/calendar/comentList', 'CalendarController@comentList');
@@ -25,8 +30,8 @@ use Illuminate\Support\Facades\Route;
   //ユーザ招待時のアクション集
   Route::post('/calendar/invitation', 'InvitationController@mail'); //エラーが出そうな予感。。。
 
-  Route::get('/invitation/register/{user_id}', 'InvitationController@getRegister');
-  Route::post('/invitation/register/{user_id}', 'InvitationController@postRegister');
+  Route::get('/invitation/register/{id}', 'InvitationController@getRegister');
+  Route::post('/invitation/register/{id}', 'InvitationController@postRegister');
 
 
 
