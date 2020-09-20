@@ -30,8 +30,8 @@ use Illuminate\Support\Facades\Auth;
   //ユーザ招待時のアクション集
   Route::post('/calendar/invitation', 'InvitationController@mail'); //エラーが出そうな予感。。。
 
-  Route::get('/invitation/register/{id}', 'InvitationController@getRegister');
-  Route::post('/invitation/register/{id}', 'InvitationController@postRegister');
+  Route::get('/invitation/register/', 'InvitationController@getRegister');
+  Route::post('/invitation/register/', 'InvitationController@postRegister');
 
 
 

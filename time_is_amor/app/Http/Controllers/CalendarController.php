@@ -56,7 +56,7 @@ class CalendarController extends Controller
     {
         $obj = new Calendar;
         $cal = $obj->showCale($request->year, $request->month);
-        $cal_changeMonth = $obj->changeMonth($request->year, $request->month, $user_id);
+        $cal_changeMonth = $obj->changeMonth($request->year, $request->month);
         $cal_comentList = $obj->comentList($request->year, $request->month);
 
         return view('calendar', [

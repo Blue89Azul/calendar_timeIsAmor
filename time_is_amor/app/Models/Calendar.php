@@ -173,7 +173,7 @@ class Calendar extends Model
     }
 
     private $changeMonth;
-    public function changeMonth($year, $month, $user_id)
+    public function changeMonth($year, $month)
     {
         $dt = new Carbon;
         if ($year === null) {
