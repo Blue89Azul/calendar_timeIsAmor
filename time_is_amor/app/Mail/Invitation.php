@@ -32,10 +32,12 @@ class Invitation extends Mailable
     public function build(Request $request)
     {
         $fromEmail = Auth::user()->email;
+        $fromName =  Auth::user()->name;
         return $this->view('emails.invitation')
                     ->subject('TimE is AMOr | 招待メール')
                     ->with([
                       "text" => $this->text,
+                      "name" => $fromName,
                     ])
                     ->from($fromEmail);
     }
