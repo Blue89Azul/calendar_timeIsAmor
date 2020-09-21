@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
           <h1 class="auth-title">{{ __('招待ユーザ登録') }}</h1>
-                    <form method="POST" action="{{ action('InvitationController@postRegister') }}">
+                    <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('message.Name') }}</label>

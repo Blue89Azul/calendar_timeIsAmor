@@ -37,7 +37,6 @@ class CalendarController extends Controller
 
     public function planListAjax(Request $request)
     {
-      // 予定一覧表示（工事中）
         $obj = new Calendar;
         $cal_planList = $obj->planList($request->year, $request->month, $request->clickNum);
         return $request->clickNum;
@@ -46,7 +45,7 @@ class CalendarController extends Controller
     public function profileUpdate(Request $request) {
 
         $user_form = $request->all();
-        $user = Auth::user();
+        $user = new User;
         unset($user_form['_token']);
         $user->fill($user_form)->save();
         return redirect('/calendar');
@@ -58,7 +57,6 @@ class CalendarController extends Controller
         $cal = $obj->showCale($request->year, $request->month);
         $cal_changeMonth = $obj->changeMonth($request->year, $request->month);
         $cal_comentList = $obj->comentList($request->year, $request->month);
-
         return view('calendar', [
         "cal" => $cal,
         "changeMonth" => $cal_changeMonth,

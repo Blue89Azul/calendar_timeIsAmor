@@ -30,10 +30,8 @@
           <img class="profile__img-top" src="/storage/img/bg-img.jpg" focusable="false" role="img">
           <img class="profile__img" src="/storage/img/profile_acount.jpeg" alt="アカウント画像">
           <div class="card-body profilr__info-body">
-              @if($user->id = $user_id)
                 <h6 class="card-title">{{$user->name}}</h6>
                 <p>{{$user->birthday}}</p>
-              @endif
             <button type="button" class="btn-color btn-sm" data-toggle="modal" data-target="#modal__edit">編集</button>
           </div>
         </div>
@@ -42,9 +40,8 @@
           <rect width="100%" height="100%" fill="#868e96" />
           <img class="profile__img" src="/storage/img/profile_acount.jpeg" alt="アカウント画像">
           <div class="card-body profilr__info-body">
-            <!-- Calender_idが一致している + 招待ユーザが１だったら...？ -->
-            <h6 class="card-title">くまモン</h6>
-            <p>1991-11-22</p>
+            <h6 class="card-title">{{$user->name}}</h6>
+            <p>{{$user->birthday}}</p>
             <button type="button" class="btn-color btn-sm" data-toggle="modal" data-target="#modal__invitation">招待</button>
           </div>
         </div>

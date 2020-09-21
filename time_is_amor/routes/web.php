@@ -19,24 +19,22 @@ use Illuminate\Support\Facades\Auth;
   // Route::get('/calendar/{id}', function($id = $user_id){
   // return view('calendar');
   // });
-  Route::get('/calendar', 'CalendarController@show');
 
-
-  Route::post('/planList', 'CalendarController@planListAjax');
-  Route::post('/calendar/addPlan', 'CalendarController@addPlan');
-  Route::post('/calendar/comentList', 'CalendarController@comentList');
-  Route::post('/calendar/update', 'CalendarController@profileUpdate');
-
-  //ユーザ招待時のアクション集
-  Route::post('/calendar/invitation', 'InvitationController@mail'); //エラーが出そうな予感。。。
-
+  Route::group(['middleware' => 'auth'], function(){
+    Route::get('/calendar', 'CalendarController@show');
+    Route::post('/planList', 'CalendarController@planListAjax');
+    Route::post('/calendar/addPlan', 'CalendarController@addPlan');
+    Route::post('/calendar/comentList', 'CalendarController@comentList');
+    Route::post('/calendar/update', 'CalendarController@profileUpdate');
+    //ユーザ招待時のアクション集
+    Route::post('/calendar/invitation', 'InvitationController@mail');
+  });
+  
   Route::get('/invitation/register/', 'InvitationController@getRegister');
   Route::post('/invitation/register/', 'InvitationController@postRegister');
 
-
-
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Auth::routes();
