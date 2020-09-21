@@ -20,7 +20,6 @@ $(function() {
             });
     });
 
-
     // 予定一覧表示アニメーション
     $(".week > td").on("click", function() {
         $(this).addClass("checked");
@@ -28,6 +27,7 @@ $(function() {
         $(this).css("border", "solid 2px orange");
         $(".plan-list").css("display", "block");
     });
+    
     $(".calendar-footer").on("click", function() {
         $(".calendar__table").css("height", "65vh");
         $(".week > td").css("border", "none");

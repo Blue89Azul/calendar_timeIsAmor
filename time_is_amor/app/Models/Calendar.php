@@ -253,8 +253,12 @@ class Calendar extends Model
     private $planList;
     public function planList($year, $month, $data)
     {
-      $planList .="<div class='plan-list'><ul>"
-      if()
+      $planList .="<div class='plan-list'><ul>";
+      if(){
+
+      }else{
+
+      }
           <li class="plan-list-items">
             <span></span>
               <div class="plan-list-items__time">
@@ -265,6 +269,7 @@ class Calendar extends Model
           </li>
         </ul>
       </div>
+    </div>
       EOS;
       return $data;
     }

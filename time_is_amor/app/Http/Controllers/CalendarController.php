@@ -37,13 +37,12 @@ class CalendarController extends Controller
 
     public function planListAjax(Request $request)
     {
-        $obj = new Calendar;
-        $cal_planList = $obj->planList($request->year, $request->month, $request->clickNum);
+        $cal_planList = Calendar::planList($request->year, $request->month, $request->clickNum);
         return $cal_planList;
     }
 
-    public function profileUpdate(Request $request) {
-
+    public function profileUpdate(Request $request)
+    {
         $user_form = $request->all();
         $user = new User;
         unset($user_form['_token']);
