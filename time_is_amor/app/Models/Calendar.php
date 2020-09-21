@@ -10,6 +10,7 @@ use Carbon\Carbon;
 
 class Calendar extends Model
 {
+
     public function holidays()
     {
         $dt = new Carbon;
@@ -31,8 +32,9 @@ class Calendar extends Model
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $complete_url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $holidays = json_decode(curl_exec($ch));
+        $h = json_decode(curl_exec($ch));
         curl_close($ch);
+        $holidays = session()->put('holidays', $h);
         return $holidays;
     }
 
@@ -251,6 +253,19 @@ class Calendar extends Model
     private $planList;
     public function planList($year, $month, $data)
     {
-        return $data;
+      $planList .="<div class='plan-list'><ul>"
+      if()
+          <li class="plan-list-items">
+            <span></span>
+              <div class="plan-list-items__time">
+                <p>11:00</p>
+                <p>12:00</p>
+              </div>
+              <p class="plan-list-items__title">買い物</p>
+          </li>
+        </ul>
+      </div>
+      EOS;
+      return $data;
     }
 }

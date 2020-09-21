@@ -39,7 +39,7 @@ class CalendarController extends Controller
     {
         $obj = new Calendar;
         $cal_planList = $obj->planList($request->year, $request->month, $request->clickNum);
-        return $request->clickNum;
+        return $cal_planList;
     }
 
     public function profileUpdate(Request $request) {
