@@ -27,27 +27,15 @@ class InvitationController extends Controller
 
     public function getRegister()
     {
+        //別のセッションデータを
         return view('auth.invitationRegister');
     }
 
     public function postRegister(Request $request)
     {
-        $this->validate($request, [
-      'name' => ['required', 'string', 'max:255'],
-      'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-      'password' => ['required', 'string', 'min:8', 'confirmed'],
-      'birthday' => ['required'],
-      'partner_id' => ['nullable'],
-    ]);
         $form = $request->all();
         if (isset($form['name'])) {
-            $user = new User([
-        'name' => $request->input('name'),
-        'email' => $request->input('email'),
-        'password' => bcrypt($request->input('password')),
-        'birthday' => $request->input('birthday'),
-        'partner_id' => Auth::id(),
-      ]);
+            $user = new User(['partner_id' => Auth::id()]);
         }
         unset($form['_token']);
         $user->save();

@@ -40,9 +40,16 @@
           <rect width="100%" height="100%" fill="#868e96" />
           <img class="profile__img" src="/storage/img/profile_acount.jpeg" alt="アカウント画像">
           <div class="card-body profilr__info-body">
-            <h6 class="card-title">{{$user->name}}</h6>
-            <p>{{$user->birthday}}</p>
+            @if(isset($user->partner_id))
+            <h6 class="card-title"><?php echo User::find($user->partner_id)->name ?></h6>
+            <p><?php echo User::find($user->partner_id)->birthday ?></p>
+            @else
+            <h6 class="card-title"></h6>
+            <p></p>
+            @endif
+            @if(empty($user->partner_id))
             <button type="button" class="btn-color btn-sm" data-toggle="modal" data-target="#modal__invitation">招待</button>
+            @endif
           </div>
         </div>
       </div>
