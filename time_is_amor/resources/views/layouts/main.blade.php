@@ -68,15 +68,15 @@
               </label>
               <input id="bg" type="file" name="edit-img" value="">
               <label class="edit-form__bg" for="bg">
-                <img class="profile__img-top" src="/storage/img/bg-img.jpg" alt="背景画像（編集用）">
+                <img class="profile__img-top" src="/storage/img/bg-img.jpg" alt="背景画像（編集用">
               </label>
             </div>
             <div class="card-body edit-form__items">
               <div class="form-group">
                 <label class="col-md-4 col-form-label text-md-right" for="name">名前</label>
-                <input id="name" class="form-control col-11 mx-auto" type="text" name="name" value="{{ $user->name}}" required>
+                <input id="name" class="form-control col-11 mx-auto" type="text" name="name" value="{{ $user->name　}}" required>
                 <label class="col-md-4 col-form-label text-md-right" for="email">メールアドレス</label>
-                <input id="email" class="form-control col-11 mx-auto" type="email" name="mail" value="{{$user->email}}" required>
+                <input id="email" class="form-control col-11 mx-auto" type="email" name="mail" value="{{　$user->email　}}" required>
               </div>
                 <div class="form-group">
                   {{ csrf_field() }}
@@ -126,13 +126,11 @@
               </div>
               <div class="form-group d-flex justify-content-around mb-0 start-date">
                 <input class="form-control col-5 add-plan" type="date" name="startDate" placeholder="開始日付" required>
-                <p>:</p>
                 <input class="form-control col-5 start-date__time add-plan" type="time" name="startTime" placeholder="開始時刻" required>
               </div>
               <p class="text-center p-0 m-0">⇩</p>
               <div class="form-group d-flex justify-content-around end-date">
                 <input class="form-control col-5 add-plan" type="date" name="endDate" placeholder="終了日付" required>
-                <p>:</p>
                 <input class="form-control col-5 add-plan" type="time" name="endTime" placeholder="終了時刻" required>
               </div>
             </div>
@@ -153,14 +151,17 @@
               </div>
             </div>
             <!-- 予定追加・色変更 -->
-            <div id="color" class="form-group">
-              <div class="color-items color-items d-flex justify-content-around">
-                <input class="add-plan" id="color-01" type="radio" name="color" value="#dd5858" required>
-                <label class="red" for="color-01"></label>
-                <input class="add-plan"  id="color-02" type="radio" name="color" value="#659BDF">
-                <label class="blue" for="color-02"></label>
-                <input class="add-plan"  id="color-03" type="radio" name="color" value="#579779">
-                <label class="green" for="color-03"></label>
+            <div id="color" class="form-group d-flex justify-content-center">
+              <div class="color-items">
+                <label for="colorOption" class="colorLabel">色選択</label>
+                <input id="colorOption" type="color" name="color" value="#dd5858" list="data1" class="add-plan" required>
+                <datalist id="data1">
+                  <option value="#dd5858"></option>
+                  <option value="#659BDF"></option>
+                  <option value="#579779"></option>
+                  <option value="#dd5858"></option>
+                  <option value="#dd5858"></option>
+                </datalist>
               </div>
             </div>
             <!-- 予定追加・いいね！ -->

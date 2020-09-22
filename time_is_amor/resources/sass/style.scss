@@ -563,37 +563,6 @@ input[type="radio"]+label {
     border-radius: 50%;
 }
 
-.red {
-    border: 5px solid #dd5858;
-}
-
-.blue {
-    border: 5px solid #659BDF;
-}
-
-.green {
-    border: 5px solid #579779;
-}
-
-input[type="radio"]:checked+label.red {
-    background-color: #dd5858;
-}
-
-input[type="radio"]:checked+label.blue {
-    background-color: #659BDF;
-}
-
-input[type="radio"]:checked+label.green {
-    background-color: #579779;
-}
-
-input[type="radio"]:checked ~ label {
-    opacity: 1;
-}
-
-.color-item {
-    display: inline-block;
-}
 /* アカウント編集画面（モーダル） */
 .edit-content {
     height: 65vh;

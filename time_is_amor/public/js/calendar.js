@@ -114,6 +114,7 @@ $(function () {
       $(".color-and-like-btn").html("いいね！追加");
       $("#like").css("display", "block");
       $("#color").css("display", "none");
+      $(".color-items").css("display", "none");
       $(".coment").prop("disabled", false);
       $(".add-plan").prop("disabled", true);
     } else {
@@ -123,6 +124,7 @@ $(function () {
       $(".color-and-like-btn").html("色変更");
       $("#like").css("display", "none");
       $("#color").css("display", "block");
+      $(".color-items").css("display", "block");
       $(".coment").prop("disabled", true);
       $(".add-plan").prop("disabled", false);
     }
