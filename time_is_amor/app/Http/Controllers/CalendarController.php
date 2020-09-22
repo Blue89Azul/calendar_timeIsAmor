@@ -38,7 +38,9 @@ class CalendarController extends Controller
     public function planListAjax(Request $request)
     {
         $cal_planList = Calendar::planList($request->year, $request->month, $request->clickNum);
-        return $cal_planList;
+        return redirect('/calendar',[
+          'planList' => $cal_planList,
+          ]);
     }
 
     public function profileUpdate(Request $request)

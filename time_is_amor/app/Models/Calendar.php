@@ -223,10 +223,10 @@ class Calendar extends Model
                     </div>
                     <div class="modal-body">
                     EOS;
-        foreach ($clDatas as $data) { //FIX
-            $cYear = $dt->createFromDate($data->comentDate)->year;
-            $cMonth = $dt->createFromDate($data->comentDate)->month;
-            $cDay = $dt->createFromDate($data->comentDate)->day;
+        foreach ($clDatas as $clData) { //FIX
+            $cYear = $dt->createFromDate($clData->comentDate)->year;
+            $cMonth = $dt->createFromDate($clData->comentDate)->month;
+            $cDay = $dt->createFromDate($clData->comentDate)->day;
             if ($year == $cYear && $month == $cMonth) {
                 $this->comentList .=<<<EOS
                   <div class="card col-11 mx-auto">
@@ -251,26 +251,36 @@ class Calendar extends Model
     }
 
     private $planList;
-    public function planList($year, $month, $data)
+    public function planList($year, $month, $clickNum)
     {
-      $planList .="<div class='plan-list'><ul>";
-      if(){
+      $dt = new Carbon;
+      $date = $dt->createFromDate($year, $month);
+      $tableAddPlan = DB::table('add_plans');
+      $planDatas = $tableAddPlan->get();
 
-      }else{
-
-      }
+        $planList .="<div class='plan-list'><ul>";
+        foreach ($planDatas as $pd) {
+          $dataY = $dt->createFromDate($pd->startDate)->year;
+          $dataM = $dt->createFromDate($pd->startDate)->month;
+          $dataD = $dt->createFromDate($pd->startDate)->day;
+          $dataStartH = $dt->createFromDate($pd->startDate)->hour;
+          $dataStartM = $dt->createFromDate($pd->startDate)->minute;
+          $dataEndH = $dt->createFromDate($pd->endDate)->hour;
+          $dataEndM = $dt->createFromDate($pd->endDate)->minute;
+        if($date->year === $dataY && $date->Month === $dataM && $clickNum === $dataD){
+          $planList .=<<<EOS
           <li class="plan-list-items">
-            <span></span>
+            <span style="background-color:' . $pd->color .'";></span>
               <div class="plan-list-items__time">
-                <p>11:00</p>
-                <p>12:00</p>
+                <p>{$dataStartH}:{$dataStartM}</p>
+                <p>{$dataEndH}:{$dataStartM}</p>
               </div>
-              <p class="plan-list-items__title">買い物</p>
+              <p class="plan-list-items__title">{$pd->planTitle}</p>
           </li>
-        </ul>
-      </div>
-    </div>
-      EOS;
-      return $data;
+          EOS;
+        }
+      }
+      $planList .= "</ul></div>"
+      return $planList;
     }
 }

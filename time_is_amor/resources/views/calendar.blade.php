@@ -43,6 +43,5 @@
         </button>
         </div>
       </div>
-
-
+{!! $planList !!}
 @endsection
