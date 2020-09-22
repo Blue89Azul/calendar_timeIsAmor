@@ -37,8 +37,12 @@ class CalendarController extends Controller
 
     public function planListAjax(Request $request)
     {
+        // dd("planListAjax");
+        $year = Carbon::now()->year;
+        $month = Carbon::now()->month;
         $obj = new Calendar;
-        $cal = $obj->planList($request->year, $request->month, $request->clickNum);
+        $cal = $obj->planList($year, $month, $request->clickNum);
+
         return response()->json($cal);
     }
 

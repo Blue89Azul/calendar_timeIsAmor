@@ -10,7 +10,6 @@ use Carbon\Carbon;
 
 class Calendar extends Model
 {
-
     public function holidays()
     {
         $dt = new Carbon;
@@ -196,7 +195,7 @@ class Calendar extends Model
           <a href="?year={$subY}&month={$subM}" class="arrow-pre"></a>
             <h1 class="this-month">
               <span>{$year}</span>
-              <span>{$month}</span>
+              <span class="monthAjax">{$month}</span>
             </h1>
           <a href="?year={$addY}&month={$addM}" class="arrow-next"></a>
       </div>
@@ -223,7 +222,7 @@ class Calendar extends Model
                     </div>
                     <div class="modal-body">
                     EOS;
-        foreach ($clDatas as $clData) { //FIX
+        foreach ($clDatas as $clData) {
             $cYear = $dt->createFromDate($clData->comentDate)->year;
             $cMonth = $dt->createFromDate($clData->comentDate)->month;
             $cDay = $dt->createFromDate($clData->comentDate)->day;
@@ -253,36 +252,30 @@ class Calendar extends Model
     private $planList;
     public function planList($year, $month, $clickNum)
     {
-      $dt = new Carbon;
-      $date = $dt->createFromDate($year, $month);
-      $tableAddPlan = DB::table('add_plans');
-      $planDatas = $tableAddPlan->get();
-      
-        $this->planList .="<div class='plan-list'><ul>";
+        $dt = new Carbon;
+        $date = $dt->createFromDate($year, $month);
+        $tableAddPlan = DB::table('add_plans');
+        $planDatas = $tableAddPlan->get();
+        $this->planList .="<ul>";
         foreach ($planDatas as $pd) {
-          $startDate = $dt->createFromDate($pd->startDate);
-          $dataY = $startDate->year;
-          $dataM = $startDate ->month;
-          $dataD = $startDate ->day;
-          $dataStartH = $startDate->hour;
-          $dataStartM = $startDate->minute;
-          $endDate = $dt->createFromDate($pd->endDate);
-          $dataEndH = $endDate->hour;
-          $dataEndM = $endDate->minute;
-
-        if($date->year === $dataY && $date->Month === $dataM && $clickNum === $dataD){
-          $this->planList .=<<<EOS
-          <li class="plan-list-items">
-            <span style="background-color:' . $pd->color .'";></span>
-              <div class="plan-list-items__time">
-                <p>{$dataStartH}:{$dataStartM}</p>
-                <p>{$dataEndH}:{$dataStartM}</p>
-              </div>
-              <p class="plan-list-items__title">{$pd->planTitle}</p>
-          </li>
-          EOS;
+            $startDate = $dt->createFromDate($pd->startDate);
+            $dataY = $startDate->year;
+            $dataM = $startDate->month;
+            $dataD = $startDate->day;
+                if ($date->year === $dataY && $date->month === $dataM && $clickNum == $dataD) {
+                    $this->planList .=<<<EOS
+                    <li class='plan-list-items'>
+                    <span style='background-color:{$pd->color};''></span>
+                    <div class='plan-list-items__time'>
+                    <p>{$pd->startTime}</p>
+                    <p>{$pd->endTime}</p>
+                    </div>
+                    <p class='plan-list-items__title'>{$pd->planTitle}</p>
+                    </li>
+                    EOS;
+                    \Debugbar::info($pd->color);
+                }
         }
-      }
-      return $this->planList .= "</ul></div>";
+        return $this->planList .= "</ul>";
     }
 }

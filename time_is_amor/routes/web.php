@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Auth;
     //ユーザ招待時のアクション集
     Route::post('/calendar/invitation', 'InvitationController@mail');
   });
-  
+
   Route::get('/invitation/register/', 'InvitationController@getRegister');
   Route::post('/invitation/register/', 'InvitationController@postRegister');
 

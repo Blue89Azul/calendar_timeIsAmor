@@ -30,7 +30,7 @@
 {!! $cal !!}
 
   <div class="calendar-footer">
-    <p><?php echo $today->month ?>月<?php echo $today->day ?>日</p>
+    <p><span class="clickMonth"></span><span class="clickDay"></span></p>
     <div class="option-btns">
       <button class="option-btn__acount" type="button" name="button">
         <img src="/storage/img/profile.jpeg" alt="プロフィール">
