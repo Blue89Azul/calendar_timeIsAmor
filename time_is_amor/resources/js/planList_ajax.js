@@ -14,6 +14,13 @@ $(function() {
             })
             .done(function(data) {
                 alert(data);
+                $(".week > td").addClass("checked");
+                $(".calendar__table").css("height", "40vh");
+                $(this).css("border", "solid 2px orange");
+                $(".plan-list").css("display", "block");
+
+                // テキストの追加の記述
+                $(".plan-list").html(data);
             })
             .fail(function(data) {
                 alert('ファイルの取得に失敗しました');
@@ -21,13 +28,6 @@ $(function() {
     });
 
     // 予定一覧表示アニメーション
-    $(".week > td").on("click", function() {
-        $(this).addClass("checked");
-        $(".calendar__table").css("height", "40vh");
-        $(this).css("border", "solid 2px orange");
-        $(".plan-list").css("display", "block");
-    });
-    
     $(".calendar-footer").on("click", function() {
         $(".calendar__table").css("height", "65vh");
         $(".week > td").css("border", "none");

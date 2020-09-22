@@ -238,12 +238,12 @@ class Calendar extends Model
                       </div>
                       <div class="likes d-inline-block">
                   EOS;
-                if (isset($data->like)) {
-                    for ($i=1; $i <= $data->like ; $i++) {
+                if (isset($clData->like)) {
+                    for ($i=1; $i <= $clData->like ; $i++) {
                         $this->comentList .= '<img src="/storage/img/like.png" alt="いいね">';
                     }
                 }
-                $this->comentList .= '</div><p class="main-coment text-center">'.$data->comentTitle.'</p></li>';
+                $this->comentList .= '</div><p class="main-coment text-center">'.$clData->comentTitle.'</p></li>';
             }
             $this->comentList .= '</ul></div>';
         }
@@ -257,18 +257,21 @@ class Calendar extends Model
       $date = $dt->createFromDate($year, $month);
       $tableAddPlan = DB::table('add_plans');
       $planDatas = $tableAddPlan->get();
-
-        $planList .="<div class='plan-list'><ul>";
+      
+        $this->planList .="<div class='plan-list'><ul>";
         foreach ($planDatas as $pd) {
-          $dataY = $dt->createFromDate($pd->startDate)->year;
-          $dataM = $dt->createFromDate($pd->startDate)->month;
-          $dataD = $dt->createFromDate($pd->startDate)->day;
-          $dataStartH = $dt->createFromDate($pd->startDate)->hour;
-          $dataStartM = $dt->createFromDate($pd->startDate)->minute;
-          $dataEndH = $dt->createFromDate($pd->endDate)->hour;
-          $dataEndM = $dt->createFromDate($pd->endDate)->minute;
+          $startDate = $dt->createFromDate($pd->startDate);
+          $dataY = $startDate->year;
+          $dataM = $startDate ->month;
+          $dataD = $startDate ->day;
+          $dataStartH = $startDate->hour;
+          $dataStartM = $startDate->minute;
+          $endDate = $dt->createFromDate($pd->endDate);
+          $dataEndH = $endDate->hour;
+          $dataEndM = $endDate->minute;
+
         if($date->year === $dataY && $date->Month === $dataM && $clickNum === $dataD){
-          $planList .=<<<EOS
+          $this->planList .=<<<EOS
           <li class="plan-list-items">
             <span style="background-color:' . $pd->color .'";></span>
               <div class="plan-list-items__time">
@@ -280,7 +283,6 @@ class Calendar extends Model
           EOS;
         }
       }
-      $planList .= "</ul></div>"
-      return $planList;
+      return $this->planList .= "</ul></div>";
     }
 }

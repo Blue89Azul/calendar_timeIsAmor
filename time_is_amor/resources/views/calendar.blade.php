@@ -43,5 +43,5 @@
         </button>
         </div>
       </div>
-{!! $planList !!}
+      <div class="plan-list"></div>
 @endsection
