@@ -48,7 +48,19 @@ class CalendarController extends Controller
     public function profileUpdate(Request $request)
     {
         $user_form = $request->all();
-        $user = new User;
+        $user = Auth::user();
+
+        if (isset($user_form['image'])) { //アイコン画像
+            $path = $request->file('image')->store('public/image');
+            $user->image_path = basename($path);
+            unset($user_form['image']);
+        }
+        if (isset($user_form['image'])) {　//背景画像
+            $path = $request->file('image')->store('public/image');
+            $user->image_path = basename($path);
+            unset($user_form['image']);
+        }
+
         unset($user_form['_token']);
         $user->fill($user_form)->save();
         return redirect('/calendar');
@@ -69,5 +81,4 @@ class CalendarController extends Controller
         "today" => new Carbon(),
        ]);
     }
-
 }

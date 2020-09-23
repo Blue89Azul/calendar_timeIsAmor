@@ -74,9 +74,9 @@
             <div class="card-body edit-form__items">
               <div class="form-group">
                 <label class="col-md-4 col-form-label text-md-right" for="name">名前</label>
-                <input id="name" class="form-control col-11 mx-auto" type="text" name="name" value="{{ $user->name　}}" required>
+                <input id="name" class="form-control col-11 mx-auto" type="text" name="name" value="{{$user->name}}" required>
                 <label class="col-md-4 col-form-label text-md-right" for="email">メールアドレス</label>
-                <input id="email" class="form-control col-11 mx-auto" type="email" name="mail" value="{{　$user->email　}}" required>
+                <input id="email" class="form-control col-11 mx-auto" type="email" name="mail" value="{{$user->email}}" required>
               </div>
                 <div class="form-group">
                   {{ csrf_field() }}
