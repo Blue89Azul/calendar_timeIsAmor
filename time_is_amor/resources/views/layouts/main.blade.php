@@ -28,8 +28,17 @@
           <h6 class="text-center">アカウント</h6>
         </div>
         <div class="card profile__info mb-0">
+
+          @if($user->bgImg === null)
           <img class="profile__img-top" src="/storage/img/bg-img.jpg" focusable="false" role="img">
-          <img class="profile__img" src="/storage/img/profile_acount.jpeg" alt="アカウント画像">
+          @else
+          <img class="profile__img-top" src="/storage/img/{{$user->bgImg}}" focusable="false" role="img">
+          @endif
+          @if($user->iconImg === null)
+          <img class="profile__img" src="/storage/img/profile_acount.jpeg" alt="アイコン画像">
+          @else
+          <img class="profile__img" src="/storage/img/{{$user->iconImg}}" alt="アイコン画像">
+          @endif
           <div class="card-body profilr__info-body">
                 <h6 class="card-title">{{$user->name}}</h6>
                 <p>{{$user->birthday}}</p>
@@ -62,13 +71,21 @@
         <div class="modal-content edit-content">
           <form class="card edit-form" action="{{ action('CalendarController@profileUpdate') }}" method="post" enctype="multipart/form-data">
             <div class="form-group col-12 icon-info">
-              <input id="icon" type="file" name="edit-img" value="">
+              <input id="icon" type="file" name="iconImage">
               <label for="icon">
-                <img class="profile__img edit-form__icon" src="/storage/img/profile_acount.jpeg" alt="アイコン画像（編集用）">
+                @if($user->iconImg === null)
+                <img id="iconImage" class="profile__img edit-form__icon" src="/storage/img/profile_acount.jpeg" alt="アイコン画像（編集用）">
+                @else
+                <img id="iconImage" class="profile__img edit-form__icon" src="/storage/img/{{$user->iconImg}}" alt="アイコン画像（編集用）">
+                @endif
               </label>
-              <input id="bg" type="file" name="edit-img" value="">
+              <input id="bg" type="file" name="bgImage">
               <label class="edit-form__bg" for="bg">
-                <img class="profile__img-top" src="/storage/img/bg-img.jpg" alt="背景画像（編集用">
+                @if($user->bgImg === null)
+                <img id="bgImage" class="profile__img-top" src="/storage/img/bg-img.jpg" alt="背景画像（編集用）">
+                @else
+                <img id="bgImage" class="profile__img-top" src="/storage/img/{{$user->bgImg}}" alt="背景画像（編集用）">
+                @endif
               </label>
             </div>
             <div class="card-body edit-form__items">

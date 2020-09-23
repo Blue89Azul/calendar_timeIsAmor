@@ -49,20 +49,20 @@ class CalendarController extends Controller
     {
         $user_form = $request->all();
         $user = Auth::user();
-
-        if (isset($user_form['image'])) { //アイコン画像
-            $path = $request->file('image')->store('public/image');
-            $user->image_path = basename($path);
-            unset($user_form['image']);
+        if (isset($user_form['iconImage'])) { //アイコン画像
+            $path_icon = $request->file('iconImage')->store('public/img');
+            $user->iconImg = basename($path_icon);
+            unset($user_form['iconImage']);
         }
-        if (isset($user_form['image'])) {　//背景画像
-            $path = $request->file('image')->store('public/image');
-            $user->image_path = basename($path);
-            unset($user_form['image']);
+        if (isset($user_form['bgImage'])) {
+            $path_bg = $request->file('bgImage')->store('public/img');
+            $user->bgImg = basename($path_bg);
+            unset($user_form['bgImage']);
         }
 
         unset($user_form['_token']);
         $user->fill($user_form)->save();
+        // dd($user);
         return redirect('/calendar');
     }
 

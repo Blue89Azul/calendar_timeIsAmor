@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->date('birthday');
             $table->string('email')->unique();
+            $table->string('bgImg')->nullable();
+            $table->string('iconImg')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('partner_id')->nullable();

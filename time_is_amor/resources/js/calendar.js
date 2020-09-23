@@ -1,5 +1,5 @@
 $(function() {
-  // アカウント一覧表示・非表示
+    // アカウント一覧表示・非表示
     $(".option-btn__acount").on("click", function() {
         $(".profile").addClass("open-profile");
     });
@@ -44,21 +44,38 @@ $(function() {
     });
 
     // 前月・次月変更
-    $(".arrow-pre").on("clck", function(){
-      var url = $(location).attr('href');
-      url = url + ""
+    $(".arrow-pre").on("clck", function() {
+        var url = $(location).attr('href');
+        url = url + ""
     });
 
     // 今月の一枚：モーダル表示
     $("body").append('<div class="gray-layer"></div><div class="over-layer"></div>');
     $(".gray-layer").click(function() {
-      $(".gray-layer, .over-layer").hide();
+        $(".gray-layer, .over-layer").hide();
     });
 
     $("a.modal-img").click(function() {
-      $(".gray-layer").show();
-      $(".over-layer").show().html("<img src='" + $(this).attr("href") + "'>");
-      return false;
+        $(".gray-layer").show();
+        $(".over-layer").show().html("<img src='" + $(this).attr("href") + "'>");
+        return false;
+    });
+
+    // アカウント背景・アイコン編集 *要勉強
+    $("#icon").on("change", function(e) {
+        var iconReader = new FileReader();
+        iconReader.onload = function(e) {
+            $("#iconImage").attr("src", e.target.result);
+        }
+        iconReader.readAsDataURL(e.target.files[0]);
+    });
+
+    $("#bg").on("change", function(e) {
+        var bgReader = new FileReader();
+        bgReader.onload = function(e) {
+            $("#bgImage").attr("src", e.target.result);
+        }
+        bgReader.readAsDataURL(e.target.files[0]);
     });
 
 });

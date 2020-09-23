@@ -150,6 +150,25 @@ $(function () {
     $(".gray-layer").show();
     $(".over-layer").show().html("<img src='" + $(this).attr("href") + "'>");
     return false;
+  }); // アカウント背景・アイコン編集 *要勉強
+
+  $("#icon").on("change", function (e) {
+    var iconReader = new FileReader();
+
+    iconReader.onload = function (e) {
+      $("#iconImage").attr("src", e.target.result);
+    };
+
+    iconReader.readAsDataURL(e.target.files[0]);
+  });
+  $("#bg").on("change", function (e) {
+    var bgReader = new FileReader();
+
+    bgReader.onload = function (e) {
+      $("#bgImage").attr("src", e.target.result);
+    };
+
+    bgReader.readAsDataURL(e.target.files[0]);
   });
 });
 
