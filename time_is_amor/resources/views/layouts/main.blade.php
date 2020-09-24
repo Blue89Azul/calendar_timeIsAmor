@@ -16,10 +16,12 @@
     <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
 
   </head>
-  <body id="calendar">
+  <body>
     <div class="container-fluid">
       <div class="row calendar">
-    @yield('calendar')
+
+          @yield('calendar')
+
     <!-- プロフィール部分 -->
     <div class="col-6 px-0 profile">
       <div class="col-12 card-group px-0">

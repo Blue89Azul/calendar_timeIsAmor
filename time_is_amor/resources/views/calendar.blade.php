@@ -20,15 +20,14 @@
         </div>
       </form>
 
-{!! $changeMonth !!}
+      {!! $changeMonth !!}
 
       <div class="col-3 header-option">
         <button class="header-option__btn" type="button" name="button">HOY</button>
       </div>
     </div>
 
-{!! $cal !!}
-
+      {!! $cal !!}
   <div class="calendar-footer">
     <p><span class="clickMonth"></span><span class="clickDay"></span></p>
     <div class="option-btns">
