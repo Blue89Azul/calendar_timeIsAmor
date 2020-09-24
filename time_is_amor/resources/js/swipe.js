@@ -4,20 +4,19 @@ $(function() {
     var subMonthUrl = baseUrl + '/calendar' + $(".arrow-pre").attr('href');
 
     $("#swipe").on("mousedown", function(e) {
-        $("#swipe").data("clickPointX", e.pageX - $("#swipe").offset().left);
-        $("#swipe").addClass("onlyThisAnimation");
+        $(this).data("clickPointX", e.pageX - $("#swipe").offset().left);
+
     });
 
-    $(document).on("mousemove", function(e) {
-        $("#swipe").css({
-            "left": e.pageX - $("#swipe").data("clickPointX") + "px"
-        });
+    $("#swipe").on("mousemove", function(e) {
+        $(this).css("left", e.pageX - $(this).data("clickPointX") + "px");
+        console.log(parseInt($("#swipe").css("left")));
     });
 
     $("#swipe").on("mouseup", function(e) {
-        if ($("#swipe").css("left") > 10) {
+        if (parseInt($(this).css("left")) > 100) {
             location.href = addMonthUrl;
-        } else if ($("#swipe").css("left") < -10) {
+        } else if (parseInt($(this).css("left")) < -100) {
             location.href = subMonthUrl;
         }
         $(this).off("mousemove");
