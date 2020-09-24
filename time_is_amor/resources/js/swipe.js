@@ -5,7 +5,6 @@ $(function() {
 
     $("#swipe").on("mousedown", function(e) {
         $(this).data("clickPointX", e.pageX - $("#swipe").offset().left);
-
     });
 
     $("#swipe").on("mousemove", function(e) {
