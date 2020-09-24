@@ -13,8 +13,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400&display=swap" rel="stylesheet">
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+
   </head>
-  <body>
+  <body id="calendar">
     <div class="container-fluid">
       <div class="row calendar">
     @yield('calendar')
@@ -218,5 +220,6 @@
 </div>
 <script src="{{ asset('js/planList_ajax.js') }}" type=module></script>
 <script src="{{ asset('js/calendar.js') }}" type=module></script>
+<script src="{{ asset('js/swipe.js') }}" type=module></script>
 </body>
 </html>

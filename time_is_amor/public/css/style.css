@@ -203,12 +203,22 @@ tr[class^=week] > td {
 }
 
 tr[class^=week] > td > p {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
+  position: absolute;
+  left: 15%;
+  top: 1%;
+  width: 25px;
+  height: 25px;
+  font-size: 15px;
   border-radius: 50%;
   padding: 0;
   margin: 0;
+}
+
+.planCount {
+  display: block;
+  top: 0;
+  left: 0;
+  position: absolute;
 }
 
 .calendar__days {
@@ -217,6 +227,9 @@ tr[class^=week] > td > p {
 
 .calendar__days > .week > td {
   position: relative;
+  width: 50px;
+  height: 55px;
+  border: 1px solid;
 }
 
 .calendar__days > .week > td > .plan-item {
@@ -286,6 +299,56 @@ tr[class^=week] > td > p {
 .option-btns > button > img {
   width: 65%;
   height: 65%;
+}
+
+.plan-list {
+  width: 100%;
+  height: 25vh;
+  overflow: scroll;
+  display: none;
+  background-color: #fff;
+}
+
+.plan-list-items {
+  width: 95%;
+  height: 40px;
+  padding: 5px 0;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  color: black;
+  border-bottom: 1px solid gray;
+}
+
+.plan-list-items > span {
+  width: 13px;
+  height: 13px;
+  margin-left: 10px;
+  border-radius: 50%;
+  background-color: #659BDF;
+}
+
+.plan-list-items > p {
+  margin: 0 0 0 15px;
+  padding: 0;
+  font-size: 12px;
+}
+
+.plan-list-items > .plan-list-items__time {
+  margin-left: 10px;
+  height: 100%;
+}
+
+.plan-list-items > .plan-list-items__time > p {
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+}
+
+.plan-list-items > .plan-list-items__time > p {
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
 }
 
 .plan-list {
@@ -524,38 +587,6 @@ input[type=radio] + label {
   border-radius: 50%;
 }
 
-.red {
-  border: 5px solid #dd5858;
-}
-
-.blue {
-  border: 5px solid #659BDF;
-}
-
-.green {
-  border: 5px solid #579779;
-}
-
-input[type=radio]:checked + label.red {
-  background-color: #dd5858;
-}
-
-input[type=radio]:checked + label.blue {
-  background-color: #659BDF;
-}
-
-input[type=radio]:checked + label.green {
-  background-color: #579779;
-}
-
-input[type=radio]:checked ~ label {
-  opacity: 1;
-}
-
-.color-item {
-  display: inline-block;
-}
-
 /* アカウント編集画面（モーダル） */
 
 .edit-content {
@@ -667,3 +698,4 @@ input[type=radio]:checked ~ label {
 .likes {
   display: inline-block;
 }
+

@@ -2,9 +2,9 @@ $(function() {
     $(".week > td").on("click", function() {
         let clickNum = parseInt($(this).text(), 10);
         $(".clickDay").text(clickNum + "日");
-        $(".clickMonth").text($(".monthAjax").text()+"月");
+        $(".clickMonth").text($(".monthAjax").text() + "月"); //FIX
         var baseUrl = $('meta[name="_base_url"]').attr('content');
-        console.log(baseUrl+'/planList');
+        console.log(baseUrl + '/planList');
         console.log(clickNum);
         $.ajax({
                 headers: {
@@ -25,25 +25,24 @@ $(function() {
                 $(".plan-list").css("display", "block");
                 // テキストの追加の記述
                 $(".plan-list").html($.parseJSON(data));
+
             })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                    // 通信失敗時の処理
-                    alert('ファイルの取得に失敗しました。');
-                    console.log("ajax通信に失敗しました");
-                    console.log("jqXHR          : " + jqXHR.status); // HTTPステータスが取得
-                    console.log("textStatus     : " + textStatus);    // タイムアウト、パースエラー
-                    console.log("errorThrown    : " + errorThrown.message); // 例外情報
-                    console.log("URL            : " + url);
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                // 通信失敗時の処理
+                alert('ファイルの取得に失敗しました。');
+                console.log("ajax通信に失敗しました");
+                console.log("jqXHR          : " + jqXHR.status); // HTTPステータスが取得
+                console.log("textStatus     : " + textStatus); // タイムアウト、パースエラー
+                console.log("errorThrown    : " + errorThrown.message); // 例外情報
+                console.log("URL            : " + url);
             });
     });
 
     // 予定一覧表示アニメーション
     $(".calendar-footer").on("click", function() {
         $(".calendar__table").css("height", "65vh");
-        $(".week > td").css("border", "none");
         $(".plan-list").css("display", "none");;
         $(".clickDay").text("");
         $(".clickMonth").text("");
-
     });
 });

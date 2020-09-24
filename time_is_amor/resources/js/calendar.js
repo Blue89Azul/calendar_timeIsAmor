@@ -43,12 +43,6 @@ $(function() {
         }
     });
 
-    // 前月・次月変更
-    $(".arrow-pre").on("clck", function() {
-        var url = $(location).attr('href');
-        url = url + ""
-    });
-
     // 今月の一枚：モーダル表示
     $("body").append('<div class="gray-layer"></div><div class="over-layer"></div>');
     $(".gray-layer").click(function() {

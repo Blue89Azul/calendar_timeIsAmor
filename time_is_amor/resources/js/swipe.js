@@ -1,36 +1,41 @@
-$(function() {
-    $("tbody#swipe").on({
-        'mousedown': function(event) {
-            event.preventDefault(); //バブリング防止
-            this.pageX = event.pageX;
-            this.slideX = $(this).position().left;
-        },
-        'mousemove': function(event) {
-            event.preventDefault();
-            this.slideX = this.slideX - (this.touch - event.pageX);
-            $(this).css({
-                left: this.slideX
-            });
-        },
-        'mouseup': function(event) {
-            if (this.slideX < 100 && this.slideX > -100) { //当月表示処理
-                this.slideX = 0;
-                $(this).animate({
-                    left: this.slideX
-                }, 500);
-            }
-            if (this.slideX <= -100) { //次月表示処理
-                window.location.href = '/calendar?year={$subY}&month={$subM}';
-                $(this).animate({
-                    left: this.slideX
-                }, 500);
-            }
-            if (this.slideX >= 100) { //前月表示処理
-                window.location.href = '/calendar?year={$addY}&month={$addM}';
-                $(this).animate({
-                    left: this.slideX
-                }, 500);
-            }
-        }
-    });
+$(function(){
+  //baseURLの作成
+  //data属性から、値を拝借（直打ちは、反応しない）
+  //まずはパソコン処理ができるかどうか。。。
+  $("#calendarTable").on("mousedown", onMouseDown);
+  $("#calendarTable").on("mousemove", onMouseMove);
+  $("#calendarTable").on("mouseup", onMouseUp);
+  var direction, position;
+
+  //座標取得
+  function getPosition(e){
+    var posiX = e.pageX;
+  }
+  //スワイプ開始時の座標
+  function onMouseDown(e){
+    position = getPosition(e);
+    direction = "";
+  }
+  // baseUrl
+  var baseUrl = $('meta[name="_base_url"]').attr("content");
+  //url
+  var addMonthUrl = baseUrl + $(".arrow-next").attr('href');
+  var subMonthUrl = baseUrl + $(".arrow-pre").attr('href');
+
+  function onMouseMove(e){
+    if(posiX - e.pageX > 10){
+      direction = "left";
+    } else if (posiX - e.pageX  < -10) {
+      direction = "right";
+    }
+  }
+
+  function onMouseUp(e){
+    if (direction === "left") {
+      location.href = addMonthUrl;
+    } else if (direction === "right") {
+      location.href = subMonthUrl;
+    }
+  }
+
 });

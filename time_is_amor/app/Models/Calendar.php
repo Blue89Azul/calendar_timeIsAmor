@@ -65,7 +65,7 @@ class Calendar extends Model
         $posiNextM = 30;
 
         $this->htmlCale = <<<EOS
-    <table class="calendar__table">
+    <table id="calendarTable" class="calendar__table">
       <thead class="calendar__weekdays">
         <tr>
           <th scope="col">Dom</th>

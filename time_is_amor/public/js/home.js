@@ -93,12 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$(function () {
-  $(".menuBtn").on("click", function () {
-    $(".contents").toggleClass("menu-open");
-    $(".global-menu__item").toggleClass("menu-anime");
-  });
-});
+eval("$(function () {\n  $(\".menuBtn\").on(\"click\", function () {\n    $(\".contents\").toggleClass(\"menu-open\");\n    $(\".global-menu__item\").toggleClass(\"menu-anime\");\n  });\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvaG9tZS5qcz8wMGQyIl0sIm5hbWVzIjpbIiQiLCJvbiIsInRvZ2dsZUNsYXNzIl0sIm1hcHBpbmdzIjoiQUFBQUEsQ0FBQyxDQUFDLFlBQVc7QUFDWEEsR0FBQyxDQUFDLFVBQUQsQ0FBRCxDQUFjQyxFQUFkLENBQWlCLE9BQWpCLEVBQTBCLFlBQVc7QUFDbkNELEtBQUMsQ0FBQyxXQUFELENBQUQsQ0FBZUUsV0FBZixDQUEyQixXQUEzQjtBQUNBRixLQUFDLENBQUMsb0JBQUQsQ0FBRCxDQUF3QkUsV0FBeEIsQ0FBb0MsWUFBcEM7QUFDRCxHQUhEO0FBSUQsQ0FMQSxDQUFEIiwiZmlsZSI6Ii4vcmVzb3VyY2VzL2pzL2hvbWUuanMuanMiLCJzb3VyY2VzQ29udGVudCI6WyIkKGZ1bmN0aW9uKCkge1xuICAkKFwiLm1lbnVCdG5cIikub24oXCJjbGlja1wiLCBmdW5jdGlvbigpIHtcbiAgICAkKFwiLmNvbnRlbnRzXCIpLnRvZ2dsZUNsYXNzKFwibWVudS1vcGVuXCIpO1xuICAgICQoXCIuZ2xvYmFsLW1lbnVfX2l0ZW1cIikudG9nZ2xlQ2xhc3MoXCJtZW51LWFuaW1lXCIpO1xuICB9KTtcbn0pO1xuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/js/home.js\n");
 
 /***/ }),
 
