@@ -1,41 +1,26 @@
-$(function(){
-  //baseURLの作成
-  //data属性から、値を拝借（直打ちは、反応しない）
-  //まずはパソコン処理ができるかどうか。。。
-  $("#calendarTable").on("mousedown", onMouseDown);
-  $("#calendarTable").on("mousemove", onMouseMove);
-  $("#calendarTable").on("mouseup", onMouseUp);
-  var direction, position;
+$(function() {
+    var baseUrl = $('meta[name="_base_url"]').attr("content");
+    var addMonthUrl = baseUrl + '/calendar' + $(".arrow-next").attr('href');
+    var subMonthUrl = baseUrl + '/calendar' + $(".arrow-pre").attr('href');
 
-  //座標取得
-  function getPosition(e){
-    var posiX = e.pageX;
-  }
-  //スワイプ開始時の座標
-  function onMouseDown(e){
-    position = getPosition(e);
-    direction = "";
-  }
-  // baseUrl
-  var baseUrl = $('meta[name="_base_url"]').attr("content");
-  //url
-  var addMonthUrl = baseUrl + $(".arrow-next").attr('href');
-  var subMonthUrl = baseUrl + $(".arrow-pre").attr('href');
+    $("#swipe").on("mousedown", function(e) {
+        $("#swipe").data("clickPointX", e.pageX - $("#swipe").offset().left);
+        $("#swipe").addClass("onlyThisAnimation");
+    });
 
-  function onMouseMove(e){
-    if(posiX - e.pageX > 10){
-      direction = "left";
-    } else if (posiX - e.pageX  < -10) {
-      direction = "right";
-    }
-  }
+    $(document).on("mousemove", function(e) {
+        $("#swipe").css({
+            "left": e.pageX - $("#swipe").data("clickPointX") + "px"
+        });
+    });
 
-  function onMouseUp(e){
-    if (direction === "left") {
-      location.href = addMonthUrl;
-    } else if (direction === "right") {
-      location.href = subMonthUrl;
-    }
-  }
+    $("#swipe").on("mouseup", function(e) {
+        if ($("#swipe").css("left") > 10) {
+            location.href = addMonthUrl;
+        } else if ($("#swipe").css("left") < -10) {
+            location.href = subMonthUrl;
+        }
+        $(this).off("mousemove");
+    });
 
 });

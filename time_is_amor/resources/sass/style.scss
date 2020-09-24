@@ -211,10 +211,16 @@ tr[class^="week"] > td > p {
 }
 
 .planCount {
-  display: block;
-  top: 0;
-  left: 0;
-  position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+#swipe {
+    position: absolute;
+    top: auto;
+    left: auto;
 }
 
 .calendar__days {

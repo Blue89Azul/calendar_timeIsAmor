@@ -18,7 +18,6 @@ $(function() {
                 dataType: 'text',
             })
             .done(function(data) {
-                alert($.parseJSON(data));
                 $(".week > td").addClass("checked");
                 $(".calendar__table").css("height", "40vh");
                 $(this).css("border", "solid 2px orange");
