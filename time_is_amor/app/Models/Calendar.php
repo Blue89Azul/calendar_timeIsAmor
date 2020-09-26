@@ -4,41 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Components\Holidays;
 use App\Models\AddPlan;
 use App\Models\User;
 use Carbon\Carbon;
 
 class Calendar extends Model
 {
-    public function holidays()
-    {
-        $dt = new Carbon;
-        $api_key = "";
-        $calendar_id = urlencode('japanese__ja@holiday.calendar.google.com');
-        $start = $dt->firstOfYear();
-        $end = $dt->endOfYear();
-        $url = "https://www.googleapis.com/calendar/v3/calendars/". $calendar_id . "/events?";
-        $query = [
-        'key' => $api_key,
-        'timeMin' => $start,
-        'timeMax' => $end,
-        'maxResult' => 50,
-        'orderBy' => 'startTime',
-        'singleEvents' =>'true'
-      ];
-        $complete_url = $url . http_build_query($query);
-        $datas =[];
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $complete_url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $h = json_decode(curl_exec($ch));
-        curl_close($ch);
-        $holidays = session()->put('holidays', $h);
-        return $holidays;
-    }
-
     private $htmlCale;
-    public function showCale($year, $month)
+    public function showCale($year, $month, $holidays)
     {
         $dt = new Carbon;
         $tableAddPlan = DB::table('add_plans');
@@ -257,6 +231,7 @@ class Calendar extends Model
         $tableAddPlan = DB::table('add_plans');
         $planDatas = $tableAddPlan->get();
         $this->planList .="<ul>";
+
         foreach ($planDatas as $pd) {
             $startDate = $dt->createFromDate($pd->startDate);
             $dataY = $startDate->year;
@@ -273,9 +248,9 @@ class Calendar extends Model
                     <p class='plan-list-items__title'>{$pd->planTitle}</p>
                     </li>
                     EOS;
-                    \Debugbar::info($pd->color);
                 }
         }
         return $this->planList .= "</ul>";
     }
+
 }

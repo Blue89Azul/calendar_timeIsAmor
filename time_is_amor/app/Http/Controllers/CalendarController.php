@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Components\Holidays;
 use App\Models\Calendar;
 use App\Models\AddPlan;
 use App\Models\User;
@@ -15,6 +16,12 @@ use Carbon\Carbon;
 
 class CalendarController extends Controller
 {
+    protected $provider;
+    public function __construct(Holidays $holidays)
+    {
+        $this->provider = $holidays->Holidays();
+    }
+
     public function addPlan(Request $request)
     {
         $this->validate($request, AddPlan::$rules);
@@ -49,7 +56,7 @@ class CalendarController extends Controller
     {
         $user_form = $request->all();
         $user = Auth::user();
-        if (isset($user_form['iconImage'])) { //アイコン画像
+        if (isset($user_form['iconImage'])) {
             $path_icon = $request->file('iconImage')->store('public/img');
             $user->iconImg = basename($path_icon);
             unset($user_form['iconImage']);
@@ -62,16 +69,16 @@ class CalendarController extends Controller
 
         unset($user_form['_token']);
         $user->fill($user_form)->save();
-        // dd($user);
         return redirect('/calendar');
     }
 
     public function show(Request $request)
     {
         $obj = new Calendar;
-        $cal = $obj->showCale($request->year, $request->month);
+        $cal = $obj->showCale($request->year, $request->month, $this->provider);
         $cal_changeMonth = $obj->changeMonth($request->year, $request->month);
         $cal_comentList = $obj->comentList($request->year, $request->month);
+        $cal_holidays = $obj->holidays($request->year, $request->month, $this->provider);
         return view('calendar', [
         "cal" => $cal,
         "changeMonth" => $cal_changeMonth,
