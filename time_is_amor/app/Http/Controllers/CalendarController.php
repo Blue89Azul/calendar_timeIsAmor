@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Components\Holidays;
 use Illuminate\Support\Facades\Validator;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Components\Holidays;
 use App\Models\Calendar;
 use App\Models\AddPlan;
-use App\Models\User;
+use App\User;
+use App\Models\Users;
 use App\Models\ComentList;
 use Carbon\Carbon;
 
@@ -19,7 +21,7 @@ class CalendarController extends Controller
     protected $provider;
     public function __construct(Holidays $holidays)
     {
-        $this->provider = $holidays->Holidays();
+        $this->provider = $holidays->holidays();
     }
 
     public function addPlan(Request $request)
@@ -27,6 +29,7 @@ class CalendarController extends Controller
         $this->validate($request, AddPlan::$rules);
         $addPlan = new AddPlan;
         $form = $request->all();
+        $form['users_id'] = Auth::id();
         unset($form['_token']);
         $addPlanDatas = $addPlan->fill($form)->save();
         return redirect('/calendar');
@@ -37,6 +40,7 @@ class CalendarController extends Controller
         $this->validate($request, ComentList::$rules);
         $addPlan = new ComentList;
         $form = $request->all();
+        $form['users_id'] = Auth::id();
         unset($form['_token']);
         $addPlanDatas = $addPlan->fill($form)->save();
         return redirect('/calendar');
@@ -72,17 +76,31 @@ class CalendarController extends Controller
         return redirect('/calendar');
     }
 
+    public function balloonAjax(Request $request)
+    {
+        $user = Auth::user();
+        $form = $request->all();
+        $form['balloonStatus'] = (intval($request->status));
+        unset($form['_token']);
+        $user->fill($form)->save();
+        return redirect('/calendar');
+    }
+
     public function show(Request $request)
     {
         $obj = new Calendar;
+        // すでに表示したものをためておくテーブルを作る。
+        $likeCounter = Users::find(Auth::id())->comentlists->sum('like');
+        $animeFlag = intval($likeCounter / 3);
         $cal = $obj->showCale($request->year, $request->month, $this->provider);
         $cal_changeMonth = $obj->changeMonth($request->year, $request->month);
         $cal_comentList = $obj->comentList($request->year, $request->month);
-        $cal_holidays = $obj->holidays($request->year, $request->month, $this->provider);
         return view('calendar', [
         "cal" => $cal,
         "changeMonth" => $cal_changeMonth,
         "comentList" => $cal_comentList,
+        "holidays" => $this->provider,
+        "animeFlag" => $animeFlag,
         "user_id" => Auth::id(),
         "user" => Auth::user(),
         "today" => new Carbon(),

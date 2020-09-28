@@ -7,11 +7,12 @@ class Holidays
 {
     public function holidays()
     {
-        $dt = new Carbon;
+        $startDt = new Carbon;
+        $endDt = new Carbon;
         $api_key = "";
         $calendar_id = urlencode('japanese__ja@holiday.calendar.google.com');
-        $start = $dt->firstOfYear();
-        $end = $dt->endOfYear();
+        $start = date($startDt->year.'-01-01\T00:00:00\Z');
+        $end = date($endDt->year.'-12-31\T00:00:00\Z');
         $url = "https://www.googleapis.com/calendar/v3/calendars/". $calendar_id . "/events?";
         $query = [
       'key' => $api_key,
@@ -22,20 +23,18 @@ class Holidays
       'singleEvents' =>'true'
     ];
         $complete_url = $url . http_build_query($query);
-        $datas =[];
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $complete_url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $holidays = json_decode(curl_exec($ch));
+        $holidays =[];
+        if ($datas = file_get_contents($complete_url, true)) {
+            $datas = json_decode($datas);
         $i = 0;
-        foreach ($holidays->items as $holiday) {
-            $datas[$i] = array(
-          'date' => $holiday->start->date,
-          'name' => $holiday->summary,
+        foreach ($datas->items as $data) {
+            $holidays[$i] = array(
+          'date' => $data->start->date,
+          'name' => $data->summary,
         );
             $i++;
         }
-        curl_close($ch);
-        return $datas;
+      }
+        return $holidays;
     }
 }

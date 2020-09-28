@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 use Carbon\Carbon;
 
 class AddPlan extends Model
@@ -14,5 +15,6 @@ class AddPlan extends Model
       'planTitle'=>'required',
       'color'=>'required',
     );
+
 
 }

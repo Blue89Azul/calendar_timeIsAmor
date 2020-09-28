@@ -31,11 +31,7 @@
   <div class="calendar-footer">
     <p><span class="clickMonth"></span><span class="clickDay"></span></p>
     <!-- ここの箇所に祝日日付 -->
-    @foreach($holidays as $holiday)
-      <?php $date = Carbon::createFromDate($holiday['date']);?>
-      if($date->year == $year && $date->month == $month && $date->day == $clickNum)
-      <p class="holiday">{{ $holiday['name'] }}</p>
-    @endforeach
+    <span class="holiday"></span>
     <div class="option-btns">
       <button class="option-btn__acount" type="button" name="button">
         <img src="/storage/img/profile.jpeg" alt="プロフィール">

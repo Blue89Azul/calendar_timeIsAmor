@@ -519,6 +519,17 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 
 /***/ }),
 
+/***/ "./resources/sass/balloonStyle.scss":
+/*!******************************************!*\
+  !*** ./resources/sass/balloonStyle.scss ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9iYWxsb29uU3R5bGUuc2Nzcz9jN2Q1Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBIiwiZmlsZSI6Ii4vcmVzb3VyY2VzL3Nhc3MvYmFsbG9vblN0eWxlLnNjc3MuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyByZW1vdmVkIGJ5IGV4dHJhY3QtdGV4dC13ZWJwYWNrLXBsdWdpbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/sass/balloonStyle.scss\n");
+
+/***/ }),
+
 /***/ "./resources/sass/homeStyle.scss":
 /*!***************************************!*\
   !*** ./resources/sass/homeStyle.scss ***!
@@ -542,9 +553,9 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /***/ }),
 
 /***/ 0:
-/*!**********************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/style.scss ./resources/sass/homeStyle.scss ./resources/sass/auth_style.scss ***!
-  \**********************************************************************************************************************************************************/
+/*!*********************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/style.scss ./resources/sass/homeStyle.scss ./resources/sass/auth_style.scss ./resources/sass/balloonStyle.scss ***!
+  \*********************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -552,7 +563,8 @@ __webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/r
 __webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/sass/app.scss */"./resources/sass/app.scss");
 __webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/sass/style.scss */"./resources/sass/style.scss");
 __webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/sass/homeStyle.scss */"./resources/sass/homeStyle.scss");
-module.exports = __webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/sass/auth_style.scss */"./resources/sass/auth_style.scss");
+__webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/sass/auth_style.scss */"./resources/sass/auth_style.scss");
+module.exports = __webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/sass/balloonStyle.scss */"./resources/sass/balloonStyle.scss");
 
 
 /***/ })

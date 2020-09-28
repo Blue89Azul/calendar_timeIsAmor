@@ -5,8 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Components\Holidays;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Users;
 use App\Models\AddPlan;
-use App\Models\User;
+use App\Models\ComentList;
 use Carbon\Carbon;
 
 class Calendar extends Model
@@ -15,10 +18,6 @@ class Calendar extends Model
     public function showCale($year, $month, $holidays)
     {
         $dt = new Carbon;
-        $tableAddPlan = DB::table('add_plans');
-        if (isset($tableAddPlan)) {
-            $planDatas = $tableAddPlan->get();
-        }
         if ($year === null) {
             $y = $dt->year;
             $m = $dt->month;
@@ -37,7 +36,7 @@ class Calendar extends Model
         $posiSubM = 30;
         $posiM = 30;
         $posiNextM = 30;
-
+        $addplans = Users::find(Auth::id())->addplans; //リレーション
         $this->htmlCale = <<<EOS
     <table id="calendarTable" class="calendar__table">
       <thead class="calendar__weekdays">
@@ -59,6 +58,15 @@ class Calendar extends Model
             for ($i = 0; $i < 7; $i++) {
                 if ($days <= 0) {
                     $d = $subDIM + $days;
+                    foreach ($holidays as $h) {
+                      $hDate = $dt->createFromDate($h['date']);
+                      if($subDate->year == $hDate->year && $subDate->month == $hDate->month && $d == $hDate->day){
+                          $this->htmlCale .='<td><p class="other-week text-danger h" data-name='.$h['name'].'>'. $d .'</p>';
+                          $i++;
+                          $d++;
+                          $dayCountar++;
+                      }
+                    }
                     switch ($i) {
                     case 0:
                     $this->htmlCale .='<td><p class="other-week text-danger">'. $d .'</p>';
@@ -69,7 +77,7 @@ class Calendar extends Model
                     default:
                     $this->htmlCale .='<td><p class="other-week">'. $d .'</p>';
                   }
-                    foreach ($planDatas as $pd) {
+                    foreach ($addplans as $pd) {
                         $dataY = $dt->createFromDate($pd->startDate)->year;
                         $dataM = $dt->createFromDate($pd->startDate)->month;
                         $dataD = $dt->createFromDate($pd->startDate)->day;
@@ -84,6 +92,16 @@ class Calendar extends Model
 
                 if ($days >= 1 && $days <= $daysInMonth) {
                     //今日の日付
+                    foreach ($holidays as $h) {
+                      $hDate = $dt->createFromDate($h['date']);
+                      if($date->year == $hDate->year && $date->month == $hDate->month && $days == $hDate->day){
+                          $this->htmlCale .='<td><p class="text-danger h" data-name='.$h['name'].'>'. $days .'</p>';
+                          $i++;
+                          $days++;
+                          $dayCountar++;
+                      }
+                    }
+
                     if ($date->year === $today->year && $date->month === $today->month && $days === $today->day) {
                         $this->htmlCale .='<td><p style="background-color: #A8AD00; color: #fff; text-shadow: none;">'.$days.'</p>';
                     } else {
@@ -99,7 +117,7 @@ class Calendar extends Model
                             $this->htmlCale .='<td><p>'.$days.'</p>';                    }
                     }
                     // 予定が入力された場合の処理
-                    foreach ($planDatas as $pd) {
+                    foreach ($addplans as $pd) {
                         $dataY = $dt->createFromDate($pd->startDate)->year;
                         $dataM = $dt->createFromDate($pd->startDate)->month;
                         $dataD = $dt->createFromDate($pd->startDate)->day;
@@ -115,6 +133,15 @@ class Calendar extends Model
                 }
 
                 if ($days > $daysInMonth && $dayCountar <= 42) {
+                  foreach ($holidays as $h) {
+                    $hDate = $dt->createFromDate($h['date']);
+                    if($nextDate->year == $hDate->year && $nextDate->month == $hDate->month && $nextMonth == $hDate->day){
+                        $this->htmlCale .='<td><p class="other-week text-danger h" data-name='.$h['name'].'>'. $nextMonth .'</p>';
+                        $i++;
+                        $nextMonth++;
+                        $dayCountar++;
+                    }
+                  }
                     switch ($i) {
                     case 0:
                         $this->htmlCale .= '<td><p class="other-week text-danger">'.$nextMonth .'</p>';
@@ -125,7 +152,7 @@ class Calendar extends Model
                     default:
                         $this->htmlCale .= '<td><p class="other-week">'.$nextMonth .'</p>';
                   }
-                    foreach ($planDatas as $pd) {
+                    foreach ($addplans as $pd) {
                         $dataY = $dt->createFromDate($pd->startDate)->year;
                         $dataM = $dt->createFromDate($pd->startDate)->month;
                         $dataD = $dt->createFromDate($pd->startDate)->day;
@@ -185,18 +212,14 @@ class Calendar extends Model
             $year = $dt->year;
             $month = $dt->month;
         }
-        $tableComentList = DB::table('coment_lists');
-        if (isset($tableComentList)) {
-            $clDatas = $tableComentList->get();
-        }
-
+        $commentlists = Users::find(Auth::id())->comentlists;
         $this->comentList .=<<<EOS
                     <div class="modal-header coment-list__header">
                     <h5>DONE FOR US<span>{$year}. {$month}</span></h5>
                     </div>
                     <div class="modal-body">
                     EOS;
-        foreach ($clDatas as $clData) {
+        foreach ($commentlists as $clData) {
             $cYear = $dt->createFromDate($clData->comentDate)->year;
             $cMonth = $dt->createFromDate($clData->comentDate)->month;
             $cDay = $dt->createFromDate($clData->comentDate)->day;

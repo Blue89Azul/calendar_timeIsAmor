@@ -14,7 +14,7 @@ class HolidaysServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('Holidays', Holidays::class);
+        $this->app->singleton('holidays', 'app\Components\Holidays');
     }
 
     /**

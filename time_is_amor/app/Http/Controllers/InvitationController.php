@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\Invitation;
-use App\Models\User;
+use App\User;
 
 class InvitationController extends Controller
 {

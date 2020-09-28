@@ -19,7 +19,7 @@ class CreateComentListsTable extends Migration
             $table->date('comentDate');
             $table->string('comentTitle');
             $table->integer('like');
-            $table->integer('user_id')->nullable();
+            $table->integer('users_id')->nullable();
         });
     }
 

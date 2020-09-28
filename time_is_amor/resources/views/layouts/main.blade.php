@@ -10,6 +10,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/balloonStyle.css')}}">
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400&display=swap" rel="stylesheet">
@@ -21,7 +22,19 @@
       <div class="row calendar">
 
           @yield('calendar')
-
+          <!-- アニメーション画面 -->
+          <div class="ballonPosition balloonAnime" data-animation="{{$animeFlag}}" data-status ="{{is_null($user->balloonStatus)? 0 : $user->balloonStatus}}">
+            <img class="balloon" src="/storage/img/balloon01_red.png">
+            <img class="balloon" src="/storage/img/balloon02_yellow.png">
+            <img class="balloon" src="/storage/img/balloon03_lime.png">
+            <img class="balloon" src="/storage/img/balloon08_orange.png">
+            <img class="balloon" src="/storage/img/balloon11_white.png">
+            <img class="balloon" src="/storage/img/balloon07_purple.png">
+            <img class="balloon" src="/storage/img/balloon04_green.png">
+            <img class="balloon" src="/storage/img/balloon05_skyblue.png">
+            <img class="balloon" src="/storage/img/balloon09_pink.png">
+            <img class="balloon" src="/storage/img/balloon10_gray.png">
+          </div>
     <!-- プロフィール部分 -->
     <div class="col-6 px-0 profile">
       <div class="col-12 card-group px-0">
@@ -187,7 +200,7 @@
             </div>
             <!-- 予定追加・いいね！ -->
             <div id="like" class="form-group">
-              <div class="like-items color-items">
+              <div class="like-items">
                 <input class="coment" id="like-01" type="radio" name="like" value="3">
                 <label for="like-01">
                   <img src="/storage/img/like-btn.png" alt="いいね！">
@@ -220,8 +233,9 @@
     </div>
   </div>
 </div>
-<script src="{{ asset('js/planList_ajax.js') }}" type=module></script>
-<script src="{{ asset('js/calendar.js') }}" type=module></script>
-<script src="{{ asset('js/swipe.js') }}" type=module></script>
+<script src="{{ asset('js/planList_ajax.js') }}" type="module"></script>
+<script src="{{ asset('js/calendar.js') }}" type="module"></script>
+<script src="{{ asset('js/swipe.js') }}" type="module"></script>
+<script src="{{ asset('js/balloonAnimation.js') }}" type="module"></script>
 </body>
 </html>

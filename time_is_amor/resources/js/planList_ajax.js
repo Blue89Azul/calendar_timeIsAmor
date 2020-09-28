@@ -1,5 +1,5 @@
 $(function() {
-    $(".week > td").on("click", function() {
+    $(".week > td").on("click", function(e) {
         let clickNum = parseInt($(this).text(), 10);
         $(".clickDay").text(clickNum + "日");
         $(".clickMonth").text($(".monthAjax").text() + "月"); //FIX
@@ -24,7 +24,11 @@ $(function() {
                 $(".plan-list").css("display", "block");
                 // テキストの追加の記述
                 $(".plan-list").html($.parseJSON(data));
-
+                var target = $(e.target); //ターゲットを使うことでイベント中の箇所のみ取得可能。
+                $(".holiday").text("");
+                if(target.data('name')){
+                  $(".holiday").text(target.data('name'));
+                }
             })
             .fail(function(jqXHR, textStatus, errorThrown) {
                 // 通信失敗時の処理
@@ -43,5 +47,6 @@ $(function() {
         $(".plan-list").css("display", "none");;
         $(".clickDay").text("");
         $(".clickMonth").text("");
+        $(".holiday").text("");
     });
 });

@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Auth;
   Route::group(['middleware' => 'auth'], function(){
     Route::get('/calendar', 'CalendarController@show');
     Route::post('/planList', 'CalendarController@planListAjax');
+    Route::post('/balloon', 'CalendarController@balloonAjax');
     Route::post('/calendar/addPlan', 'CalendarController@addPlan');
     Route::post('/calendar/comentList', 'CalendarController@comentList');
     Route::post('/calendar/update', 'CalendarController@profileUpdate');

@@ -1,10 +1,14 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\AddPlan;
+use App\Models\ComentList;
+
 
 class User extends Authenticatable
 {
@@ -16,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'birthday', 'partner_id', 'bgImg', 'iconImg',
+        'name', 'email', 'password', 'birthday', 'partner_id', 'bgImg', 'iconImg', 'balloonStatus',
     ];
 
     /**
@@ -36,4 +40,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }
