@@ -689,3 +689,11 @@ input[type="radio"]:checked~label {
 .likes {
     display: inline-block;
 }
+
+// コメント一覧
+.commentBody {
+  height: 45vh;
+  overflow: scroll;
+  font-size: 13px;
+  color: #000;
+}

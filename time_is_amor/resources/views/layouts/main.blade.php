@@ -162,7 +162,7 @@
                 <input class="form-control col-5 add-plan" type="date" name="startDate" placeholder="開始日付" required>
                 <input class="form-control col-5 start-date__time add-plan" type="time" name="startTime" placeholder="開始時刻" required>
               </div>
-              <p class="text-center p-0 m-0">⇩</p>
+              <p class="text-center p-0 m-0 text-body">⇩</p>
               <div class="form-group d-flex justify-content-around end-date">
                 <input class="form-control col-5 add-plan" type="date" name="endDate" placeholder="終了日付" required>
                 <input class="form-control col-5 add-plan" type="time" name="endTime" placeholder="終了時刻" required>
@@ -187,7 +187,7 @@
             <!-- 予定追加・色変更 -->
             <div id="color" class="form-group d-flex justify-content-center">
               <div class="color-items">
-                <label for="colorOption" class="colorLabel">色選択</label>
+                <label for="colorOption" class="colorLabel text-body">色選択</label>
                 <input id="colorOption" type="color" name="color" value="#dd5858" list="data1" class="add-plan" required>
                 <datalist id="data1">
                   <option value="#dd5858"></option>
@@ -226,7 +226,7 @@
     <!-- コメント一覧 -->
     <div class="modal fade" id="modal__coment-list" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
+        <div class="modal-content comment-">
           {!! $comentList !!}
         </div>
       </div>

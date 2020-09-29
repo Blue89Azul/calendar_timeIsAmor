@@ -15,6 +15,4 @@ class AddPlan extends Model
       'planTitle'=>'required',
       'color'=>'required',
     );
-
-
 }
