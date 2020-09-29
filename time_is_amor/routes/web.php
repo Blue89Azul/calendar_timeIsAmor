@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Auth;
     Route::post('/calendar/addPlan', 'CalendarController@addPlan');
     Route::post('/calendar/comentList', 'CalendarController@comentList');
     Route::post('/calendar/update', 'CalendarController@profileUpdate');
+    Route::post('/calendar/planDelete','CalendarController@planDelete');
     //ユーザ招待時のアクション集
     Route::post('/calendar/invitation', 'InvitationController@mail');
   });

@@ -63,18 +63,25 @@
           </div>
         </div>
         <div class="card profile__info mb-0">
+          @if($partner == 0)
           <img class="profile__img-top" src="/storage/img/bg-img.jpg" focusable="false" role="img">
-          <rect width="100%" height="100%" fill="#868e96" />
-          <img class="profile__img" src="/storage/img/profile_acount.jpeg" alt="アカウント画像">
+          @elseif($partner->bgImg != null)
+          <img class="profile__img-top" src="/storage/img/{{$partner->bgImg}}" focusable="false" role="img">
+          @endif
+          @if($partner == 0)
+          <img class="profile__img" src="/storage/img/profile_acount.jpeg" alt="アイコン画像">
+          @elseif($partner->iconImg != null)
+          <img class="profile__img" src="/storage/img/{{$partner->iconImg}}" alt="アイコン画像">
+          @endif
           <div class="card-body profilr__info-body">
-            @if(isset($user->partner_id))
-            <h6 class="card-title"><?php echo User::find($user->partner_id)->name ?></h6>
-            <p><?php echo User::find($user->partner_id)->birthday ?></p>
+            @if($partner != 0)
+            <h6 class="card-title">{{$partner->name}}</h6>
+            <p>{{$partner->birthday}}</p>
             @else
             <h6 class="card-title"></h6>
             <p></p>
             @endif
-            @if(empty($user->partner_id))
+            @if($partner == 0)
             <button type="button" class="btn-color btn-sm" data-toggle="modal" data-target="#modal__invitation">招待</button>
             @endif
           </div>

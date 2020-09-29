@@ -86,23 +86,35 @@ class CalendarController extends Controller
         return redirect('/calendar');
     }
 
+    public function planDelete(Request $request)
+    {
+      $plan = addPlan::find($request->id);
+      $plan->delete();
+      return redirect('/calendar');
+    }
+
     public function show(Request $request)
     {
         $obj = new Calendar;
-        // すでに表示したものをためておくテーブルを作る。
-        $likeCounter = Users::find(Auth::id())->comentlists->sum('like');
+        $authUser = Auth::user();
+        $authId = Auth::id();
+        $likeCounter = Users::find($authId)->comentlists->sum('like');
         $animeFlag = intval($likeCounter / 3);
+        empty(User::find($authUser->partner_id))? $partner = 0 : $partner = User::find($user->partner_id) ;
+
         $cal = $obj->showCale($request->year, $request->month, $this->provider);
         $cal_changeMonth = $obj->changeMonth($request->year, $request->month);
         $cal_comentList = $obj->comentList($request->year, $request->month);
+
         return view('calendar', [
         "cal" => $cal,
         "changeMonth" => $cal_changeMonth,
         "comentList" => $cal_comentList,
         "holidays" => $this->provider,
         "animeFlag" => $animeFlag,
-        "user_id" => Auth::id(),
-        "user" => Auth::user(),
+        "partner" => $partner,
+        "user_id" => $authId,
+        "user" => $authUser,
         "today" => new Carbon(),
        ]);
     }

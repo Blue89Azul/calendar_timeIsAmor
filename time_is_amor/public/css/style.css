@@ -405,6 +405,12 @@ tr[class^=week] > td > p {
   font-size: 10px;
 }
 
+.deletePlan {
+  font-size: 10px;
+  display: inline-block;
+  margin-left: 150px;
+}
+
 /* プロフィール一覧画面 */
 
 .profile {

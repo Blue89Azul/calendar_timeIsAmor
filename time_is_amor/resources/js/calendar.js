@@ -72,4 +72,9 @@ $(function() {
         bgReader.readAsDataURL(e.target.files[0]);
     });
 
+    //予定削除
+    $(".deletePlan").click(function(){
+      $(".deleteForm").submit();
+      return false
+    });
 });
