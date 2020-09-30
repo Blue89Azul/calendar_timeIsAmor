@@ -93,6 +93,14 @@ class CalendarController extends Controller
       return redirect('/calendar');
     }
 
+    public function commentDelete(Request $request)
+    {
+      $plan = ComentList::find($request->id);
+      $plan->delete();
+      return redirect('/calendar');
+    }
+
+
     public function show(Request $request)
     {
         $obj = new Calendar;

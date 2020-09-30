@@ -166,13 +166,13 @@
                 <input class="form-control text-center plan-form__title add-plan" type="text" name="planTitle" placeholder="予定タイトル" required>
               </div>
               <div class="form-group d-flex justify-content-around mb-0 start-date">
-                <input class="form-control col-5 add-plan" type="date" name="startDate" placeholder="開始日付" required>
-                <input class="form-control col-5 start-date__time add-plan" type="time" name="startTime" placeholder="開始時刻" required>
+                <input class="form-control col-5 add-plan sDate" type="date" name="startDate" placeholder="開始日付" required>
+                <input class="form-control col-5 start-date__time add-plan sTime" type="time" name="startTime" placeholder="開始時刻" required>
               </div>
               <p class="text-center p-0 m-0 text-body">⇩</p>
               <div class="form-group d-flex justify-content-around end-date">
-                <input class="form-control col-5 add-plan" type="date" name="endDate" placeholder="終了日付" required>
-                <input class="form-control col-5 add-plan" type="time" name="endTime" placeholder="終了時刻" required>
+                <input class="form-control col-5 add-plan eDate" type="date" name="endDate" placeholder="終了日付" required>
+                <input class="form-control col-5 add-plan eTime" type="time" name="endTime" placeholder="終了時刻" required>
               </div>
             </div>
             <div id="done-for-us">
@@ -200,8 +200,6 @@
                   <option value="#dd5858"></option>
                   <option value="#659BDF"></option>
                   <option value="#579779"></option>
-                  <option value="#dd5858"></option>
-                  <option value="#dd5858"></option>
                 </datalist>
               </div>
             </div>
@@ -210,15 +208,15 @@
               <div class="like-items">
                 <input class="coment" id="like-01" type="radio" name="like" value="3">
                 <label for="like-01">
-                  <img src="/storage/img/like-btn.png" alt="いいね！">
+                  <img src="/storage/img/likeSmall.png" alt="いいね！">
                 </label>
                 <input class="coment" id="like-02" type="radio" name="like" value="2">
                 <label for="like-02">
-                  <img src="/storage/img/like-btn.png" alt="いいね！">
+                  <img src="/storage/img/likeMiddle.png" alt="いいね！">
                 </label>
                 <input class="coment" id="like-03" type="radio" name="like" value="1">
                 <label for="like-03">
-                  <img src="/storage/img/like-btn.png" alt="いいね！">
+                  <img src="/storage/img/likeLarge.png" alt="いいね！">
                 </label>
               </div>
             </div>

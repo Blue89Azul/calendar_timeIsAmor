@@ -34,12 +34,13 @@ class Calendar extends Model
         $subDIM = $dt->subMonth()->daysInMonth;
         $nextMonth = 1;
         $dayCountar = 1;
+        $planCounterSub = 0;
         $planCounter = 0;
+        $planCounterNext = 0;
         $posiSubM = 20;
         $posiM = 20;
         $posiNextM = 20;
-        $addplans = Users::find(Auth::id())->addplans; //リレーション
-        empty($authUser->pertner_id)? $pertnerPlan = null : $pertnerPlan = Users::find($authUser->pertner_id)->addplans; //
+        $addplans = AddPlan::whereIn("users_id", [Auth::id(), Auth::user()->pertner_id])->get();
         $this->htmlCale = <<<EOS
     <table id="calendarTable" class="calendar__table">
       <thead class="calendar__weekdays">
@@ -62,13 +63,13 @@ class Calendar extends Model
                 if ($days <= 0) {
                     $d = $subDIM + $days;
                     foreach ($holidays as $h) {
-                      $hDate = $dt->createFromDate($h['date']);
-                      if($subDate->year == $hDate->year && $subDate->month == $hDate->month && $d == $hDate->day){
-                          $this->htmlCale .='<td><p class="other-week text-danger h pre" data-name='.$h['name'].'>'. $d .'</p>';
-                          $i++;
-                          $d++;
-                          $dayCountar++;
-                      }
+                        $hDate = $dt->createFromDate($h['date']);
+                        if ($subDate->year == $hDate->year && $subDate->month == $hDate->month && $d == $hDate->day) {
+                            $this->htmlCale .='<td><p class="other-week text-danger h pre" data-name='.$h['name'].'>'. $d .'</p>';
+                            $i++;
+                            $d++;
+                            $dayCountar++;
+                        }
                     }
                     switch ($i) {
                     case 0:
@@ -80,23 +81,27 @@ class Calendar extends Model
                     default:
                     $this->htmlCale .='<td><p class="other-week pre">'. $d .'</p>';
                   }
-                  // 予定入力（回し方が重要やなー）ここでできるだけ大きい塊で持ってきて、foreachの中で細かくする方法かなぁ...
                     foreach ($addplans as $pd) {
                         $startDate = $dt->createFromDate($pd->startDate);
                         $dataY = $startDate->year;
                         $dataM = $startDate->month;
                         $dataD = $startDate->day;
 
-                        if($planCounter >= 3){
-                          $planCounter = 0;
-                          break;
-                        }else{
-                          if ($subDate->year === $dataY && $subDate->month === $dataM &&  $d === $dataD) {
-                              $this->htmlCale .= '<span class="plan-item" style="background-color:' . $pd->color .'; left:'.$posiSubM.'%;"></span>';
-                              $posiSubM += 30;
-                              $planCounter++;
-                          }
+                        if ($planCounterSub >= 3) {
+                            $planCounterSub = 0;
+                            break;
+                        } else {
+                            if ($subDate->year === $dataY && $subDate->month === $dataM &&  $d === $dataD) {
+                                $this->htmlCale .= '<span class="plan-item" style="background-color:' . $pd->color .'; left:'.$posiSubM.'%;"></span>';
+                                $posiSubM += 30;
+                                if ($a === $d) {
+                                    $planCounterSub++;
+                                } else {
+                                    $planCounterSub = 0;
+                                }
+                            }
                         }
+                        $a = $d;
                     }
                     $posiSubM = 20;
                     $this->htmlCale .= '</td>';
@@ -105,13 +110,13 @@ class Calendar extends Model
                 if ($days >= 1 && $days <= $daysInMonth) {
                     //今日の日付
                     foreach ($holidays as $h) {
-                      $hDate = $dt->createFromDate($h['date']);
-                      if($date->year == $hDate->year && $date->month == $hDate->month && $days == $hDate->day){
-                          $this->htmlCale .='<td><p class="text-danger h" data-name='.$h['name'].'>'. $days .'</p>';
-                          $i++;
-                          $days++;
-                          $dayCountar++;
-                      }
+                        $hDate = $dt->createFromDate($h['date']);
+                        if ($date->year == $hDate->year && $date->month == $hDate->month && $days == $hDate->day) {
+                            $this->htmlCale .='<td><p class="text-danger h" data-name='.$h['name'].'>'. $days .'</p>';
+                            $i++;
+                            $days++;
+                            $dayCountar++;
+                        }
                     }
 
                     if ($date->year === $today->year && $date->month === $today->month && $days === $today->day) {
@@ -130,36 +135,41 @@ class Calendar extends Model
                     }
                     // 予定が入力された場合の処理
                     foreach ($addplans as $pd) {
-                      $startDate = $dt->createFromDate($pd->startDate);
-                      $dataY = $startDate->year;
-                      $dataM = $startDate->month;
-                      $dataD = $startDate->day;
-                      if($planCounter >= 3){
-                        $planCounter = 0;
-                        break;
-                      } else {
-                        if ($date->year == $dataY && $date->month == $dataM &&  $days == $dataD) {
-                            $this->htmlCale .= '<span class="plan-item" style="background-color:' . $pd->color .';
+                        $startDate = $dt->createFromDate($pd->startDate);
+                        $dataY = $startDate->year;
+                        $dataM = $startDate->month;
+                        $dataD = $startDate->day;
+                        if ($planCounter >= 3) {
+                            $planCounter = 0;
+                            break;
+                        } else {
+                            if ($date->year == $dataY && $date->month == $dataM &&  $days == $dataD) {
+                                $this->htmlCale .= '<span class="plan-item" style="background-color:' . $pd->color .';
                             left:'.$posiM.'%;"></span>';
-                            $posiM += 30;
-                            $planCounter++;
+                                $posiM += 30;
+                                if ($b === $days) {
+                                    $planCounter++;
+                                } else {
+                                    $planCounter = 0;
+                                }
+                            }
                         }
-                      }
+                        $b = $days;
                     }
                     $posiM = 20;
                     $this->htmlCale .= '</td>';
                 }
 
                 if ($days > $daysInMonth && $dayCountar <= 42) {
-                  foreach ($holidays as $h) {
-                    $hDate = $dt->createFromDate($h['date']);
-                    if($nextDate->year == $hDate->year && $nextDate->month == $hDate->month && $nextMonth == $hDate->day){
-                        $this->htmlCale .='<td><p class="other-week text-danger h next" data-name='.$h['name'].'>'. $nextMonth .'</p>';
-                        $i++;
-                        $nextMonth++;
-                        $dayCountar++;
+                    foreach ($holidays as $h) {
+                        $hDate = $dt->createFromDate($h['date']);
+                        if ($nextDate->year == $hDate->year && $nextDate->month == $hDate->month && $nextMonth == $hDate->day) {
+                            $this->htmlCale .='<td><p class="other-week text-danger h next" data-name='.$h['name'].'>'. $nextMonth .'</p>';
+                            $i++;
+                            $nextMonth++;
+                            $dayCountar++;
+                        }
                     }
-                  }
                     switch ($i) {
                     case 0:
                         $this->htmlCale .= '<td><p class="other-week text-danger next">'.$nextMonth .'</p>';
@@ -171,20 +181,26 @@ class Calendar extends Model
                         $this->htmlCale .= '<td><p class="other-week next">'.$nextMonth .'</p>';
                   }
                     foreach ($addplans as $pd) {
-                      $startDate = $dt->createFromDate($pd->startDate);
-                      $dataY = $startDate->year;
-                      $dataM = $startDate->month;
-                      $dataD = $startDate->day;
-                      if($planCounter >= 3){
-                        $planCounter = 0;
-                        break;
-                      }else{
-                        if ($nextDate->year == $dataY && $nextDate->month == $dataM &&  $nextMonth == $dataD) {
-                            $this->htmlCale .= '<span class="plan-item" style="background-color:' . $pd->color .';
+                        $startDate = $dt->createFromDate($pd->startDate);
+                        $dataY = $startDate->year;
+                        $dataM = $startDate->month;
+                        $dataD = $startDate->day;
+                        if ($planCounterNext >= 3) {
+                            $planCounterNext = 0;
+                            break;
+                        } else {
+                            if ($nextDate->year == $dataY && $nextDate->month == $dataM &&  $nextMonth == $dataD) {
+                                $this->htmlCale .= '<span class="plan-item" style="background-color:' . $pd->color .';
                             left:'.$posiNextM.'%;"></span>';
-                            $posiNextM += 30;
+                                $posiNextM += 30;
+                                if ($c === $nextMonth) {
+                                    $planCounterNext++;
+                                } else {
+                                    $planCounterNext= 0;
+                                }
+                            }
                         }
-                      }
+                        $c = $nextMonth;
                     }
                     $posiNextM = 20;
                     $nextMonth++;
@@ -232,14 +248,13 @@ class Calendar extends Model
     public function comentList($year, $month)
     {
         $dt = new Carbon;
-        $authId = Auth::id();
         if ($year === null) {
             $year = $dt->year;
             $month = $dt->month;
         }
-        $comments = ComentList::where("users_id", $authId)->get();
-        $commentlists = Users::find($authId)->comentlists;
-
+        $comments = ComentList::whereIn("users_id", [Auth::id(), Auth::user()->pertner_id])->orderBy('comentDate', 'asc')->get();
+        $csrf = csrf_field();
+        $url = action("CalendarController@commentDelete");
         $this->comentList .=<<<EOS
                     <div class="modal-header coment-list__header">
                     <h5>DONE FOR US<span>{$year}. {$month}</span></h5>
@@ -253,22 +268,29 @@ class Calendar extends Model
             if ($year == $cYear && $month == $cMonth) {
                 $this->comentList .=<<<EOS
                   <div class="card col-11 mx-auto">
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                      <div class="coment-date d-inline-block">
+                  <ul>
+                    <li>
+                      <div class="d-flex justify-content-between">
                         <p class="d-inline">{$cMonth}月{$cDay}日</p>
-                        <span>{$comment->users->name}</span> → <span>くまモン</span>
+                        <p>投稿者：{$comment->users->name}</p>
                       </div>
-                      <div class="likes d-inline-block">
+                        <p class="comment-text text-center">{$comment->comentTitle}</p>
+                      <div class="likes">
                   EOS;
-                if (isset($comment->like)) {
+                if ($comment->like) {
                     for ($i=1; $i <= $comment->like ; $i++) {
                         $this->comentList .= '<img src="/storage/img/like.png" alt="いいね">';
                     }
                 }
-                $this->comentList .= '</div><p class="main-coment text-center">'.$comment->comentTitle.'</p></li>';
+                $this->comentList .=<<<EOS
+                    <form method="post" class="deletBtn d-inline-block" action="{$url}">
+                    {$csrf}
+                    <input type="hidden" name="id" value="{$comment->id}">
+                    <input class="deletePlan" type="submit" value="削除">
+                    </form>
+                EOS;
             }
-            $this->comentList .= '</ul></div>';
+            $this->comentList .= '</div></li></ul></div>';
         }
         return $this->comentList .= '</div>';
     }
@@ -279,7 +301,7 @@ class Calendar extends Model
         $dt = new Carbon;
         $authId = Auth::id();
         $date = $dt->createFromDate($year, $month);
-        $planDatas = Users::find($authId)->addplans;
+        $planDatas = AddPlan::whereIn("users_id", [Auth::id(), Auth::user()->pertner_id])->orderBy('startTime', 'asc')->get();
         $csrf = csrf_field();
         $this->planList .="<ul>";
         foreach ($planDatas as $pd) {
@@ -287,26 +309,31 @@ class Calendar extends Model
             $dataY = $startDate->year;
             $dataM = $startDate->month;
             $dataD = $startDate->day;
+            $startT = substr($pd->startTime, 0, 5);
+            $endT = substr($pd->endTime, 0, 5);
             $url = action("CalendarController@planDelete");
-                if ($date->year === $dataY && $date->month === $dataM && $clickNum == $dataD) {
-                    $this->planList .=<<<EOS
-                    <li class='plan-list-items'>
-                    <span style='background-color:{$pd->color};'></span>
-                    <div class='plan-list-items__time'>
-                    <p>{$pd->startTime}</p>
-                    <p>{$pd->endTime}</p>
+            if ($date->year === $dataY && $date->month === $dataM && $clickNum == $dataD) {
+                $this->planList .=<<<EOS
+                    <li class="plan-list-items">
+                    <div class="plan-list-header">
+                    <span class="plan-list-color" style='background-color:{$pd->color};'></span>
+                    <div class="plan-list-times">
+                    <p>{$startT}</p>
+                    <p>{$endT}</p>
                     </div>
-                    <p class='plan-list-items__title'>{$pd->planTitle}</p>
-                    <form method="post" class="deleteForm" action="{$url}">
+                    </div>
+                    <div class="plan-list-title">
+                    <p>{$pd->planTitle}</p>
+                    </div>
+                    <form method="post" class="deletBtn" action="{$url}">
                     {$csrf}
                     <input type="hidden" name="id" value="{$pd->id}">
                     <input class="deletePlan" type="submit" value="削除">
                     </form>
                     </li>
                     EOS;
-                }
+            }
         }
         return $this->planList .= "</ul>";
     }
-
 }

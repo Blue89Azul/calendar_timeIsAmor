@@ -72,9 +72,15 @@ $(function() {
         bgReader.readAsDataURL(e.target.files[0]);
     });
 
-    //予定削除
-    $(".deletePlan").click(function(){
-      $(".deleteForm").submit();
-      return false
+    // 予定日付・時間、入力したら１時間
+    $('input[type="date"].sDate').change(function(){
+      var date = $(this).val();
+      $('input[type="date"].eDate').attr('value', date);
     });
+
+    $('input[type="time"].sTime').change(function(){
+      var time = $(this).val();
+      $('input[type="time"].eTime').attr('value', time);;
+    });
+
 });

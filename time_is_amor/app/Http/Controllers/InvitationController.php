@@ -27,7 +27,6 @@ class InvitationController extends Controller
 
     public function getRegister()
     {
-        //別のセッションデータを
         return view('auth.invitationRegister');
     }
 

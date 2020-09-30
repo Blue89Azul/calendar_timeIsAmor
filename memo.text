@@ -1,25 +1,15 @@
-＜欲しい機能 ※リレーション＞　今日中に終わらせる。
-1. コメント一覧（パートナーも表示可能に）
-->論理演算 「||」で対応可能？？
-4. 投稿者名（コメント一覧）※ログインユーザのみ○
-1. 予定一覧（パートナー、ログインユーザ両方表示）※ログインユーザのみ
-→パートナーの登録をする！！
+＜欲しい機能＞
+1. コメント一覧（コメント表示＋投稿者名）
+2. 予定一覧（パートナーの予定も表示）
+→ここは今日中に終わらせる。
 
-＜その他やること＞
-1. 退会処理（明日）→　本当に退会しますか？？
-2.フリック処理の修正(明日)
+＜明日やること＞
+0.全体の見直し
+1. 退会処理
+2. フリック処理の修正
 3. デプロイ
-4. 全体テスト（招待メール確認）
+4. 全体テスト（招待メール確認）→ その他エラーがないか確認。
 5. 長期間の使用のエフェクトのロジック(明日)
-6.表示日時 == 登録された予定開始日時) {
-    <div>予定表示</div>
-  if(終了日時 - 開始日時 !== 0){
-      for(終了日時 - 開始日時をループ){
-        <div class="longPlan">予定表示</div>
-    }
-  }
-}
-
 
 *****************************************************************
 $userPlans = ログインユーザに紐づく予定情報をDBから取得(date型);
@@ -34,45 +24,11 @@ foreach($userPlans as $index => $userPlan){
   $pYear = パートナー予定情報：year取得
   $pMonth =　パートナー予定情報：month取得
   $pDay =　パートナー予定情報：day取得
+if(Auth::user->partner_id){
+    foreach($partners as $partner){
+    $cYear = $dt->createFromDate($comment->comentDate)->year;
+    $cMonth = $dt->createFromDate($comment->comentDate)->month;
+    $cDay = $dt->createFromDate($comment->comentDate)->day;
 
-  if($counter >= 3){
-    break;
   }
-
-  if(カレンダー表示日時 === ログインユーザの予定：year, month, day)
-    <div>ログインユーザの予定の表示</div>
-    css.style.position.left移動 += 30px;
-    counter++;
-  } else if(カレンダー表示日時 === パートナーの予定：year, month, day){
-    <div　色ピンク>パートナーの予定の表示</div>
-    css.style.position.left移動 += 30px;
-    counter++;
 }
-
-
-
-foreach ($addplans as $pd) {
-    $startDate = $dt->createFromDate($pd->startDate);
-    $dataY = $startDate->year;
-    $dataM = $startDate->month;
-    $dataD = $startDate->day;
-  if(is_null($pertnerPlan)){
-    foreach($partnerPlans as $pp){
-    $pDate = $dt->createFromDate($pp->startDate);
-    $dataY = $startDate->year;
-    $dataM = $startDate->month;
-    $dataD = $startDate->day;
-
-    }
-  }
-
-    if($planCounter >= 3){
-      $planCounter = 0;
-      break;
-    }else{
-      if ($subDate->year === $dataY && $subDate->month === $dataM &&  $d === $dataD) {
-          $this->htmlCale .= '<span class="plan-item" style="background-color:' . $pd->color .'; left:'.$posiSubM.'%;"></span>';
-          $posiSubM += 30;
-          $planCounter++;
-      }
-    }
