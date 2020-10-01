@@ -1,8 +1,9 @@
 $(function() {
     $(".week > td").on("click", function(e) {
         let clickNum = parseInt($(this).text(), 10);
+        $(".clickMonth").text($(this).children().data("month") + "月");
         $(".clickDay").text(clickNum + "日");
-        $(".clickMonth").text($(".monthAjax").text() + "月"); //FIX
+
         var baseUrl = $('meta[name="_base_url"]').attr('content');
         console.log(baseUrl + '/planList');
         console.log(clickNum);
@@ -26,8 +27,8 @@ $(function() {
                 $(".plan-list").html($.parseJSON(data));
                 var target = $(e.target); //ターゲットを使うことでイベント中の箇所のみ取得可能。
                 $(".holiday").text("");
-                if(target.data('name')){
-                  $(".holiday").text(target.data('name'));
+                if (target.data('name')) {
+                    $(".holiday").text(target.data('name'));
                 }
             })
             .fail(function(jqXHR, textStatus, errorThrown) {

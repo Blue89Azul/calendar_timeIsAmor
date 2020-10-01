@@ -43,18 +43,6 @@ $(function() {
         }
     });
 
-    // 今月の一枚：モーダル表示
-    $("body").append('<div class="gray-layer"></div><div class="over-layer"></div>');
-    $(".gray-layer").click(function() {
-        $(".gray-layer, .over-layer").hide();
-    });
-
-    $("a.modal-img").click(function() {
-        $(".gray-layer").show();
-        $(".over-layer").show().html("<img src='" + $(this).attr("href") + "'>");
-        return false;
-    });
-
     // アカウント背景・アイコン編集 *要勉強
     $("#icon").on("change", function(e) {
         var iconReader = new FileReader();
@@ -72,7 +60,6 @@ $(function() {
         bgReader.readAsDataURL(e.target.files[0]);
     });
 
-    // 予定日付・時間、入力したら１時間
     $('input[type="date"].sDate').change(function(){
       var date = $(this).val();
       $('input[type="date"].eDate').attr('value', date);

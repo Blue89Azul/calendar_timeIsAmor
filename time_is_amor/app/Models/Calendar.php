@@ -65,7 +65,7 @@ class Calendar extends Model
                     foreach ($holidays as $h) {
                         $hDate = $dt->createFromDate($h['date']);
                         if ($subDate->year == $hDate->year && $subDate->month == $hDate->month && $d == $hDate->day) {
-                            $this->htmlCale .='<td><p class="other-week text-danger h pre" data-name='.$h['name'].'>'. $d .'</p>';
+                            $this->htmlCale .='<td><p class="other-week text-danger h" data-name='.$h['name'].' data-month='.$subDate->month.'>'. $d .'</p>';
                             $i++;
                             $d++;
                             $dayCountar++;
@@ -73,13 +73,13 @@ class Calendar extends Model
                     }
                     switch ($i) {
                     case 0:
-                    $this->htmlCale .='<td><p class="other-week text-danger pre">'. $d .'</p>';
+                    $this->htmlCale .='<td><p class="other-week text-danger" data-month='.$subDate->month.'>'. $d .'</p>';
                       break;
                     case 6:
-                    $this->htmlCale .='<td><p class="other-week text-primary pre">'. $d .'</p>';
+                    $this->htmlCale .='<td><p class="other-week text-primary" data-month='.$subDate->month.'>'. $d .'</p>';
                       break;
                     default:
-                    $this->htmlCale .='<td><p class="other-week pre">'. $d .'</p>';
+                    $this->htmlCale .='<td><p class="other-week" data-month='.$subDate->month.'>'. $d .'</p>';
                   }
                     foreach ($addplans as $pd) {
                         $startDate = $dt->createFromDate($pd->startDate);
@@ -112,7 +112,7 @@ class Calendar extends Model
                     foreach ($holidays as $h) {
                         $hDate = $dt->createFromDate($h['date']);
                         if ($date->year == $hDate->year && $date->month == $hDate->month && $days == $hDate->day) {
-                            $this->htmlCale .='<td><p class="text-danger h" data-name='.$h['name'].'>'. $days .'</p>';
+                            $this->htmlCale .='<td><p class="text-danger h" data-name='.$h['name'].' data-month='.$date->month.'>'. $days .'</p>';
                             $i++;
                             $days++;
                             $dayCountar++;
@@ -120,18 +120,18 @@ class Calendar extends Model
                     }
 
                     if ($date->year === $today->year && $date->month === $today->month && $days === $today->day) {
-                        $this->htmlCale .='<td><p style="background-color: #A8AD00; color: #fff; text-shadow: none;">'.$days.'</p>';
+                        $this->htmlCale .='<td><p style="background-color: #A8AD00; color: #fff; text-shadow: none;" data-month='.$date->month.'>'.$days.'</p>';
                     } else {
                         //それ以外は、土日は色変更
                         switch ($i) {
                           case 0:
-                            $this->htmlCale .='<td><p class="text-danger">'.$days.'</p>';
+                            $this->htmlCale .='<td><p class="text-danger" data-month='.$date->month.'>'.$days.'</p>';
                           break;
                           case 6:
-                            $this->htmlCale .='<td><p class="text-primary">'.$days.'</p>';
+                            $this->htmlCale .='<td><p class="text-primary" data-month='.$date->month.'>'.$days.'</p>';
                           break;
                           default:
-                            $this->htmlCale .='<td><p>'.$days.'</p>';                    }
+                            $this->htmlCale .='<td><p data-month='.$date->month.'>'.$days.'</p>';                    }
                     }
                     // 予定が入力された場合の処理
                     foreach ($addplans as $pd) {
@@ -164,7 +164,7 @@ class Calendar extends Model
                     foreach ($holidays as $h) {
                         $hDate = $dt->createFromDate($h['date']);
                         if ($nextDate->year == $hDate->year && $nextDate->month == $hDate->month && $nextMonth == $hDate->day) {
-                            $this->htmlCale .='<td><p class="other-week text-danger h next" data-name='.$h['name'].'>'. $nextMonth .'</p>';
+                            $this->htmlCale .='<td><p class="other-week text-danger h" data-name='.$h['name'].' data-month='.$nextDate->month.'>'. $nextMonth .'</p>';
                             $i++;
                             $nextMonth++;
                             $dayCountar++;
@@ -172,13 +172,14 @@ class Calendar extends Model
                     }
                     switch ($i) {
                     case 0:
-                        $this->htmlCale .= '<td><p class="other-week text-danger next">'.$nextMonth .'</p>';
+                        $this->htmlCale .= '<td><p class="other-week text-danger" data-month='.$nextDate->month.'>'.$nextMonth .'</p>';
                       break;
 
                     case 6:
-                        $this->htmlCale .= '<td><p class="other-week text-primary next">'.$nextMonth .'</p>';              break;
+                        $this->htmlCale .= '<td><p class="other-week text-primary" data-month='.$nextDate->month.'>'.$nextMonth .'</p>';
+                        break;
                     default:
-                        $this->htmlCale .= '<td><p class="other-week next">'.$nextMonth .'</p>';
+                        $this->htmlCale .= '<td><p class="other-week" data-month='.$nextDate->month.'>'.$nextMonth .'</p>';
                   }
                     foreach ($addplans as $pd) {
                         $startDate = $dt->createFromDate($pd->startDate);
