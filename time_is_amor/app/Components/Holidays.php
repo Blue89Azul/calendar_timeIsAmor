@@ -9,7 +9,7 @@ class Holidays
     {
         $startDt = new Carbon;
         $endDt = new Carbon;
-        $api_key = "";
+        $api_key = config('services.google-calendar.apikey');
         $calendar_id = urlencode('japanese__ja@holiday.calendar.google.com');
         $start = date($startDt->year.'-01-01\T00:00:00\Z');
         $end = date($endDt->year.'-12-31\T00:00:00\Z');

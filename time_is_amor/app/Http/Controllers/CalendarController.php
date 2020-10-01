@@ -96,7 +96,9 @@ class CalendarController extends Controller
     public function commentDelete(Request $request)
     {
       $plan = ComentList::find($request->id);
+      // $status = Auth::user()->balloonStatus - ($plan->like);
       $plan->delete();
+      // $status->save();
       return redirect('/calendar');
     }
 
