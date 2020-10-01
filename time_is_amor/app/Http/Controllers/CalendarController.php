@@ -88,18 +88,21 @@ class CalendarController extends Controller
 
     public function planDelete(Request $request)
     {
-      $plan = addPlan::find($request->id);
-      $plan->delete();
-      return redirect('/calendar');
+        $plan = addPlan::find($request->id);
+        $plan->delete();
+        return redirect('/calendar');
     }
 
     public function commentDelete(Request $request)
     {
-      $plan = ComentList::find($request->id);
-      // $status = Auth::user()->balloonStatus - ($plan->like);
-      $plan->delete();
-      // $status->save();
-      return redirect('/calendar');
+        $plan = ComentList::find($request->id);
+        $user = Auth::user();
+        $form = $request->all();
+        $form['balloonStatus'] = $user->balloonStatus - intval($plan->like/3);
+        $plan->delete();
+        unset($form['_token']);
+        $user->fill($form)->save();
+        return redirect('/calendar');
     }
 
 
