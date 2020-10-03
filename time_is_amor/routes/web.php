@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Auth;
     Route::post('/balloon', 'CalendarController@balloonAjax');
     Route::post('/calendar/addPlan', 'CalendarController@addPlan');
     Route::post('/calendar/comentList', 'CalendarController@comentList');
-    Route::post('/calendar/update', 'CalendarController@profileUpdate');
+    Route::post('/calendar/update', 'CalendarController@update');
     Route::post('/calendar/planDelete','CalendarController@planDelete');
     Route::post('/calendar/commentDelete','CalendarController@commentDelete');
     //ユーザ招待時のアクション集

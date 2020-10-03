@@ -24,16 +24,16 @@
           @yield('calendar')
           <!-- アニメーション画面 -->
           <div class="ballonPosition balloonAnime" data-animation="{{$animeFlag}}" data-status ="{{is_null($user->balloonStatus)? 0 : $user->balloonStatus}}">
-            <img class="balloon" src="/storage/img/balloon01_red.png">
-            <img class="balloon" src="/storage/img/balloon02_yellow.png">
-            <img class="balloon" src="/storage/img/balloon03_lime.png">
-            <img class="balloon" src="/storage/img/balloon08_orange.png">
-            <img class="balloon" src="/storage/img/balloon11_white.png">
-            <img class="balloon" src="/storage/img/balloon07_purple.png">
-            <img class="balloon" src="/storage/img/balloon04_green.png">
-            <img class="balloon" src="/storage/img/balloon05_skyblue.png">
-            <img class="balloon" src="/storage/img/balloon09_pink.png">
-            <img class="balloon" src="/storage/img/balloon10_gray.png">
+            <img class="balloon" src="./images/balloon01_red.png">
+            <img class="balloon" src="./images//balloon02_yellow.png">
+            <img class="balloon" src="./images/balloon03_lime.png">
+            <img class="balloon" src="./images/balloon08_orange.png">
+            <img class="balloon" src="./images/balloon11_white.png">
+            <img class="balloon" src="./images/balloon07_purple.png">
+            <img class="balloon" src="./images/balloon04_green.png">
+            <img class="balloon" src="./images/balloon05_skyblue.png">
+            <img class="balloon" src="./images/balloon09_pink.png">
+            <img class="balloon" src="./images/balloon10_gray.png">
           </div>
     <!-- プロフィール部分 -->
     <div class="col-6 px-0 profile">
@@ -47,14 +47,14 @@
         <div class="card profile__info mb-0">
 
           @if($user->bgImg === null)
-          <img class="profile__img-top" src="/storage/img/bg-img.jpg" focusable="false" role="img">
+          <img class="profile__img-top" src="./images/bg-img.jpg" focusable="false" role="img">
           @else
-          <img class="profile__img-top" src="/storage/img/{{$user->bgImg}}" focusable="false" role="img">
+          <img class="profile__img-top" src="{{$user->bgImg}}" focusable="false" role="img">
           @endif
           @if($user->iconImg === null)
-          <img class="profile__img" src="/storage/img/profile_acount.jpeg" alt="アイコン画像">
+          <img class="profile__img" src="./images/profile_acount.jpeg" alt="アイコン画像">
           @else
-          <img class="profile__img" src="/storage/img/{{$user->iconImg}}" alt="アイコン画像">
+          <img class="profile__img" src="{{$user->iconImg}}" alt="アイコン画像">
           @endif
           <div class="card-body profilr__info-body">
                 <h6 class="card-title">{{$user->name}}</h6>
@@ -64,14 +64,14 @@
         </div>
         <div class="card profile__info mb-0">
           @if($partner == 0)
-          <img class="profile__img-top" src="/storage/img/bg-img.jpg" focusable="false" role="img">
+          <img class="profile__img-top" src="./images/bg-img.jpg" focusable="false" role="img">
           @elseif($partner->bgImg != null)
-          <img class="profile__img-top" src="/storage/img/{{$partner->bgImg}}" focusable="false" role="img">
+          <img class="profile__img-top" src="{{$partner->bgImg}}" focusable="false" role="img">
           @endif
           @if($partner == 0)
-          <img class="profile__img" src="/storage/img/profile_acount.jpeg" alt="アイコン画像">
+          <img class="profile__img" src="./images/profile_acount.jpeg" alt="アイコン画像">
           @elseif($partner->iconImg != null)
-          <img class="profile__img" src="/storage/img/{{$partner->iconImg}}" alt="アイコン画像">
+          <img class="profile__img" src="{{$partner->iconImg}}" alt="アイコン画像">
           @endif
           <div class="card-body profilr__info-body">
             @if($partner != 0)
@@ -93,22 +93,22 @@
     <div class="modal fade" id="modal__edit" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content edit-content">
-          <form class="card edit-form" action="{{ action('CalendarController@profileUpdate') }}" method="post" enctype="multipart/form-data">
+          <form class="card edit-form" action="{{ action('CalendarController@update') }}" method="post" enctype="multipart/form-data">
             <div class="form-group col-12 icon-info">
               <input id="icon" type="file" name="iconImage">
               <label for="icon">
                 @if($user->iconImg === null)
-                <img id="iconImage" class="profile__img edit-form__icon" src="/storage/img/profile_acount.jpeg" alt="アイコン画像（編集用）">
+                <img id="iconImage" class="profile__img edit-form__icon" src="./images/profile_acount.jpeg" alt="アイコン画像（編集用）">
                 @else
-                <img id="iconImage" class="profile__img edit-form__icon" src="/storage/img/{{$user->iconImg}}" alt="アイコン画像（編集用）">
+                <img id="iconImage" class="profile__img edit-form__icon" src="{{$user->iconImg}}" alt="アイコン画像（編集用）">
                 @endif
               </label>
               <input id="bg" type="file" name="bgImage">
               <label class="edit-form__bg" for="bg">
                 @if($user->bgImg === null)
-                <img id="bgImage" class="profile__img-top" src="/storage/img/bg-img.jpg" alt="背景画像（編集用）">
+                <img id="bgImage" class="profile__img-top" src="./images/bg-img.jpg" alt="背景画像（編集用）">
                 @else
-                <img id="bgImage" class="profile__img-top" src="/storage/img/{{$user->bgImg}}" alt="背景画像（編集用）">
+                <img id="bgImage" class="profile__img-top" src="{{$user->bgImg}}" alt="背景画像（編集用）">
                 @endif
               </label>
             </div>
@@ -208,15 +208,15 @@
               <div class="like-items">
                 <input class="coment" id="like-01" type="radio" name="like" value="3">
                 <label for="like-01">
-                  <img src="/storage/img/likeSmall.png" alt="いいね！">
+                  <img src="./images/likeSmall.png" alt="いいね！">
                 </label>
                 <input class="coment" id="like-02" type="radio" name="like" value="2">
                 <label for="like-02">
-                  <img src="/storage/img/likeMiddle.png" alt="いいね！">
+                  <img src="./images/likeMiddle.png" alt="いいね！">
                 </label>
                 <input class="coment" id="like-03" type="radio" name="like" value="1">
                 <label for="like-03">
-                  <img src="/storage/img/likeLarge.png" alt="いいね！">
+                  <img src="./images/likeLarge.png" alt="いいね！">
                 </label>
               </div>
             </div>

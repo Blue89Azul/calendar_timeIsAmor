@@ -12,13 +12,13 @@
     <span class="holiday"></span>
     <div class="option-btns">
       <button class="option-btn__acount" type="button" name="button">
-        <img src="/storage/img/profile.jpeg" alt="プロフィール">
+        <img src="./images/profile.jpeg" alt="プロフィール">
       </button>
         <button class="option-btn__add-plan" type="button" name="button" data-toggle="modal" data-target="#modal__addPlan">
-          <img src="/storage/img/calendar-icon.png" alt="予定追加">
+          <img src="./images/calendar-icon.png" alt="予定追加">
         </button>
         <button class="option-btn__coment-list" type="button" name="button" data-toggle="modal" data-target="#modal__coment-list">
-          <img src="/storage/img/coment-list-icon.png" alt="コメントリスト">
+          <img src="./images/coment-list-icon.png" alt="コメントリスト">
         </button>
         </div>
       </div>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Components\Holidays;
 use Illuminate\Support\Facades\Validator;
-
+use Storage; 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -56,18 +56,18 @@ class CalendarController extends Controller
         return response()->json($cal);
     }
 
-    public function profileUpdate(Request $request)
+    public function update(Request $request)
     {
         $user_form = $request->all();
         $user = Auth::user();
         if (isset($user_form['iconImage'])) {
-            $path_icon = $request->file('iconImage')->store('public/img');
-            $user->iconImg = basename($path_icon);
+            $path_icon = Storage::disk('s3')->putFile('/', $user_form['iconImage'], 'public');
+            $user->iconImg = Storage::disk('s3')->url($path_icon);
             unset($user_form['iconImage']);
         }
         if (isset($user_form['bgImage'])) {
-            $path_bg = $request->file('bgImage')->store('public/img');
-            $user->bgImg = basename($path_bg);
+            $path_bg = Storage::disk('s3')->putFile('/', $user_form['bgImage'], 'public');
+            $user->bgImg = Storage::disk('s3')->url($path_bg);
             unset($user_form['bgImage']);
         }
 

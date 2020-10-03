@@ -280,7 +280,7 @@ class Calendar extends Model
                   EOS;
                 if ($comment->like) {
                     for ($i=1; $i <= $comment->like ; $i++) {
-                        $this->comentList .= '<img src="/storage/img/like.png" alt="いいね">';
+                        $this->comentList .= '<img src="./images/like.png" alt="いいね">';
                     }
                 }
                 $this->comentList .=<<<EOS
