@@ -23,6 +23,7 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 恋人の間で使用する共有カレンダーアプリです。
 下記ページで公開しています。
+<br>
 (テストアカウントには ”(1)アドレス:test@test.com (2)パスワード:アドレスと同じ” でログインできます。)
 https://timeisamor.herokuapp.com/
 
@@ -33,6 +34,7 @@ https://timeisamor.herokuapp.com/
 - カレンダー表示（休日表示、次月前月表示変更）
 - 予定追加/削除・一覧表示機能
 - DONE FOR ME機能(パートナーが自分にしてくれたことに対して嬉しさ度をつけてコメントする機能)追加/削除・一覧表示機能 
+  <br>
   ※評価を満点（ハート３つチェック）にして投稿すると風船が飛び出す。
 - 招待メール機能(Gmailのsmtp使用）
 - アカウント編集（基本情報、アイコン、背景）機能
