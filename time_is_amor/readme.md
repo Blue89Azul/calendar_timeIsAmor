@@ -19,50 +19,28 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 - [Robust background job processing](https://laravel.com/docs/queues).
 - [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-- **[DevSquad](https://devsquad.com)**
-
 # TimE is AMOr(タイム イズ アモール)
 
 恋人の間で使用する共有カレンダーアプリです。
-下記ページで公開しています。(テストアカウントには ”(1)アドレス:test@test.com (2)パスワード:アドレスと同じ” でログインできます。)
+下記ページで公開しています。
+(テストアカウントには ”(1)アドレス:test@test.com (2)パスワード:アドレスと同じ” でログインできます。)
+https://timeisamor.herokuapp.com/
+
+## アプリ概要
+
+
+## 機能
+- カレンダー表示（休日表示、次月前月表示変更）
+- 予定追加/削除・一覧表示機能
+- DONE FOR ME機能(パートナーが自分にしてくれたことに対して嬉しさ度をつけてコメントする機能)追加/削除・一覧表示機能 
+  ※評価を満点（ハート３つチェック）にして投稿すると風船が飛び出す。
+- 招待メール機能(Gmailのsmtp使用）
+- アカウント編集（基本情報、アイコン、背景）機能
+- 祝日表示（Google Calendar API使用）
+- 認証機能(Laravel/Authを使用)
+- レスポンシブ対応
+
+
+
+## 使い方
+
