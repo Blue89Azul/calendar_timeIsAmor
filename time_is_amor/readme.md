@@ -24,8 +24,8 @@ https://timeisamor.herokuapp.com/
   <br>
   ※評価を満点（ハート３つチェック）にして投稿すると風船が飛び出す。
 - 招待メール機能(Gmailのsmtp使用）
-- アカウント編集（基本情報、アイコン、背景）機能
-- 祝日表示（Google Calendar API使用）
+- アカウント編集機能（基本情報、アイコン、背景）
+- 祝日表示機能（Google Calendar API使用）
 - 認証機能(Laravel/Authを使用)
 - レスポンシブ対応
 
