@@ -52,8 +52,6 @@ Thank you for considering contributing to the Laravel framework! The contributio
 
 In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-# 恋人間で使う共有カレンダーアプリ：TimE is AMOr(タイム イズ アモール)
-
 ## Security Vulnerabilities
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
@@ -61,3 +59,10 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+- **[DevSquad](https://devsquad.com)**
+
+# TimE is AMOr(タイム イズ アモール)
+
+恋人の間で使用する共有カレンダーアプリです。
+下記ページで公開しています。(テストアカウントには ”(1)アドレス:test@test.com (2)パスワード:アドレスと同じ” でログインできます。)
