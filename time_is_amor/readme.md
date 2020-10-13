@@ -28,6 +28,13 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 https://timeisamor.herokuapp.com/
 
 ## アプリ概要
+海外赴任で遠距離になってしまった恋人。
+- 時差により活動時間がバラバラで連絡が取りづらい。
+- 現地には日本では考えられないような危険な事件が多いから、心配。
+- そんな状況下でも、相手の気持ちを理解し、関係を深められればなぁ。
+そんな昔の自分が持っていた問題を解決するため、このアプリを作成いたしました。
+
+PHP/laravelで制作しました。
 
 
 ## 機能
