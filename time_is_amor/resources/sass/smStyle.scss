@@ -1,0 +1,136 @@
+/* 画面サイズ768以上の場合に適用 */
+.rPosition {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.calendar {
+    padding: 0;
+    margin: 0;
+}
+
+.calendar__table {
+    height: 84vh;
+}
+
+.calendar-footer > p {
+    font-size: 20px;
+}
+
+.profile-top {
+    background-color: #fff;
+}
+
+.profile {
+    height: 100vh;
+    position: relative;
+    border-right: 1px solid #9A3325;
+    top: 0;
+    left: 0;
+}
+
+.profilr__info-body > h6 {
+    font-size: 25px;
+}
+
+.calendar__days > .week > td > .plan-item {
+    width: 20px;
+    height: 20px;
+}
+
+.btn__close {
+    display: none;
+}
+
+.profile__img-top {
+    height: 34vh;
+}
+
+.profile__img {
+    top: 35%;
+    width: 100px;
+    height: 100px;
+}
+
+.edit-form__icon {
+    top: 30%;
+    cursor: pointer;
+}
+
+.icon-info > input[type=file] + .edit-form__bg > img {
+    cursor: pointer;
+}
+
+.card-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-group > .card:not(:first-child) {
+    height: 48vh;
+}
+
+.invitationBtn {
+    top: 88%;
+}
+
+.option-btn__acount {
+    display: none;
+}
+
+.commentBody {
+    padding: 0;
+}
+
+.plan-form__change-btn > input[type=checkbox]:checked+label::before {
+    left: 222px;
+}
+
+.plan-list-items {
+    height: 80px;
+}
+
+.plan-list-color {
+    width: 25px;
+    height: 25px;
+}
+
+.plan-list-times p {
+    font-size: 20px;
+}
+
+.plan-list-title {
+    width: 70%;
+}
+
+.plan-list-title p {
+    font-size: 25px;
+}
+
+.deletePlan {
+    font-size: 20px;
+    line-height: 3;
+}
+
+.likes img {
+    height: 30px;
+}
+
+.commentInfo {
+    font-size: 20px;
+}
+
+.comment-text {
+    font-size: 25px;
+}
+
+.holiday {
+    display: inline-block;
+    position: absolute;
+    top: 80%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    width: 25%;
+    padding-left: 9px;
+    background: transparent;
+}

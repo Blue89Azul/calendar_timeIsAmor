@@ -15,60 +15,60 @@
 .balloonAnimation:nth-child(1) {
   transition: all ease-out 3s;
   transition-delay: 0.2s;
-  transform: translate(-290px, -200vh);
+  transform: translate(-273px, -200vh);
 }
 
 .balloonAnimation:nth-child(2) {
   transition: all ease-out 3s;
   transition-delay: 0.4s;
-  transform: translate(-202px, -200vh);
+  transform: translate(-117px, -200vh);
 }
 
 .balloonAnimation:nth-child(3) {
   transition: all ease-out 3s;
   transition-delay: 0.6s;
-  transform: translate(-220px, -200vh);
+  transform: translate(-43px, -200vh);
 }
 
 .balloonAnimation:nth-child(4) {
   transition: all ease-out 3s;
   transition-delay: 0.8s;
-  transform: translate(-43px, -200vh);
+  transform: translate(-20px, -200vh);
 }
 
 .balloonAnimation:nth-child(5) {
   transition: all ease-out 3s;
   transition-delay: 1s;
-  transform: translate(-114px, -200vh);
+  transform: translate(-138px, -200vh);
 }
 
 .balloonAnimation:nth-child(6) {
   transition: all ease-out 3s;
   transition-delay: 1.2s;
-  transform: translate(264px, -200vh);
+  transform: translate(85px, -200vh);
 }
 
 .balloonAnimation:nth-child(7) {
   transition: all ease-out 3s;
   transition-delay: 1.4s;
-  transform: translate(175px, -200vh);
+  transform: translate(280px, -200vh);
 }
 
 .balloonAnimation:nth-child(8) {
   transition: all ease-out 3s;
   transition-delay: 1.6s;
-  transform: translate(40px, -200vh);
+  transform: translate(67px, -200vh);
 }
 
 .balloonAnimation:nth-child(9) {
   transition: all ease-out 3s;
   transition-delay: 1.8s;
-  transform: translate(116px, -200vh);
+  transform: translate(274px, -200vh);
 }
 
 .balloonAnimation:nth-child(10) {
   transition: all ease-out 3s;
   transition-delay: 2s;
-  transform: translate(49px, -200vh);
+  transform: translate(71px, -200vh);
 }
 

@@ -47,16 +47,10 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-12 offset-md-4">
+                            <div class="col-sm-6 col-12 offset-sm-4">
                                 <button type="submit" class="btn auth-btn w-100">
                                     {{ __('ログインする') }}
                                 </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link text-center" href="{{ route('password.request') }}">
-                                        {{ __('パスワードをお忘れですか?') }}
-                                    </a>
-                                @endif
                             </div>
                         </div>
                     </form>

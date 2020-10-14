@@ -1,12 +1,13 @@
 $(function() {
     $(".week > td").on("click", function(e) {
-        let clickNum = parseInt($(this).text(), 10);
-        $(".clickMonth").text($(this).children().data("month") + "月");
-        $(".clickDay").text(clickNum + "日");
-
+        let clickDay = parseInt($(this).text(), 10);
+        let clickMonth = $(this).children().data("month");
+        $(".clickMonth").text(clickMonth + "月");
+        $(".clickDay").text(clickDay + "日");
         var baseUrl = $('meta[name="_base_url"]').attr('content');
         console.log(baseUrl + '/planList');
-        console.log(clickNum);
+        console.log(clickDay);
+        console.log(clickMonth);
         $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -14,19 +15,22 @@ $(function() {
                 url: baseUrl + '/planList',
                 type: 'post',
                 data: {
-                    'clickNum': clickNum
+                    'clickDay': clickDay,
+                    'clickMonth': clickMonth,
                 },
                 dataType: 'text',
             })
             .done(function(data) {
                 $(".week > td").addClass("checked");
-                $(".calendar__table").css("height", "40vh");
-                $(this).css("border", "solid 2px orange");
                 $(".plan-list").css("display", "block");
+                if(window.matchMedia("(min-width:768px)").matches){
+                  $(".calendar__table").css("height", "60vh");
+                }else {
+                  $(".calendar__table").css("height", "40vh");
+                }
                 // テキストの追加の記述
                 $(".plan-list").html($.parseJSON(data));
                 var target = $(e.target); //ターゲットを使うことでイベント中の箇所のみ取得可能。
-                $(".holiday").text("");
                 if (target.data('name')) {
                     $(".holiday").text(target.data('name'));
                 }
@@ -43,6 +47,15 @@ $(function() {
     });
 
     // 予定一覧表示アニメーション
+  if(window.matchMedia("(min-width:768px)").matches){
+    $(".calendar-footer").on("click", function() {
+        $(".calendar__table").css("height", "84vh");
+        $(".plan-list").css("display", "none");;
+        $(".clickDay").text("");
+        $(".clickMonth").text("");
+        $(".holiday").text("");
+    });
+  } else {
     $(".calendar-footer").on("click", function() {
         $(".calendar__table").css("height", "65vh");
         $(".plan-list").css("display", "none");;
@@ -50,4 +63,5 @@ $(function() {
         $(".clickMonth").text("");
         $(".holiday").text("");
     });
+  }
 });

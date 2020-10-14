@@ -1,11 +1,11 @@
 @extends('layouts.app')
-
+@section('title', 'TimE is AMOr | INVITATION')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
           <h1 class="auth-title">{{ __('招待ユーザ登録') }}</h1>
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ action('InvitationController@postRegister') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('message.Name') }}</label>
@@ -45,9 +45,6 @@
                             @enderror
                         </div>
                     </div>
-                          </div>
-                        </div>
-
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('message.Password') }}</label>
 
@@ -69,9 +66,9 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
-
+                        <input type="hidden" name="partner_id" value="{{$randomStr->where('random_str', $value)->first()->users_id}}">
                         <div class="form-group row mt-2">
-                            <div class="col-12">
+                            <div class="col-sm-6 col-12 offset-sm-4">
                                 <button type="submit" class="w-100 btn auth-btn">
                                     {{ __('登録') }}
                                 </button>

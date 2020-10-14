@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 use App\Mail\Invitation;
+use App\Models\RandomStrings;
 use App\User;
 
 class InvitationController extends Controller
@@ -21,30 +23,41 @@ class InvitationController extends Controller
         $inviteText = $request->get('textForSend');
         $cal_id = Auth::user()->cal_id;
         $inviteEmail = $request->get('toEmail');
-        Mail::to($inviteEmail)->send(new Invitation($inviteText, $cal_id));
+        $form_email = Auth::user()->email;
+        \Mail::to($inviteEmail)->send(new Invitation($inviteText, $cal_id));
         return redirect('/calendar');
     }
 
-    public function getRegister()
+    public function getRegister($value)
     {
-        return view('auth.invitationRegister');
+      return view('auth.invitationRegister', [
+        'value' => $value,
+        'randomStr' => new RandomStrings,
+      ]);
     }
 
     public function postRegister(Request $request)
     {
-        $form = $request->all();
-        if (isset($form['name'])) {
-            $user = new User(['partner_id' => Auth::id()]);
+        $this->validate($request, [
+          'name' => ['required', 'string', 'max:255'],
+          'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+          'password' => ['required', 'string', 'min:8', 'confirmed'],
+          'birthday' => 'required',
+          'partner_id' => 'nullable',
+        ]);
+        $partner = new User([
+          'name' => $request->input('name'),
+          'email' => $request->input('email'),
+          'password' => Hash::make($request->input('password')),
+          'birthday' => $request->input('birthday'),
+          'partner_id' => $request->input('partner_id'),
+        ]);
+          $partner->save();
+    if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
+              $user = User::find($partner->partner_id);
+              $user->partner_id = $partner->id;
+              $user->save();
+          return redirect('/calendar');
         }
-        unset($form['_token']);
-        $user->save();
-
-        // 事前に登録しているユーザー
-        $shoutai = Auth::user();
-        // dd($shoutai);
-        $shoutai->partner_id = $user->id;
-        $shoutai->save();
-
-        return redirect('/calendar'); //ユーザIDの表示
     }
 }

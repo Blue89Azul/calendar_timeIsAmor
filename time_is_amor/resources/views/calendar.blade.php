@@ -22,5 +22,5 @@
         </button>
         </div>
       </div>
-      <span class="plan-list"></div>
+      <div class="plan-list"></div>
 @endsection

@@ -3,6 +3,7 @@
 .container-fluid {
   width: 100%;
   height: 100vh;
+  padding: 0;
   background-color: #E3E1DB;
   position: relative;
   overflow: hidden;
@@ -16,7 +17,6 @@
 }
 
 .btn-color:hover {
-  transform: translateY(-3px);
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
   transition: 0.5s;
   cursor: pointer;
@@ -47,10 +47,18 @@ li {
 
 /* カレンダーテーブル画面 */
 
+#swipe {
+  position: relative;
+  left: auto;
+  top: auto;
+}
+
 .calendar {
   color: #A8AD00;
   justify-content: center;
   text-shadow: 1px 1px 0 #fff;
+  margin: 0;
+  padding: 0;
 }
 
 .calendar-date {
@@ -170,7 +178,7 @@ li {
 .calendar__table {
   width: 100%;
   max-width: 100%;
-  height: 65vh;
+  height: 64vh;
   margin: 0;
   padding: 0;
   position: relative;
@@ -204,7 +212,8 @@ tr[class^=week] > td {
 
 tr[class^=week] > td > p {
   position: absolute;
-  left: 15%;
+  left: 50%;
+  transform: translateX(-50%);
   top: 1%;
   width: 25px;
   height: 25px;
@@ -221,12 +230,6 @@ tr[class^=week] > td > p {
   position: absolute;
 }
 
-#swipe {
-  position: absolute;
-  top: auto;
-  left: auto;
-}
-
 .calendar__days {
   font-size: 0.5rem;
 }
@@ -234,7 +237,6 @@ tr[class^=week] > td > p {
 .calendar__days > .week > td {
   position: relative;
   width: 50px;
-  height: 55px;
   border: 1px solid;
 }
 
@@ -398,6 +400,7 @@ tr[class^=week] > td > p {
 .profile__info {
   position: relative;
   width: 100%;
+  height: 40vh;
 }
 
 .profile__img {
@@ -507,6 +510,13 @@ tr[class^=week] > td > p {
   left: 123px;
 }
 
+.btnPosi {
+  position: absolute;
+  top: 95%;
+  left: 50%;
+  transform: translate(-50%, -95%);
+}
+
 /* 予定追加　→　色変更／いいね！ */
 
 #like {
@@ -555,7 +565,7 @@ input[type=radio]:checked ~ label {
 /* アカウント編集画面（モーダル） */
 
 .edit-content {
-  height: 65vh;
+  height: 70vh;
 }
 
 .edit-form {

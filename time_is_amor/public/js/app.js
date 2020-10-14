@@ -508,6 +508,17 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 
 /***/ }),
 
+/***/ "./resources/sass/authSmStyle.scss":
+/*!*****************************************!*\
+  !*** ./resources/sass/authSmStyle.scss ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9hdXRoU21TdHlsZS5zY3NzP2M0ODEiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEiLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Fzcy9hdXRoU21TdHlsZS5zY3NzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLy8gcmVtb3ZlZCBieSBleHRyYWN0LXRleHQtd2VicGFjay1wbHVnaW4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/sass/authSmStyle.scss\n");
+
+/***/ }),
+
 /***/ "./resources/sass/auth_style.scss":
 /*!****************************************!*\
   !*** ./resources/sass/auth_style.scss ***!
@@ -537,7 +548,18 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("throw new Error(\"Module build failed (from ./node_modules/css-loader/index.js):\\nModuleNotFoundError: Module not found: Error: Can't resolve '../images/home_img.jpg' in '/Users/azul/workspace/github/calendar_app/time_is_amor/resources/sass'\\n    at /Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/webpack/lib/Compilation.js:925:10\\n    at /Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/webpack/lib/NormalModuleFactory.js:401:22\\n    at /Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/webpack/lib/NormalModuleFactory.js:130:21\\n    at /Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/webpack/lib/NormalModuleFactory.js:224:22\\n    at /Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/neo-async/async.js:2830:7\\n    at /Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/neo-async/async.js:6877:13\\n    at /Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/webpack/lib/NormalModuleFactory.js:214:25\\n    at /Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/enhanced-resolve/lib/Resolver.js:213:14\\n    at /Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/enhanced-resolve/lib/Resolver.js:285:5\\n    at eval (eval at create (/Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:13:1)\\n    at /Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/enhanced-resolve/lib/UnsafeCachePlugin.js:44:7\\n    at /Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/enhanced-resolve/lib/Resolver.js:285:5\\n    at eval (eval at create (/Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:13:1)\\n    at /Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/enhanced-resolve/lib/Resolver.js:285:5\\n    at eval (eval at create (/Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:25:1)\\n    at /Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/enhanced-resolve/lib/DescriptionFilePlugin.js:67:43\\n    at /Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/enhanced-resolve/lib/Resolver.js:285:5\\n    at eval (eval at create (/Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:14:1)\\n    at /Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/enhanced-resolve/lib/Resolver.js:285:5\\n    at eval (eval at create (/Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:25:1)\\n    at /Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/enhanced-resolve/lib/DescriptionFilePlugin.js:67:43\\n    at /Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/enhanced-resolve/lib/Resolver.js:285:5\\n    at eval (eval at create (/Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:14:1)\\n    at /Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/enhanced-resolve/lib/Resolver.js:285:5\\n    at eval (eval at create (/Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:13:1)\\n    at /Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/enhanced-resolve/lib/DirectoryExistsPlugin.js:27:15\\n    at /Users/azul/workspace/github/calendar_app/time_is_amor/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:85:15\\n    at processTicksAndRejections (internal/process/task_queues.js:79:11)\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuL3Jlc291cmNlcy9zYXNzL2hvbWVTdHlsZS5zY3NzLmpzIiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/sass/homeStyle.scss\n");
+eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9ob21lU3R5bGUuc2Nzcz8zNTM1Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBIiwiZmlsZSI6Ii4vcmVzb3VyY2VzL3Nhc3MvaG9tZVN0eWxlLnNjc3MuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyByZW1vdmVkIGJ5IGV4dHJhY3QtdGV4dC13ZWJwYWNrLXBsdWdpbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/sass/homeStyle.scss\n");
+
+/***/ }),
+
+/***/ "./resources/sass/smStyle.scss":
+/*!*************************************!*\
+  !*** ./resources/sass/smStyle.scss ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9zbVN0eWxlLnNjc3M/NjA2YSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsImZpbGUiOiIuL3Jlc291cmNlcy9zYXNzL3NtU3R5bGUuc2Nzcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8vIHJlbW92ZWQgYnkgZXh0cmFjdC10ZXh0LXdlYnBhY2stcGx1Z2luIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/sass/smStyle.scss\n");
 
 /***/ }),
 
@@ -553,9 +575,9 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /***/ }),
 
 /***/ 0:
-/*!*********************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/style.scss ./resources/sass/homeStyle.scss ./resources/sass/auth_style.scss ./resources/sass/balloonStyle.scss ***!
-  \*********************************************************************************************************************************************************************************************/
+/*!*************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/style.scss ./resources/sass/homeStyle.scss ./resources/sass/auth_style.scss ./resources/sass/balloonStyle.scss ./resources/sass/smStyle.scss ./resources/sass/authSmStyle.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -564,7 +586,9 @@ __webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/r
 __webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/sass/style.scss */"./resources/sass/style.scss");
 __webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/sass/homeStyle.scss */"./resources/sass/homeStyle.scss");
 __webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/sass/auth_style.scss */"./resources/sass/auth_style.scss");
-module.exports = __webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/sass/balloonStyle.scss */"./resources/sass/balloonStyle.scss");
+__webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/sass/balloonStyle.scss */"./resources/sass/balloonStyle.scss");
+__webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/sass/smStyle.scss */"./resources/sass/smStyle.scss");
+module.exports = __webpack_require__(/*! /Users/azul/workspace/github/calendar_app/time_is_amor/resources/sass/authSmStyle.scss */"./resources/sass/authSmStyle.scss");
 
 
 /***/ })

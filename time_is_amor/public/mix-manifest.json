@@ -5,6 +5,8 @@
     "/css/homeStyle.css": "/css/homeStyle.css",
     "/css/auth_style.css": "/css/auth_style.css",
     "/css/balloonStyle.css": "/css/balloonStyle.css",
+    "/css/smStyle.css": "/css/smStyle.css",
+    "/css/authSmStyle.css": "/css/authSmStyle.css",
     "/js/balloonAnimation.js": "/js/balloonAnimation.js",
     "/js/calendar.js": "/js/calendar.js",
     "/js/home.js": "/js/home.js",

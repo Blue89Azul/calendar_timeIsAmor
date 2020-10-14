@@ -8,11 +8,7 @@
     <p>{{ $text }}</p>
 
     <p>さぁ！今すぐはじめましょう！！</p>
-    <a href="{{ url('/invitation/register/')}}">[ユーザー登録はこちらから！！]</a>
-
-
-
-
+    <a href="{{ url('/invitation/register', ['value' => $value])}}">[ユーザー登録はこちらから！！]</a>
 
     <p>
     [作業手順]

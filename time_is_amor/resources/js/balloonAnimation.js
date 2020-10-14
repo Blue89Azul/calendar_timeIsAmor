@@ -1,7 +1,9 @@
 $(function() {
-    if ($(".balloonAnime").data("animation") > $(".balloonAnime").data("status")) {
-        $(".balloon").addClass("balloonAnimation");
-        $("span").toggleClass("moveStraight");
+    if ($(".balloonAnime").data("animation") !== $(".balloonAnime").data("status")) {
+        if ($(".balloonAnime").data("animation") > $(".balloonAnime").data("status")) {
+            $(".balloon").addClass("balloonAnimation");
+            $("span").toggleClass("moveStraight");
+        }
         $(".balloon:nth-child(10)").on('transitionend webkitTransitionEnd', function() {
             $(".balloon").removeClass("balloonAnimation");
             var baseUrl = $('meta[name="_base_url"]').attr('content');

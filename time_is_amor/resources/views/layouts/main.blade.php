@@ -11,33 +11,21 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
     <link rel="stylesheet" href="{{ asset('css/balloonStyle.css')}}">
+    <link rel="stylesheet" href="{{asset('css/smStyle.css')}}" media="screen and (min-width:768px)">
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400&display=swap" rel="stylesheet">
     <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-
   </head>
   <body>
     <div class="container-fluid">
-      <div class="row calendar">
-
+    <div class="rPosition">
+      <div class="col-sm-9 row calendar">
           @yield('calendar')
-          <!-- アニメーション画面 -->
-          <div class="ballonPosition balloonAnime" data-animation="{{$animeFlag}}" data-status ="{{is_null($user->balloonStatus)? 0 : $user->balloonStatus}}">
-            <img class="balloon" src="./images/balloon01_red.png">
-            <img class="balloon" src="./images//balloon02_yellow.png">
-            <img class="balloon" src="./images/balloon03_lime.png">
-            <img class="balloon" src="./images/balloon08_orange.png">
-            <img class="balloon" src="./images/balloon11_white.png">
-            <img class="balloon" src="./images/balloon07_purple.png">
-            <img class="balloon" src="./images/balloon04_green.png">
-            <img class="balloon" src="./images/balloon05_skyblue.png">
-            <img class="balloon" src="./images/balloon09_pink.png">
-            <img class="balloon" src="./images/balloon10_gray.png">
-          </div>
+      </div>
     <!-- プロフィール部分 -->
-    <div class="col-6 px-0 profile">
-      <div class="col-12 card-group px-0">
+      <div class="col-md-3 col-6 px-0 profile">
+            <div class="col-12 card-group px-0">
         <div class="profile-top">
           <button type="button" class="close btn__close text-right" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -45,7 +33,6 @@
           <h6 class="text-center">アカウント</h6>
         </div>
         <div class="card profile__info mb-0">
-
           @if($user->bgImg === null)
           <img class="profile__img-top" src="./images/bg-img.jpg" focusable="false" role="img">
           @else
@@ -59,36 +46,49 @@
           <div class="card-body profilr__info-body">
                 <h6 class="card-title">{{$user->name}}</h6>
                 <p>{{$user->birthday}}</p>
-            <button type="button" class="btn-color btn-sm" data-toggle="modal" data-target="#modal__edit">編集</button>
+            <button type="button" class="col-sm-10 col-10 btn-color btn-sm btnPosi" data-toggle="modal" data-target="#modal__edit">編集</button>
           </div>
         </div>
         <div class="card profile__info mb-0">
-          @if($partner == 0)
+          @if($partner == null || $partner->bgImg == null)
           <img class="profile__img-top" src="./images/bg-img.jpg" focusable="false" role="img">
           @elseif($partner->bgImg != null)
-          <img class="profile__img-top" src="{{$partner->bgImg}}" focusable="false" role="img">
+          <img class="profile__img-top" src="{{ $partner->bgImg }}" focusable="false" role="img">
           @endif
-          @if($partner == 0)
+          @if($partner == null || $partner->iconImg == null)
           <img class="profile__img" src="./images/profile_acount.jpeg" alt="アイコン画像">
           @elseif($partner->iconImg != null)
-          <img class="profile__img" src="{{$partner->iconImg}}" alt="アイコン画像">
+          <img class="profile__img" src="{{ $partner->iconImg }}" alt="アイコン画像">
           @endif
           <div class="card-body profilr__info-body">
-            @if($partner != 0)
+            @if($partner != null)
             <h6 class="card-title">{{$partner->name}}</h6>
             <p>{{$partner->birthday}}</p>
             @else
             <h6 class="card-title"></h6>
             <p></p>
             @endif
-            @if($partner == 0)
-            <button type="button" class="btn-color btn-sm" data-toggle="modal" data-target="#modal__invitation">招待</button>
+            @if($partner == null)
+            <button type="button" class="col-sm-10 col-10 btn-color btn-sm btnPosi invitationBtn" data-toggle="modal" data-target="#modal__invitation">招待</button>
             @endif
           </div>
         </div>
       </div>
+      </div>
     </div>
-
+    <!-- アニメーション画面 -->
+    <div class="ballonPosition balloonAnime" data-animation="{{$animeFlag}}" data-status ="{{is_null($user->balloonStatus)? 0 : $user->balloonStatus}}">
+      <img class="balloon" src="./images/balloon01_red.png">
+      <img class="balloon" src="./images//balloon02_yellow.png">
+      <img class="balloon" src="./images/balloon03_lime.png">
+      <img class="balloon" src="./images/balloon08_orange.png">
+      <img class="balloon" src="./images/balloon11_white.png">
+      <img class="balloon" src="./images/balloon07_purple.png">
+      <img class="balloon" src="./images/balloon04_green.png">
+      <img class="balloon" src="./images/balloon05_skyblue.png">
+      <img class="balloon" src="./images/balloon09_pink.png">
+      <img class="balloon" src="./images/balloon10_gray.png">
+    </div>
     <!-- アカウント編集（モーダル） -->
     <div class="modal fade" id="modal__edit" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -114,10 +114,10 @@
             </div>
             <div class="card-body edit-form__items">
               <div class="form-group">
-                <label class="col-md-4 col-form-label text-md-right" for="name">名前</label>
+                <label class="ml-4 col-form-label text-md-right" for="name">名前</label>
                 <input id="name" class="form-control col-11 mx-auto" type="text" name="name" value="{{$user->name}}" required>
-                <label class="col-md-4 col-form-label text-md-right" for="email">メールアドレス</label>
-                <input id="email" class="form-control col-11 mx-auto" type="email" name="mail" value="{{$user->email}}" required>
+                <label class="ml-4 col-form-label text-md-right" for="email">メールアドレス</label>
+                <input id="email" class="form-control col-11 mx-auto" type="email" name="email" value="{{$user->email}}" required>
               </div>
                 <div class="form-group">
                   {{ csrf_field() }}
@@ -148,7 +148,6 @@
         </div>
       </div>
     </div>
-
     <!-- 予定追加画面（モーダル） -->
     <div class="modal fade" id="modal__addPlan" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -181,7 +180,7 @@
                   <input class="form-control text-center plan-form__title coment" type="text" name="comentTitle" placeholder="コメントタイトル">
                 </div>
                 <div class="form-group">
-                  <input class="form-control col-12 coment" type="date" name="comentDate" placeholder="日付">
+                  <input class="form-control mx-auto col-11 coment" type="date" name="comentDate" placeholder="日付">
                 </div>
               </div>
             </div>
@@ -236,7 +235,6 @@
         </div>
       </div>
     </div>
-  </div>
 </div>
 <script src="{{ asset('js/planList_ajax.js') }}" type="module"></script>
 <script src="{{ asset('js/calendar.js') }}" type="module"></script>

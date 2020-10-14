@@ -21,4 +21,6 @@ mix.js('resources/js/app.js', 'public/js').sourceMaps()
     .sass('resources/sass/style.scss', 'public/css')
     .sass('resources/sass/homeStyle.scss', 'public/css')
     .sass('resources/sass/auth_style.scss', 'public/css')
-    .sass('resources/sass/balloonStyle.scss', 'public/css');
+    .sass('resources/sass/balloonStyle.scss', 'public/css')
+    .sass('resources/sass/smStyle.scss', 'public/css')
+    .sass('resources/sass/authSmStyle.scss', 'public/css');

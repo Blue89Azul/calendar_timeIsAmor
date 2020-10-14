@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-12 offset-md-4">
+                            <div class="col-md-6 col-12 offset-md-4">
                                 <button type="submit" class="btn auth-btn w-100">
                                     {{ __('リンク送信') }}
                                 </button>

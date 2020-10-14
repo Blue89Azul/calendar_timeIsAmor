@@ -56,6 +56,7 @@ class RegisterController extends Controller
             'birthday' => ['required'],
             'iconImg' => ['nullable'],
             'bgImg' => ['nullable'],
+            'partner_id' => ['nullable'],
         ]);
     }
 

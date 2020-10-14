@@ -29,11 +29,10 @@ use Illuminate\Support\Facades\Auth;
     Route::post('/calendar/update', 'CalendarController@update');
     Route::post('/calendar/planDelete','CalendarController@planDelete');
     Route::post('/calendar/commentDelete','CalendarController@commentDelete');
-    //ユーザ招待時のアクション集
-    Route::post('/calendar/invitation', 'InvitationController@mail');
+    Route::post('/calendar/invitation/', 'InvitationController@mail');
   });
 
-  Route::get('/invitation/register/', 'InvitationController@getRegister');
+  Route::get('/invitation/register/{value}', 'InvitationController@getRegister');
   Route::post('/invitation/register/', 'InvitationController@postRegister');
 
 Route::get('/', function () {

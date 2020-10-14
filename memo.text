@@ -1,34 +1,25 @@
-＜欲しい機能＞
-1. コメント一覧（コメント表示＋投稿者名）
-2. 予定一覧（パートナーの予定も表示）
-→ここは今日中に終わらせる。
+$日付カウンタ- = 1;
 
-＜明日やること＞
-0.全体の見直し
-1. 退会処理
-2. フリック処理の修正
-3. デプロイ
-4. 全体テスト（招待メール確認）→ その他エラーがないか確認。
-5. 長期間の使用のエフェクトのロジック(明日)
+foreach(予定の繰り返し){ //11月10日
 
-*****************************************************************
-$userPlans = ログインユーザに紐づく予定情報をDBから取得(date型);
-$partnerPlans = パートナーに紐づく予定情報をDBから取得(date型);
-
-$counter = 1;
-foreach($userPlans as $index => $userPlan){
-  foreach($partnerPlans as $partnerPlan) {
-  $uYear = ログインユーザ予定情報：year取得
-  $uMonth =　ログインユーザ予定情報：month取得
-  $uDay = ログインユーザ予定情報：day取得
-  $pYear = パートナー予定情報：year取得
-  $pMonth =　パートナー予定情報：month取得
-  $pDay =　パートナー予定情報：day取得
-if(Auth::user->partner_id){
-    foreach($partners as $partner){
-    $cYear = $dt->createFromDate($comment->comentDate)->year;
-    $cMonth = $dt->createFromDate($comment->comentDate)->month;
-    $cDay = $dt->createFromDate($comment->comentDate)->day;
-
-  }
+if(日付カウンターが３以上){
+  $日付カウンター = 0;
+  $日付更新++
+  break;
+}else if(日にち判定){
+  <div>予定表示</div>
 }
+if(予定日付と該当日付が一緒だったら) {
+  $日付カウンターインクリメント ++;
+}
+
+$d = ;
+
+}
+
+$日付インクリメント++
+
+
+＜やりたいこと＞
+・予定の表示は３つまで。
+・４つ目が入ると予定は表示されない（次の日付へ移動）

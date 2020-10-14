@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Components\Holidays;
 use Illuminate\Support\Facades\Validator;
-use Storage; 
+use Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -51,7 +51,7 @@ class CalendarController extends Controller
         $year = Carbon::now()->year;
         $month = Carbon::now()->month;
         $obj = new Calendar;
-        $cal = $obj->planList($year, $month, $request->clickNum);
+        $cal = $obj->planList($year, $month, $request->clickDay, $request->clickMonth);
 
         return response()->json($cal);
     }
@@ -59,7 +59,7 @@ class CalendarController extends Controller
     public function update(Request $request)
     {
         $user_form = $request->all();
-        $user = Auth::user();
+        $user = User::find(Auth::id());
         if (isset($user_form['iconImage'])) {
             $path_icon = Storage::disk('s3')->putFile('/', $user_form['iconImage'], 'public');
             $user->iconImg = Storage::disk('s3')->url($path_icon);
@@ -113,11 +113,14 @@ class CalendarController extends Controller
         $authId = Auth::id();
         $likeCounter = Users::find($authId)->comentlists->sum('like');
         $animeFlag = intval($likeCounter / 3);
-        empty(User::find($authUser->partner_id))? $partner = 0 : $partner = User::find($user->partner_id) ;
-
-        $cal = $obj->showCale($request->year, $request->month, $this->provider);
-        $cal_changeMonth = $obj->changeMonth($request->year, $request->month);
-        $cal_comentList = $obj->comentList($request->year, $request->month);
+        if($authUser->partner_id != null){
+          $partner = User::find($authUser->partner_id);
+        } else {
+          $partner = null;
+        }
+        $cal = $obj->showCale($request->input('year'), $request->input('month'), $this->provider);
+        $cal_changeMonth = $obj->changeMonth($request->input('year'), $request->input('month'));
+        $cal_comentList = $obj->comentList($request->input('year'), $request->input('month'));
 
         return view('calendar', [
         "cal" => $cal,
