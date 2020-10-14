@@ -1,61 +1,61 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# TimE is AMOr(タイム イズ アモール)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+恋人の間で使用する共有カレンダーアプリです。
+下記ページで公開しています。
+<br>
+(テストアカウントには ”(1)アドレス:test@test.com (2)パスワード:アドレスと同じ” でログインできます。)
+https://timeisamor.herokuapp.com/
 
-## About Laravel
+## アプリ概要
+海外赴任で遠距離になってしまった恋人。
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- 時差により活動時間がバラバラで連絡が取りづらい。
+- 現地には日本では考えられないような危険な事件が多いから、心配。
+- そんな状況下でも、相手の気持ちを理解し、関係をより深めたい。
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+そんな昔の自分の課題を解決するため、このアプリを作成いたしました。<br>
+※PHP/laravelで制作しました。
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## 機能
+- カレンダー表示（休日表示、次月前月表示変更）
+- 予定追加/削除・一覧表示機能
+- DONE FOR ME機能(パートナーが自分にしてくれたことに対して嬉しさ度をつけてコメントする機能)追加/削除・一覧表示機能 
+  <br>
+  ※評価を満点（ハート３つチェック）にして投稿すると風船が飛び出す。
+- 招待メール機能(Gmailのsmtp使用）
+- アカウント編集機能（基本情報、アイコン、背景）
+- 祝日表示機能（Google Calendar API使用）
+- 認証機能(Laravel/Authを使用)
+- レスポンシブ対応
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 使い方（※パソコン画面の場合）
+### 予定追加
+1. 画面右下左側の予定マークをクリックする。
+2. 入力フォーム画面上に、予定タイトル入力する。
+3. その予定日時を入力(現在、単日のみ入力可能)する。
+4. 予定の色を選択する。
+5. 保存ボタンを押して内容保存される。
+6. 予定の一覧は、カレンダー画面で予定を入力した日付をクリックすると、画面下から表示される。
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### DONE FOR ME機能(パートナーが自分にしてくれたことに対して嬉しさ度をつけてコメントする機能)
+1. 画面右下左側の予定マークをクリックする。
+2. 入力フォーム画面中央のadd planボタンをクリックし、DONE FOR MEフォームへ移動される。
+3. フォーム画面上に、パートナーがしてくれて嬉しかった行動・振る舞い・言葉などを入力する。
+4. その行動をしてくれた日時を入力する。
+5. ハートマークをクリックし嬉しさ度をチェックする。
+6. 保存ボタンを押して内容保存される。
+7. コメントの一覧は、カレンダー画面の右下右側のコメントマークをクリックすると、その月のコメント一覧が閲覧できる。
 
-## Laravel Sponsors
+### アカウント編集
+1. カレンダー画面左の編集ボタンをクリックする。
+2. 編集フォームより編集（背景とアイコンは、クリックすると画像を挿入できる。)する。
+3. 変更ボタンを押して。、編集内容が保存される。
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 招待メール送信/招待ユーザー登録
+1. カレンダー画面左下の招待ボタンをクリックする
+2. 入力フォームに、(1)送信時のパートナーへのコメント(2)パートナーのメールアドレスを入力し、送信ボタンを押す。
+3. 招待メールが、パートナーに届く。パートナーは、メールから招待ユーザー登録画面へ移動。
+4. 基本情報を入力し、ログイン。
+5. パートナーログイン後、カレンダー画面を再読み込みし、パートナー情報が画面左下に反映されている確認する。
+6. パートナー情報が反映されていれば、共有カレンダーとして使用できる。
